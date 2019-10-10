@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: master
+  accept_roles:
+    - admin
+    - editor
+
+site_url: https://academyparkpeds.netlify.com
+display_url: https://academyparkpeds.netlify.com
+# logo_url: https://your-site.com/images/logo.svg
+
+show_preview_links: true
+
+media_folder: "static/media"
+public_folder: "/media"
+
+collections:
+  - name: "main-banner"
+    label: "Main Banner"
+    folder: "static/data/main-banner"
+    delete: false
+    preview_path: /
+    fields:
+      - {label: "Super Text", name: "super", widget: "string"}
+      - {label: "Main Text", name: "main", widget: "string"}
+      - {label: "Sub Text", name: "sub", widget: "string"}
+      - label: "Featured Image"
+        name: "image"
+        widget: "image"
+        allow_multiple: false
