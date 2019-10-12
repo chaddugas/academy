@@ -18,6 +18,7 @@ collections:
   - name: "hero"
     label: "Hero"
     folder: "static/data/hero"
+    create: true
     delete: false
     format: "json"
     preview_path: /
