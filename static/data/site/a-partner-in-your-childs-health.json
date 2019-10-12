@@ -2,7 +2,7 @@
   "title": "A partner in your child's health.",
   "alert": {
     "title": "Our Lakewood Office is moving!",
-    "active": true,
+    "active": false,
     "text": "_Starting November 4th we will be located at **3333 S. Wadsworth Blvd # B102, Lakewood, CO 80235**_",
     "icon": "far fa-bell"
   },
