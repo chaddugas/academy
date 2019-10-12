@@ -136,7 +136,7 @@ export default {
       this.prepareMaps()
     },
     prepareMaps() {
-      if (this.initialized) return this.mapPromise
+      if (this.initialized) return
       this.initialized = true
       window[this.id] = () => (
         (this.ready = true), this.resolve(window.google)
@@ -148,6 +148,7 @@ export default {
       script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`
       script.onerror = this.reject
       document.head.appendChild(script)
+			return
     },
     timeString(hour) {
       let timeString = hour.open.hour
