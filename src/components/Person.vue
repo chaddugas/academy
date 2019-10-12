@@ -46,14 +46,14 @@ export default {
         } else {
           top = items[items.indexOf(this.$el) - 6].getBoundingClientRect().top;
         }
-			}
-			else {
+      } else {
         if (items.indexOf(this.$el) < 4) {
           top = grid.getBoundingClientRect().top;
         } else {
-          top = items[items.indexOf(this.$el) - 2].getBoundingClientRect().top - 20;
+          top =
+            items[items.indexOf(this.$el) - 2].getBoundingClientRect().top - 20;
         }
-			}
+      }
 
       this.active = true;
       window.scrollBy({
@@ -88,37 +88,46 @@ $hover_time: 0.25s;
 
 .person.title {
   grid-area: span 1 / span 1;
-	background: darken($indigo, 5%);
-  padding: 30px;
+  background: darken($indigo, 5%);
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: right;
-	color: $white;
-	&:before {
-		display: none;
-	}
-	@media (min-width: $sm) {
-		padding: 40px;
-	}
+  color: $white;
+  &:before {
+    display: none;
+  }
+  @media (min-width: $xs) {
+    padding: 30px;
+  }
+  @media (min-width: $sm) {
+    padding: 40px;
+  }
 }
 
 .section-title {
   display: flex;
   flex-direction: column;
-  font-size: 45px;
+  font-size: 22px;
   line-height: 1.1;
-	text-transform: uppercase;
-	@media (min-width: $md) {
-		font-size: 50px;
-		line-height: 1.2;
-	}
-	@media (min-width: $lg) {
-		font-size: 55px
-	}
-	@media (min-width: $xl) {
-		font-size: 65px
-	}
+  text-transform: uppercase;
+  @media (min-width: $xs) {
+    font-size: 28px;
+  }
+  @media (min-width: $sm) {
+    font-size: 45px;
+  }
+  @media (min-width: $md) {
+    font-size: 50px;
+    line-height: 1.2;
+  }
+  @media (min-width: $lg) {
+    font-size: 55px;
+  }
+  @media (min-width: $xl) {
+    font-size: 65px;
+  }
   span {
     margin-left: auto;
     display: flex;
@@ -197,15 +206,22 @@ $hover_time: 0.25s;
   bottom: 0;
   left: 0;
   right: 0;
-  font-size: 22px;
+  font-size: 14px;
   color: $black;
-  padding: 20px;
+  padding: 5px;
   pointer-events: none;
   transition: 0.25s ease;
   text-transform: uppercase;
   mix-blend-mode: screen;
   background: $white;
   transform: translateY(100%);
+  @media (min-width: $xs) {
+    font-size: 16px;
+  }
+  @media (min-width: $sm) {
+    font-size: 22px;
+    padding: 20px;
+  }
 }
 
 .profile-content {
@@ -231,10 +247,10 @@ $hover_time: 0.25s;
     background-image: inherit;
     background-size: cover;
     margin-right: 20px;
-		margin-bottom: 10px;
-		@media (min-width: $md) {
-			margin-bottom: 20px;
-		}
+    margin-bottom: 10px;
+    @media (min-width: $md) {
+      margin-bottom: 20px;
+    }
   }
   * {
     color: $onyx;
@@ -260,40 +276,47 @@ $hover_time: 0.25s;
     height: calc(200% + #{$gap});
     width: calc(200% + #{$gap});
     pointer-events: all;
-		box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
-		@media (min-width: $md) {
-			height: calc(300% + #{$gap*2});
-			width: calc(300% + #{$gap*2});
-		}
+    box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
+    @media (min-width: $md) {
+      height: calc(300% + #{$gap * 2});
+      width: calc(300% + #{$gap * 2});
+    }
     &:before {
-      background-size: calc((100% - #{$gap*2}) / 3) calc((100% - #{$gap*2}) / 3);
+      background-size: calc((100% - #{$gap * 2}) / 3)
+        calc((100% - #{$gap * 2}) / 3);
     }
   }
   .profile-content {
     opacity: 1;
     transition: opacity $fade_time $grow_time ease;
     pointer-events: all;
-	}
-	&:nth-child(1) {
-		.person-profile {
-			transform: translate(0, calc((100% + #{$gap}) / 4))
-		}
-	}
-	&:nth-child(2) {
-		.person-profile {
-			transform: translate(calc((-100% - #{$gap + 1}) / 2), calc((100% + #{$gap}) / 4))
-		}
-	}
-	&:nth-child(2n+3) {
-		.person-profile {
-			transform: translate(0, calc((-100% - #{$gap}) / 4))
-		}
-	}
-	&:nth-child(2n+4) {
-		.person-profile {
-			transform: translate(calc((-100% - #{$gap + 1}) / 2), calc((-100% - #{$gap}) / 4))
-		}
-	}
+  }
+  &:nth-child(1) {
+    .person-profile {
+      transform: translate(0, calc((100% + #{$gap}) / 4));
+    }
+  }
+  &:nth-child(2) {
+    .person-profile {
+      transform: translate(
+        calc((-100% - #{$gap + 1}) / 2),
+        calc((100% + #{$gap}) / 4)
+      );
+    }
+  }
+  &:nth-child(2n + 3) {
+    .person-profile {
+      transform: translate(0, calc((-100% - #{$gap}) / 4));
+    }
+  }
+  &:nth-child(2n + 4) {
+    .person-profile {
+      transform: translate(
+        calc((-100% - #{$gap + 1}) / 2),
+        calc((-100% - #{$gap}) / 4)
+      );
+    }
+  }
   @media (min-width: $md) {
     &:nth-child(1) {
       .person-profile {

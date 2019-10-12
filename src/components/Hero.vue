@@ -102,8 +102,8 @@ $pull: 150px;
 }
 
 .hero-logo {
-  margin: 100px auto 50px;
-  padding: 80px;
+  margin: 100px 20px 50px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,6 +113,11 @@ $pull: 150px;
   flex: 0 0 auto;
   color: $white;
   background: rgba($indigo, 0.5);
+
+  @media (min-width: $sm) {
+    margin: 100px auto 50px;
+    padding: 80px;
+  }
 
   @media (min-width: $lg) {
     top: #{$pull * -1};
@@ -124,26 +129,34 @@ $pull: 150px;
     left: 0;
     right: 0;
     bottom: 0;
-    border: 30px solid rgba($orange, 1);
+    border: 15px solid rgba($orange, 1);
     content: "";
+    @media (min-width: $sm) {
+      border: 30px solid rgba($orange, 1);
+    }
   }
-  &:after {
-    position: absolute;
-    top: 0;
-    right: 100%;
-    bottom: 0;
-    width: 100vw;
-    background: $orange;
-    content: "";
+  @media (min-width: $sm) {
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 100%;
+      bottom: 0;
+      width: 100vw;
+      background: $orange;
+      content: "";
+    }
   }
 }
 
 .hero-title {
   display: flex;
   flex-direction: column;
-  font-size: 55px;
+  font-size: 40px;
   line-height: 1.3;
   text-transform: uppercase;
+  @media (min-width: $sm) {
+    font-size: 55px;
+  }
   span {
     margin-left: auto;
     display: flex;
@@ -151,16 +164,22 @@ $pull: 150px;
     white-space: nowrap;
   }
   i {
-    font-size: 50px;
+    font-size: 35px;
     margin-right: 20px;
     color: $red;
+  @media (min-width: $sm) {
+    font-size: 50px;
+	}
   }
 }
 
 .hero-tagline {
-  font-size: 22px;
+  font-size: 18px;
   margin-top: 10px;
   white-space: nowrap;
+  @media (min-width: $sm) {
+  font-size: 22px;
+	}
 }
 
 .hero-content {
