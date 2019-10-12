@@ -30,6 +30,11 @@ collections:
         name: "alert"
         widget: "object"
         required: false
+        fields:
+          - {label: "Active", name: "active", widget: "boolean", default: true}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Text", name: "text", widget: "markdown", required: false}
+          - {label: "Icon Class", name: "icon", widget: "string"}
       - label: "News"
         name: "news"
         widget: "list"
