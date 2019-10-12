@@ -11,13 +11,12 @@ display_url: https://academyparkpeds.netlify.com
 
 show_preview_links: true
 
-media_folder: "static/media"
+media_folder: "static/_media"
 public_folder: "/media"
 
 collections:
   - name: 'settings'
     label: 'Settings'
-    create: true
     delete: false
     description: "Update site alert, news items, and the site tagline here."
     editor:
@@ -25,7 +24,7 @@ collections:
     files:
       - name: 'alert'
         label: 'Site Alert'
-        file: _data/alert.json
+        file: static/_data/alert.json
         description: 'Popover Site Alert'
         fields: 
           - {label: "Active", name: "active", widget: "boolean", default: true}
@@ -34,7 +33,7 @@ collections:
           - {label: "Icon Class", name: "icon", widget: "string", hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free"}
       - name: 'news'
         label: 'News Items'
-        file: _data/news.json
+        file: static/_data/news.json
         widget: "list"
         allow_add: true
         required: false
