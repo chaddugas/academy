@@ -31,7 +31,7 @@ export default {
       key: "AIzaSyC6Ojv2UazcgzgWHc4y00j6kwRjRpMdwxI",
       resolve: null,
       reject: null,
-      initialized: process.isClient ? !!window.google : true,
+      initialized: false,
       ready: false,
       mapPromise: null,
       locations: [
@@ -123,40 +123,39 @@ export default {
   },
   methods: {
     directions(loc) {
-      let params = {};
+      let params = {}
 
       // window.location.href = 'https://www.google.com/maps/dir/?api=1&parameters'
     },
     createMapPromise() {
       this.mapPromise = new Promise((res, rej) => {
-        this.resolve = res;
-        this.reject = rej;
-      });
-      this.prepareMaps();
+        this.resolve = res
+        this.reject = rej
+			})
+			this.initialized = !!window.google
+      this.prepareMaps()
     },
     prepareMaps() {
-      if (this.initialized) return this.mapPromise;
-      this.initialized = true;
+      if (this.initialized) return this.mapPromise
+      this.initialized = true
       window[this.id] = () => (
         (this.ready = true), this.resolve(window.google)
-      );
+      )
 
-      const script = document.createElement("script");
-      script.async = true;
-      script.defer = true;
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`;
-      script.onerror = this.reject;
-      document.head.appendChild(script);
-
-      return this.mapPromise;
+      const script = document.createElement("script")
+      script.async = true
+      script.defer = true
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`
+      script.onerror = this.reject
+      document.head.appendChild(script)
     },
     timeString(hour) {
-      let timeString = hour.open.hour;
-      if (hour.open.minute > 0) timeString += `${hour.open.minute}`;
-      timeString += ` - `;
-      timeString += hour.close.hour;
-      if (hour.close.minute > 0) timeString += `${hour.close.minute}`;
-      return timeString;
+      let timeString = hour.open.hour
+      if (hour.open.minute > 0) timeString += `${hour.open.minute}`
+      timeString += ` - `
+      timeString += hour.close.hour
+      if (hour.close.minute > 0) timeString += `${hour.close.minute}`
+      return timeString
     }
   },
   mounted() {
