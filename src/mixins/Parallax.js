@@ -41,19 +41,15 @@ export default {
 		}
 	},
 	mounted() {
-		if (window) {
-			window.addEventListener('scroll', this.para_move)
-			window.addEventListener('resize', this.para_update)
-			window.addEventListener('orientationchange', this.para_update)
-			this.para_update()
-			this.para_move()
-		}
+		window.addEventListener('scroll', this.para_move)
+		window.addEventListener('resize', this.para_update)
+		window.addEventListener('orientationchange', this.para_update)
+		this.para_update()
+		this.para_move()
 	},
 	beforeDestroy() {
-		if (window) {
-			window.removeEventListener('scroll', this.para_move)
-			window.removeEventListener('resize', this.para_update)
-			window.removeEventListener('orientationchange', this.para_update)
-		}
+		window.removeEventListener('scroll', this.para_move)
+		window.removeEventListener('resize', this.para_update)
+		window.removeEventListener('orientationchange', this.para_update)
 	}
 }

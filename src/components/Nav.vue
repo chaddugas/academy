@@ -23,22 +23,22 @@ export default {
   name: "Navigation",
   data() {
     return {
-      active: window ? window.scrollY > 200 : null
+      active: process.isClient ? window.scrollY > 200 : false
     };
   },
   methods: {
     activate() {
-      if (window) this.active = window.scrollY > 200;
+      this.active = window.scrollY > 200;
 		},
 		init() {
-			if (window) window.addEventListener("scroll", this.activate)
+			window.addEventListener("scroll", this.activate)
 		},
 		destroy() {
-			if (window) window.removeEventListener("scroll", this.activate)
+			window.removeEventListener("scroll", this.activate)
 		}
   },
 	mounted() {
-		this.init()
+		if (process.isClient) this.init()
 	},
   beforeDestroy() {
 		this.destroy()

@@ -194,7 +194,7 @@ export default {
     }
 	},
 	mounted() {
-		if (window) this.init()
+		this.init()
 	}
 }
 </script>

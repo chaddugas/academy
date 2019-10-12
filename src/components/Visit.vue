@@ -28,11 +28,11 @@ export default {
   },
   data() {
     return {
-			key: 'AIzaSyC6Ojv2UazcgzgWHc4y00j6kwRjRpMdwxI',
+      key: "AIzaSyC6Ojv2UazcgzgWHc4y00j6kwRjRpMdwxI",
       resolve: null,
       reject: null,
-			initialized: window ? !!window.google : true,
-			ready: false,
+      initialized: process.isClient ? !!window.google : true,
+      ready: false,
       mapPromise: null,
       locations: [
         {
@@ -119,47 +119,48 @@ export default {
           popup: "<h1>test</h1>"
         }
       ]
-    }
+    };
   },
   methods: {
-		directions(loc) {
-			let params = {}
+    directions(loc) {
+      let params = {};
 
-
-			// window.location.href = 'https://www.google.com/maps/dir/?api=1&parameters'
-		},
+      // window.location.href = 'https://www.google.com/maps/dir/?api=1&parameters'
+    },
     createMapPromise() {
       this.mapPromise = new Promise((res, rej) => {
-        this.resolve = res
-        this.reject = rej
-      })
-      this.prepareMaps()
+        this.resolve = res;
+        this.reject = rej;
+      });
+      this.prepareMaps();
     },
     prepareMaps() {
-      if (this.initialized) return this.mapPromise
-      this.initialized = true
-      window[this.id] = () => (this.ready = true, this.resolve(window.google))
+      if (this.initialized) return this.mapPromise;
+      this.initialized = true;
+      window[this.id] = () => (
+        (this.ready = true), this.resolve(window.google)
+      );
 
-      const script = document.createElement("script")
-      script.async = true
-      script.defer = true
-			script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`
-			script.onerror = this.reject;
-			document.querySelector('head').appendChild(script)
-			
-			return this.mapPromise
+      const script = document.createElement("script");
+      script.async = true;
+      script.defer = true;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`;
+      script.onerror = this.reject;
+      document.querySelector("head").appendChild(script);
+
+      return this.mapPromise;
     },
     timeString(hour) {
-      let timeString = hour.open.hour
-      if (hour.open.minute > 0) timeString += `${hour.open.minute}`
-      timeString += ` - `
-      timeString += hour.close.hour
-      if (hour.close.minute > 0) timeString += `${hour.close.minute}`
-      return timeString
+      let timeString = hour.open.hour;
+      if (hour.open.minute > 0) timeString += `${hour.open.minute}`;
+      timeString += ` - `;
+      timeString += hour.close.hour;
+      if (hour.close.minute > 0) timeString += `${hour.close.minute}`;
+      return timeString;
     }
   },
   mounted() {
-    this.createMapPromise()
+    if (process.isClient) this.createMapPromise();
   }
 };
 </script>
@@ -167,13 +168,13 @@ export default {
 
 <style lang="scss">
 .visit {
-	margin-bottom: 80px;
+  margin-bottom: 80px;
 }
 .visit-inner {
   @include container($max: 1200px);
   position: relative;
   background: $white;
-  padding: 40px;
+  padding: 20px 50px;
   z-index: 1;
   &:before {
     position: absolute;
@@ -211,35 +212,35 @@ export default {
 
 .visit-item {
   display: grid;
-  grid-template: auto / 1fr max-content;
+  grid-template: auto / max-content 1fr;
   border-bottom: 1px solid $gray;
   grid-gap: 40px;
   padding: 30px 0 60px;
   margin-bottom: 30px;
   justify-content: space-between;
-  text-align: right;
+  text-align: left;
   &:last-child {
     border-bottom: none;
-    margin-bottom: 0s;
+    margin-bottom: 0;
     padding-bottom: 30px;
   }
   &:nth-child(even) {
-    grid-template: auto / max-content 1fr;
-    text-align: left;
+    text-align: right;
+    grid-template: auto / 1fr max-content;
     .visit-map {
-      grid-area: 1 / 2 / 2 / 3;
+      grid-area: 1 / 1 / 2 / 2;
     }
     .visit-hours {
-      justify-content: flex-start;
+      justify-content: flex-end;
     }
     .visit-hour {
-      justify-content: flex-start;
+      justify-content: flex-end;
     }
   }
 }
 
 .visit-map {
-  grid-area: 1 / 1 / 2 / 2;
+  grid-area: 1 / 2 / 2 / 3;
   position: relative;
 }
 
@@ -268,7 +269,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   max-width: 250px;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-self: flex-end;
   margin-top: 10px;
 }
@@ -277,7 +278,7 @@ export default {
   flex: 0 0 50%;
   max-width: 50%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   white-space: nowrap;
   strong {
     display: block;

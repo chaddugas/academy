@@ -11,78 +11,83 @@
 
 <script>
 export default {
-	name: "Notification",
-	data() {
-		return {
-			active: false,
-			dismissed: false
-		}
-	},
-	methods: {
-		activate() {
-			if (window) {
-				let dismissed = window.sessionStorage.getItem('dismissed') ? !!window.sessionStorage.getItem('dismissed') : false
-				if (!dismissed) {
-					this.active = true;
-				}
-			}
-		},
-		dismiss() {
-			this.active = false;
-			this.dismissed = true
-			setTimeout(() => {this.dismissed = false}, 100)
-			if (window) window.sessionStorage.setItem('dismissed', 'true')
-		}
-	},
-	created() {
-		this.activate()
-	}
+  name: "Notification",
+  data() {
+    return {
+      active: true,
+      dismissed: false
+    };
+  },
+  methods: {
+    activate() {
+      let dismissed = window.sessionStorage.getItem("dismissed")
+        ? !!window.sessionStorage.getItem("dismissed")
+        : false;
+      if (!dismissed) {
+        this.active = true;
+      }
+    },
+    dismiss() {
+      this.active = false;
+      this.dismissed = true;
+      setTimeout(() => {
+        this.dismissed = false;
+      }, 50);
+      window.sessionStorage.setItem("dismissed", "true");
+    }
+  },
+  created() {
+		if (process.isClient) this.activate()
+  }
 };
 </script>
 
 <style lang="scss">
 @keyframes enter {
-	70% {
-		transform: translate(-50%, 20px)
+	0% {
+    transform: translate(-50%, -150%);
 	}
-	100% {
-		transform: translate(-50%, 0)
-	}
+  70% {
+    transform: translate(-50%, 20px);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
 }
 
 @keyframes wiggle {
   0% {
-		transform: rotate(0deg) scale(1, 1);
-	}
-	
+    transform: rotate(0deg) scale(1, 1);
+  }
+
   1% {
-		transform: rotate(8deg) scale(1.05, 1.05);
-	}
-	
+    transform: rotate(8deg) scale(1.05, 1.05);
+  }
+
   3% {
-		transform: rotate(-16deg) scale(1.1, 1.1);
+    transform: rotate(-16deg) scale(1.1, 1.1);
   }
-	
+
   5% {
-		transform: rotate(10deg) scale(1.125, 1.125);
+    transform: rotate(10deg) scale(1.125, 1.125);
   }
-	
+
   7% {
-		transform: rotate(-8deg) scale(1.175, 1.175);
+    transform: rotate(-8deg) scale(1.175, 1.175);
   }
-	
+
   9% {
-		transform: rotate(3deg) scale(1.175, 1.175);
+    transform: rotate(3deg) scale(1.175, 1.175);
   }
-	
+
   15% {
-		transform: rotate(0deg) scale(1.175, 1.175);
-		color: $orange;
+    transform: rotate(0deg) scale(1.175, 1.175);
+    color: $orange;
   }
-	
+
   18% {
-		transform: rotate(0deg) scale(1, 1);
-		color: $red;
+    transform: rotate(0deg) scale(1, 1);
+    color: $red;
   }
 }
 
@@ -98,15 +103,15 @@ export default {
   left: 50%;
   transform: translate(-50%, -150%);
   z-index: 25;
-	box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
-	transition: 0.25s ease;
-	&.active {
-		transition: none;
-		animation: enter 0.3s 1.5s forwards ease;
-	}
-	&.dismissed {
-		transform: translate(-50%, 0);
-	}
+  box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
+  transition: 0.25s ease;
+  &.active {
+    transition: none;
+    animation: enter 0.4s 1.5s forwards ease;
+  }
+  &.dismissed {
+    transform: translate(-50%, 0);
+  }
 }
 
 .note-icon {
@@ -115,7 +120,7 @@ export default {
   justify-content: center;
   align-items: center;
   margin-right: 15px;
-	color: $red;
+  color: $red;
   i {
     font-size: 34px;
     transform-origin: 50% 50%;
@@ -124,7 +129,7 @@ export default {
 }
 
 .note-content {
-	flex: 1 1 100%;
+  flex: 1 1 100%;
 }
 
 .note-title {
@@ -133,21 +138,21 @@ export default {
 }
 
 .note-copy {
-	font-style: italic;
+  font-style: italic;
   font-size: 14px;
 }
 
 .note-close {
-	flex: 0 0 auto;
-	margin-left: 20px;
-	cursor: pointer;
-	transition: 0.1s ease;
-	align-self: flex-start;
-	i {
-		font-size: 20px;
-	}
-	&:hover {
-		color: $red;
-	}
+  flex: 0 0 auto;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: 0.1s ease;
+  align-self: flex-start;
+  i {
+    font-size: 20px;
+  }
+  &:hover {
+    color: $red;
+  }
 }
 </style>
