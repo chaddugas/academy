@@ -15,10 +15,10 @@ media_folder: "static/media"
 public_folder: "/media"
 
 collections:
-  - name: "hero"
-    label: "Hero"
-    folder: "static/data/hero"
-    create: true
+  - name: "site"
+    label: "Academy Park Pediatrics"
+    folder: "static/data/site"
+    create: false
     delete: false
     format: "json"
     preview_path: /
