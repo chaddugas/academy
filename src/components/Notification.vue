@@ -1,29 +1,52 @@
 <template lang="pug">
 	aside.note(:class="{active, dismissed}")
 		.note-icon
-			i.far.fa-bell
+			i(:class="alert.icon")
 		.note-content
-			h6.note-title Our Lakewood Office is moving!
-			p.note-copy Starting November 4th we will be located at <strong>3333 S. Wadsworth Blvd # B102, Lakewood, CO 80235</strong>
+			h6.note-title {{ alert.title }}
+			p.note-copy 
+				Markdown {{ alert.text }}
 		.note-close(@click="dismiss")
 			i.fas.fa-times-circle
 </template>
+
+<static-query>
+query Alert {
+  alert: allSite {
+    edges {
+      node {
+        alert {
+          active
+          title
+          text
+          icon
+        }
+      }
+    }
+  }
+}
+</static-query>
 
 <script>
 export default {
   name: "Notification",
   data() {
     return {
-      active: true,
+      active: false,
       dismissed: false
     };
   },
+  computed: {
+		alert() {
+			return this.$static.alert.edges[0].node.alert
+		}
+	},
   methods: {
     activate() {
       let dismissed = window.sessionStorage.getItem("dismissed")
         ? !!window.sessionStorage.getItem("dismissed")
         : false;
-      if (!dismissed) {
+      if (!dismissed && this.alert.active) {
         this.active = true;
       }
     },

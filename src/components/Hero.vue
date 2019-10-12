@@ -10,19 +10,14 @@
 						| Park
 					span Pediatrics
 				p.hero-tagline
-					span A partner in your child's health.
+					span {{ site.title }}
 			.hero-content
 				.hero-content-inner
-					.hero-item.hero-news
+					.hero-item.hero-news(v-for="item in site.news", v-if="item.active")
 						.item-icon
-							i.fas.fa-syringe
-						p.item-title Flu Shots Available
-						span.item-text Call for an appointment
-					.hero-item.hero-news
-						.item-icon
-							i.fas.fa-notes-medical
-						p.item-title Back to School Physicals Available
-						span.item-text Call for an appointment
+							i(:class="item.icon")
+						p.item-title {{ item.title }}
+						span.item-text {{ item.text }}
 					.hero-item.hero-loc
 						.item-icon
 							i.far.fa-clock
@@ -37,10 +32,25 @@
 						span.item-text
 							| Open today until
 							span 4:00 pm
-			//- .hero-grid
-			//- 	img(src="//via.placeholder.com/450x300")
-			//- 	img(src="//via.placeholder.com/450x300")
 </template>
+
+<static-query>
+query Site {
+  site: allSite {
+    edges {
+      node {
+        title
+        news {
+          active
+          title
+          text
+          icon
+        }
+      }
+    }
+  }
+}
+</static-query>
 
 <script>
 import Canvas from "@/mixins/Canvas";
@@ -48,7 +58,11 @@ import Canvas from "@/mixins/Canvas";
 export default {
   name: "Hero",
   mixins: [Canvas],
-  computed: {}
+  computed: {
+		site() {
+			return this.$static.site.edges[0].node
+		}
+	}
 };
 </script>
 
