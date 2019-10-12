@@ -1,0 +1,23 @@
+{
+  "title": "A partner in your child's health.",
+  "alert": {
+    "title": "Our Lakewood Office is moving!",
+    "active": true,
+    "text": "_Starting November 4th we will be located at **3333 S. Wadsworth Blvd # B102, Lakewood, CO 80235**_",
+    "icon": "far fa-bell"
+  },
+  "news": [
+    {
+      "title": "Flu Shots Available",
+      "active": true,
+      "text": "Call for an appointment",
+      "icon": "fas fa-syringe"
+    },
+    {
+      "title": "Back to School Physicals Available",
+      "active": true,
+      "text": "Call for an appointment",
+      "icon": "fas fa-notes-medical"
+    }
+  ]
+}
