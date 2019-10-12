@@ -147,6 +147,6 @@ export default {
 		}
 	},
 	mounted() {
-		this.c_init()
+		if (window) this.c_init()
 	}
 }

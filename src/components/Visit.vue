@@ -31,7 +31,7 @@ export default {
 			key: 'AIzaSyC6Ojv2UazcgzgWHc4y00j6kwRjRpMdwxI',
       resolve: null,
       reject: null,
-			initialized: !!window.google,
+			initialized: window ? !!window.google : true,
 			ready: false,
       mapPromise: null,
       locations: [
@@ -160,7 +160,6 @@ export default {
   },
   mounted() {
     this.createMapPromise()
-			console.log(axios)
   }
 };
 </script>

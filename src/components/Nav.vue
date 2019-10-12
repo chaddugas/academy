@@ -23,18 +23,18 @@ export default {
   name: "Navigation",
   data() {
     return {
-      active: window.scrollY > 200
+      active: window ? window.scrollY > 200 : null
     };
   },
   methods: {
     activate() {
-      this.active = window.scrollY > 200;
+      if (window) this.active = window.scrollY > 200;
 		},
 		init() {
-			window.addEventListener("scroll", this.activate)
+			if (window) window.addEventListener("scroll", this.activate)
 		},
 		destroy() {
-			window.removeEventListener("scroll", this.activate)
+			if (window) window.removeEventListener("scroll", this.activate)
 		}
   },
 	mounted() {

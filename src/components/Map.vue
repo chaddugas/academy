@@ -193,8 +193,8 @@ export default {
       })
     }
 	},
-	async mounted() {
-		this.init()
+	mounted() {
+		if (window) this.init()
 	}
 }
 </script>

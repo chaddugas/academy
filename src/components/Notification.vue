@@ -20,16 +20,18 @@ export default {
 	},
 	methods: {
 		activate() {
-			let dismissed = window.sessionStorage.getItem('dismissed') ? !!window.sessionStorage.getItem('dismissed') : false
-			if (!dismissed) {
-				this.active = true;
+			if (window) {
+				let dismissed = window.sessionStorage.getItem('dismissed') ? !!window.sessionStorage.getItem('dismissed') : false
+				if (!dismissed) {
+					this.active = true;
+				}
 			}
 		},
 		dismiss() {
 			this.active = false;
 			this.dismissed = true
 			setTimeout(() => {this.dismissed = false}, 100)
-			window.sessionStorage.setItem('dismissed', 'true')
+			if (window) window.sessionStorage.setItem('dismissed', 'true')
 		}
 	},
 	created() {
