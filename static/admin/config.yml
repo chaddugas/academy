@@ -24,7 +24,7 @@ collections:
     editor:
       preview: false
     fields:
-      - {label: "Tagline", name: "tagline", widget: "string"}
+      - {label: "Tagline", name: "title", widget: "string"}
       - label: "Site Alert"
         name: "alert"
         widget: "object"
