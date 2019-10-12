@@ -22,7 +22,8 @@ collections:
     create: true
     format: "json"
     preview_path: /
-    preview: false
+    editor:
+      preview: false
     fields:
       - {label: "Tagline", name: "tagline", widget: "string"}
       - label: "Site Alert"
