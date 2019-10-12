@@ -34,12 +34,13 @@ collections:
       - name: 'news'
         label: 'News Items'
         file: static/_data/news.json
-        widget: "list"
-        allow_add: true
-        required: false
         fields: 
-          - {label: "Active", name: "active", widget: "boolean", default: true}
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Text", name: "text", widget: "string", required: false}
-          - {label: "Icon Class", name: "icon", widget: "string", hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free"}
+          widget: "list"
+          allow_add: true
+          required: false
+          fields:
+            - {label: "Active", name: "active", widget: "boolean", default: true}
+            - {label: "Title", name: "title", widget: "string"}
+            - {label: "Text", name: "text", widget: "string", required: false}
+            - {label: "Icon Class", name: "icon", widget: "string", hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free"}
 
