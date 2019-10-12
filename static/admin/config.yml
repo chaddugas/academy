@@ -15,16 +15,18 @@ media_folder: "static/media"
 public_folder: "/media"
 
 collections:
-  - name: "main-banner"
-    label: "Main Banner"
-    folder: "static/data/main-banner"
+  - name: "hero"
+    label: "Hero"
+    folder: "static/data/hero"
     delete: false
     preview_path: /
     fields:
-      - {label: "Super Text", name: "super", widget: "string"}
-      - {label: "Main Text", name: "main", widget: "string"}
-      - {label: "Sub Text", name: "sub", widget: "string"}
-      - label: "Featured Image"
-        name: "image"
-        widget: "image"
-        allow_multiple: false
+      - {label: "Tagline", name: "tagline", widget: "string"}
+      - label: "News"
+        name: "news"
+        widget: "object"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Text", name: "text", widget: "string", required: false}
+          - {label: "Icon Class", name: "icon", widget: "string"}
+
