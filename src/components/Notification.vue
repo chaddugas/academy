@@ -1,30 +1,17 @@
 <template lang="pug">
-	aside.note(:class="{active, dismissed}")
-		.note-icon
-			i(:class="alert.icon")
-		.note-content
-			h6.note-title {{ alert.title }}
-			p.note-copy 
-				Markdown {{ alert.text }}
-		.note-close(@click="dismiss")
-			i.fas.fa-times-circle
+aside.note
+	//- aside.note(:class="{active, dismissed}")
+	//- 	.note-icon
+	//- 		i(:class="alert.icon")
+	//- 	.note-content
+	//- 		h6.note-title {{ alert.title }}
+	//- 		p.note-copy 
+	//- 			Markdown {{ alert.text }}
+	//- 	.note-close(@click="dismiss")
+	//- 		i.fas.fa-times-circle
 </template>
 
 <static-query>
-query Alert {
-  alert: allSite {
-    edges {
-      node {
-        alert {
-          active
-          title
-          text
-          icon
-        }
-      }
-    }
-  }
-}
 </static-query>
 
 <script>
@@ -37,10 +24,10 @@ export default {
     };
   },
   computed: {
-		alert() {
-			return this.$static.alert.edges[0].node.alert
-		}
-	},
+    // alert() {
+    // 	return this.$static.alert.edges[0].node.alert
+    // }
+  },
   methods: {
     activate() {
       let dismissed = window.sessionStorage.getItem("dismissed")
@@ -60,16 +47,16 @@ export default {
     }
   },
   created() {
-		if (process.isClient) this.activate()
+    if (process.isClient) this.activate();
   }
 };
 </script>
 
 <style lang="scss">
 @keyframes enter {
-	0% {
+  0% {
     transform: translate(-50%, -150%);
-	}
+  }
   70% {
     transform: translate(-50%, 20px);
   }

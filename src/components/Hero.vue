@@ -1,55 +1,41 @@
 <template lang="pug">
-	section.hero
-		canvas.hero-canvas
-		.hero-inner
-			.hero-logo
-				h1.hero-title
-					span Academy
-					span 
-						i.fa.fa-heartbeat
-						| Park
-					span Pediatrics
-				p.hero-tagline
-					span {{ site.title }}
-			.hero-content
-				.hero-content-inner
-					.hero-item.hero-news(v-for="item in site.news", v-if="item.active")
-						.item-icon
-							i(:class="item.icon")
-						p.item-title {{ item.title }}
-						span.item-text {{ item.text }}
-					.hero-item.hero-loc
-						.item-icon
-							i.far.fa-clock
-						p.item-title Highlands Ranch
-						span.item-text
-							| Open today until
-							span 4:00 pm
-					.hero-item.hero-loc
-						.item-icon
-							i.far.fa-clock
-						p.item-title Littleton
-						span.item-text
-							| Open today until
-							span 4:00 pm
+section.hero
+	//- section.hero
+	//- 	canvas.hero-canvas
+	//- 	.hero-inner
+	//- 		.hero-logo
+	//- 			h1.hero-title
+	//- 				span Academy
+	//- 				span 
+	//- 					i.fa.fa-heartbeat
+	//- 					| Park
+	//- 				span Pediatrics
+	//- 			p.hero-tagline
+	//- 				span {{ site.title }}
+	//- 		.hero-content
+	//- 			.hero-content-inner
+	//- 				.hero-item.hero-news(v-for="item in site.news", v-if="item.active")
+	//- 					.item-icon
+	//- 						i(:class="item.icon")
+	//- 					p.item-title {{ item.title }}
+	//- 					span.item-text {{ item.text }}
+	//- 				.hero-item.hero-loc
+	//- 					.item-icon
+	//- 						i.far.fa-clock
+	//- 					p.item-title Highlands Ranch
+	//- 					span.item-text
+	//- 						| Open today until
+	//- 						span 4:00 pm
+	//- 				.hero-item.hero-loc
+	//- 					.item-icon
+	//- 						i.far.fa-clock
+	//- 					p.item-title Littleton
+	//- 					span.item-text
+	//- 						| Open today until
+	//- 						span 4:00 pm
 </template>
 
 <static-query>
-query Site {
-  site: allSite {
-    edges {
-      node {
-        title
-        news {
-          active
-          title
-          text
-          icon
-        }
-      }
-    }
-  }
-}
 </static-query>
 
 <script>
@@ -59,9 +45,9 @@ export default {
   name: "Hero",
   mixins: [Canvas],
   computed: {
-		site() {
-			return this.$static.site.edges[0].node
-		}
+		// site() {
+		// 	return this.$static.site.edges[0].node
+		// }
 	}
 };
 </script>

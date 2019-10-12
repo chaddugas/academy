@@ -20,13 +20,13 @@ module.exports = {
   },
 
   plugins: [
-    {
-      use: '@gridsome/source-filesystem',
-      options: {
-        path: 'static/data/site/**/*.json',
-        typeName: 'Site'
-      }
-    },
+    // {
+    //   use: '@gridsome/source-filesystem',
+    //   options: {
+    //     path: 'static/data/site/**/*.json',
+    //     typeName: 'Site'
+    //   }
+    // },
     {
       use: `gridsome-plugin-netlify-cms`,
       options: {

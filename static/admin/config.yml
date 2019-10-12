@@ -15,34 +15,32 @@ media_folder: "static/media"
 public_folder: "/media"
 
 collections:
-  - name: "site"
-    label: "Academy Park Pediatrics"
-    folder: "static/data/site"
-    create: false
+  - name: 'settings'
+    label: 'Settings'
+    create: true
     delete: false
-    format: "json"
-    preview_path: /
+    description: "Update site alert, news items, and the site tagline here."
     editor:
       preview: false
-    fields:
-      - {label: "Tagline", name: "title", widget: "string"}
-      - label: "Site Alert"
-        name: "alert"
-        widget: "object"
-        required: false
-        fields:
-          - {label: "Title", name: "title", widget: "string"}
+    files:
+      - name: 'alert'
+        label: 'Site Alert'
+        file: _data/alert.json
+        description: 'Popover Site Alert'
+        fields: 
           - {label: "Active", name: "active", widget: "boolean", default: true}
+          - {label: "Alert", name: "title", widget: "string"}
           - {label: "Text", name: "text", widget: "markdown", required: false}
-          - {label: "Icon Class", name: "icon", widget: "string"}
-      - label: "News"
-        name: "news"
+          - {label: "Icon Class", name: "icon", widget: "string", hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free"}
+      - name: 'news'
+        label: 'News Items'
+        file: _data/news.json
         widget: "list"
         allow_add: true
         required: false
-        fields:
-          - {label: "Title", name: "title", widget: "string"}
+        fields: 
           - {label: "Active", name: "active", widget: "boolean", default: true}
+          - {label: "Title", name: "title", widget: "string"}
           - {label: "Text", name: "text", widget: "string", required: false}
-          - {label: "Icon Class", name: "icon", widget: "string"}
+          - {label: "Icon Class", name: "icon", widget: "string", hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free"}
 
