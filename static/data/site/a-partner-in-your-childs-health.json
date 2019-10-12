@@ -9,7 +9,7 @@
   "news": [
     {
       "title": "Flu Shots Available",
-      "active": true,
+      "active": false,
       "text": "Call for an appointment",
       "icon": "fas fa-syringe"
     },
