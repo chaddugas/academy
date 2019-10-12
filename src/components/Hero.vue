@@ -109,7 +109,7 @@ $pull: 150px;
     bottom: 0;
     width: 100vw;
     background: $orange;
-    content: "";
+		content: "";
   }
 }
 

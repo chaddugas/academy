@@ -146,7 +146,7 @@ export default {
       script.defer = true;
       script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`;
       script.onerror = this.reject;
-      document.querySelector("head").appendChild(script);
+      document.head.appendChild(script);
 
       return this.mapPromise;
     },
