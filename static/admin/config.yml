@@ -18,7 +18,7 @@ collections:
   - name: 'settings'
     label: 'Settings'
     delete: false
-    description: 'Update site alert, news items, and the site tagline here.'
+    description: 'Update site alert & news items here.'
     editor:
       preview: false
     files:
