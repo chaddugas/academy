@@ -14,13 +14,13 @@ export default {
 	name: "Notification",
 	data() {
 		return {
-			active: true,
+			active: false,
 			dismissed: false
 		}
 	},
 	methods: {
 		activate() {
-			let dismissed = sessionStorage.getItem('dismissed') ? !!sessionStorage.getItem('dismissed') : false
+			let dismissed = window.sessionStorage.getItem('dismissed') ? !!window.sessionStorage.getItem('dismissed') : false
 			if (!dismissed) {
 				this.active = true;
 			}
@@ -29,7 +29,7 @@ export default {
 			this.active = false;
 			this.dismissed = true
 			setTimeout(() => {this.dismissed = false}, 100)
-			sessionStorage.setItem('dismissed', 'true')
+			window.sessionStorage.setItem('dismissed', 'true')
 		}
 	},
 	created() {

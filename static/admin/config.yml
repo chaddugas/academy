@@ -19,6 +19,7 @@ collections:
     label: "Hero"
     folder: "static/data/hero"
     delete: false
+    format: "json"
     preview_path: /
     fields:
       - {label: "Tagline", name: "tagline", widget: "string"}
