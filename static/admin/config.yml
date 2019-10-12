@@ -24,11 +24,17 @@ collections:
     preview_path: /
     fields:
       - {label: "Tagline", name: "tagline", widget: "string"}
+      - label: "Site Alert"
+        name: "alert"
+        widget: "object"
+        required: false
       - label: "News"
         name: "news"
-        widget: "object"
-        create: true
+        widget: "list"
+        allow_add: true
+        required: false
         fields:
+          - {label: "Active", name: "active", widget: "boolean", default: true}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Text", name: "text", widget: "string", required: false}
           - {label: "Icon Class", name: "icon", widget: "string"}
