@@ -3,6 +3,8 @@
 import DefaultLayout from '~/layouts/Default.vue'
 import VueMarkdown from 'vue-markdown'
 
+import '~/assets/scss/1-destyle.css'
+
 export default function (Vue, { router, head, isClient }) {
 	// Set default layout as a global component
 	Vue.component('Layout', DefaultLayout)

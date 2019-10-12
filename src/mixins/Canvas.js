@@ -95,12 +95,10 @@ export default {
 						let dot = dots.array[i]
 
 						if (dot.y < 0 || dot.y > _this.c_canvas.height) {
-							dot.velocity_x = dot.velocity_x;
 							dot.velocity_y = - dot.velocity_y;
 						}
 						else if (dot.x < 0 || dot.x > _this.c_canvas.width) {
 							dot.velocity_x = - dot.velocity_x;
-							dot.velocity_y = dot.velocity_y;
 						}
 						dot.x += dot.velocity_x;
 						dot.y += dot.velocity_y;
@@ -109,7 +107,7 @@ export default {
 
 				draw() {
 					_this.c_ctx.beginPath();
-					_this.c_ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+					_this.c_ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
 					_this.c_ctx.fill();
 				}
 			}

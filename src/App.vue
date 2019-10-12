@@ -35,8 +35,8 @@ body {
 }
 
 main {
-	z-index: 1;
-	padding-bottom: 80px;
+  z-index: 1;
+  padding-bottom: 80px;
 }
 
 h1,
@@ -48,4 +48,28 @@ h6 {
   font-family: "Archivo", sans-serif;
   font-weight: 700;
 }
+
+// [class*="-section-title"] {
+//   @include container;
+// 	padding: 15px 0;
+// 	line-height: 1;
+// 	z-index: 1;
+// 	position: relative;
+// 	color: $white;
+// 	text-transform: uppercase;
+// 	margin-bottom: 40px;
+// 	font-size: 40px;
+//   &:after {
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     background: $indigo;
+// 		z-index: -1;
+// 		height: 100%;
+//     width: 100vw;
+//     content: "";
+//   }
+// }
 </style>

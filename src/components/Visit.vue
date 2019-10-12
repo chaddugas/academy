@@ -123,40 +123,40 @@ export default {
   },
   methods: {
     directions(loc) {
-      let params = {}
+      let params = {};
 
       // window.location.href = 'https://www.google.com/maps/dir/?api=1&parameters'
     },
     createMapPromise() {
       this.mapPromise = new Promise((res, rej) => {
-        this.resolve = res
-        this.reject = rej
-			})
-			this.initialized = !!window.google
-      this.prepareMaps()
+        this.resolve = res;
+        this.reject = rej;
+      });
+      this.initialized = !!window.google;
+      this.prepareMaps();
     },
     prepareMaps() {
-      if (this.initialized) return
-      this.initialized = true
+      if (this.initialized) return;
+      this.initialized = true;
       window[this.id] = () => (
         (this.ready = true), this.resolve(window.google)
-      )
+      );
 
-      const script = document.createElement("script")
-      script.async = true
-      script.defer = true
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`
-      script.onerror = this.reject
-      document.head.appendChild(script)
-			return
+      const script = document.createElement("script");
+      script.async = true;
+      script.defer = true;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`;
+      script.onerror = this.reject;
+      document.head.appendChild(script);
+      return;
     },
     timeString(hour) {
-      let timeString = hour.open.hour
-      if (hour.open.minute > 0) timeString += `${hour.open.minute}`
-      timeString += ` - `
-      timeString += hour.close.hour
-      if (hour.close.minute > 0) timeString += `${hour.close.minute}`
-      return timeString
+      let timeString = hour.open.hour;
+      if (hour.open.minute > 0) timeString += `${hour.open.minute}`;
+      timeString += ` - `;
+      timeString += hour.close.hour;
+      if (hour.close.minute > 0) timeString += `${hour.close.minute}`;
+      return timeString;
     }
   },
   mounted() {
@@ -174,8 +174,11 @@ export default {
   @include container($max: 1200px);
   position: relative;
   background: $white;
-  padding: 20px 50px;
+  padding: 20px 30px;
   z-index: 1;
+  @media (min-width: $md) {
+    padding: 20px 50px;
+  }
   &:before {
     position: absolute;
     top: 0;
@@ -211,30 +214,38 @@ export default {
 }
 
 .visit-item {
-  display: grid;
-  grid-template: auto / max-content 1fr;
-  border-bottom: 1px solid $gray;
-  grid-gap: 40px;
-  padding: 30px 0 60px;
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+	padding: 15px 0 30px;
+  margin-bottom: 15px;
   justify-content: space-between;
+		border-bottom: 1px solid $gray;
   text-align: left;
   &:last-child {
     border-bottom: none;
     margin-bottom: 0;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
   }
-  &:nth-child(even) {
-    text-align: right;
-    grid-template: auto / 1fr max-content;
-    .visit-map {
-      grid-area: 1 / 1 / 2 / 2;
-    }
-    .visit-hours {
-      justify-content: flex-end;
-    }
-    .visit-hour {
-      justify-content: flex-end;
+  @media (min-width: $md) {
+    display: grid;
+		grid-template: auto / max-content 1fr;
+		grid-gap: 40px;
+		padding: 30px 0 60px;
+		&:last-child {
+			padding-bottom: 30px;
+		}
+    &:nth-child(even) {
+      text-align: right;
+      grid-template: auto / 1fr max-content;
+      .visit-map {
+        grid-area: 1 / 1 / 2 / 2;
+      }
+      .visit-hours {
+        justify-content: flex-end;
+      }
+      .visit-hour {
+        justify-content: flex-end;
+      }
     }
   }
 }
@@ -242,6 +253,12 @@ export default {
 .visit-map {
   grid-area: 1 / 2 / 2 / 3;
   position: relative;
+  min-height: 200px;
+  order: -1;
+  margin-bottom: 20px;
+  @media (min-width: $md) {
+    margin-bottom: 0;
+  }
 }
 
 .visit-content {
@@ -268,10 +285,12 @@ export default {
 .visit-hours {
   display: flex;
   flex-wrap: wrap;
-  max-width: 250px;
-  justify-content: flex-start;
-  align-self: flex-end;
   margin-top: 10px;
+  @media (min-width: $md) {
+    max-width: 250px;
+    justify-content: flex-start;
+    align-self: flex-end;
+  }
 }
 
 .visit-hour {

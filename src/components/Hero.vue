@@ -58,23 +58,27 @@ export default {
   name: "Hero",
   mixins: [Canvas],
   computed: {
-		news() {
-			return this.$static.news.edges[0].node.news
-		}
-	}
+    news() {
+      return this.$static.news.edges[0].node.news;
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 $pull: 150px;
 .hero {
-  min-height: calc(100vh + #{$pull});
   width: 100%;
   display: flex;
   justify-content: flex-end;
   position: relative;
+  padding-bottom: #{$pull};
   margin-bottom: #{$pull * -1};
   background-image: $grad;
+  @media (min-width: $lg) {
+    padding-bottom: 0;
+    min-height: calc(100vh + #{$pull});
+  }
 }
 
 .hero-canvas {
@@ -89,12 +93,16 @@ $pull: 150px;
   display: flex;
   width: 100%;
   max-width: 100%;
-  width: 80vw;
-  min-width: 1200px;
+  flex-direction: column;
+  @media (min-width: $lg) {
+    flex-direction: row;
+    width: 80vw;
+    min-width: 1200px;
+  }
 }
 
 .hero-logo {
-  margin: 100px;
+  margin: 100px auto 50px;
   padding: 80px;
   display: flex;
   flex-direction: column;
@@ -104,8 +112,12 @@ $pull: 150px;
   position: relative;
   flex: 0 0 auto;
   color: $white;
-  top: #{$pull * -1};
   background: rgba($indigo, 0.5);
+
+  @media (min-width: $lg) {
+    top: #{$pull * -1};
+    margin: 100px;
+  }
   &:before {
     position: absolute;
     top: 0;
@@ -122,7 +134,7 @@ $pull: 150px;
     bottom: 0;
     width: 100vw;
     background: $orange;
-		content: "";
+    content: "";
   }
 }
 
@@ -152,49 +164,78 @@ $pull: 150px;
 }
 
 .hero-content {
-  flex: 1 1 100%;
-  height: 100%;
   position: relative;
+  @media (min-width: $lg) {
+    flex: 1 1 100%;
+    height: 100%;
+  }
 }
 
 .hero-content-inner {
-  overflow-y: auto;
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 100%;
-  right: 0;
+  flex-flow: row wrap;
+  @media (min-width: $lg) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    right: 0;
+    overflow-y: auto;
+    flex-flow: column nowrap;
+  }
 }
 
 .hero-item {
   color: $white;
-  padding: 40px 20px 40px 30px;
   display: grid;
-  grid-template: repeat(2, auto) / 1fr auto;
+  padding: 30px 20px;
+  grid-template: repeat(2, max-content) / auto 1fr;
   border-right: none;
-  margin-right: 0;
+  // margin-right: 0;
   border-top: 1px solid transparent;
   border-bottom: 1px solid rgba($white, 0.25);
-  max-width: 320px;
-  text-align: right;
   grid-gap: 0 20px;
-  &:first-child {
-    margin-top: auto;
-  }
+  flex: 0 0 100%;
+  min-width: 100%;
   &:last-child {
     border-bottom: none;
-    padding-bottom: $pull * 1.5;
-    margin-bottom: auto;
+  }
+  @media (min-width: $sm) {
+    flex: 0 0 50%;
+    min-width: 50%;
+    &:nth-last-child(2):nth-child(odd) {
+      border-bottom: none;
+    }
+  }
+  @media (min-width: $lg) {
+    grid-template: repeat(2, max-content) / 1fr auto;
+    flex: 0 1 auto;
+    max-width: 320px;
+    text-align: right;
+    padding: 40px 20px 40px 30px;
+    min-width: none;
+    &:first-child {
+      margin-top: auto;
+    }
+    &:nth-last-child(2):nth-child(odd) {
+      border-bottom: 1px solid rgba($white, 0.25);
+    }
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: $pull * 1.5;
+      margin-bottom: auto;
+    }
   }
 }
 
 .item-icon {
-  grid-area: 1 / 2 / 3 / 3;
+  grid-area: 1 / 1 / 3 / 2;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (min-width: $lg) {
+    grid-area: 1 / 2 / 3 / 3;
+  }
   i {
     font-size: 50px;
   }
@@ -204,11 +245,17 @@ $pull: 150px;
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 5px;
-  grid-area: 1 / 1 / 2 / 2;
+  grid-area: 1 / 2 / 2 / 3;
+  @media (min-width: $lg) {
+    grid-area: 1 / 1 / 2 / 2;
+  }
 }
 
 .item-text {
-  grid-area: 2 / 1 / 3 / 2;
+  grid-area: 2 / 2 / 3 / 3;
+  @media (min-width: $lg) {
+    grid-area: 2 / 1 / 3 / 2;
+  }
   span {
     &:before {
       content: " ";
