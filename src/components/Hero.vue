@@ -1,41 +1,54 @@
 <template lang="pug">
-section.hero
-	//- section.hero
-	//- 	canvas.hero-canvas
-	//- 	.hero-inner
-	//- 		.hero-logo
-	//- 			h1.hero-title
-	//- 				span Academy
-	//- 				span 
-	//- 					i.fa.fa-heartbeat
-	//- 					| Park
-	//- 				span Pediatrics
-	//- 			p.hero-tagline
-	//- 				span {{ site.title }}
-	//- 		.hero-content
-	//- 			.hero-content-inner
-	//- 				.hero-item.hero-news(v-for="item in site.news", v-if="item.active")
-	//- 					.item-icon
-	//- 						i(:class="item.icon")
-	//- 					p.item-title {{ item.title }}
-	//- 					span.item-text {{ item.text }}
-	//- 				.hero-item.hero-loc
-	//- 					.item-icon
-	//- 						i.far.fa-clock
-	//- 					p.item-title Highlands Ranch
-	//- 					span.item-text
-	//- 						| Open today until
-	//- 						span 4:00 pm
-	//- 				.hero-item.hero-loc
-	//- 					.item-icon
-	//- 						i.far.fa-clock
-	//- 					p.item-title Littleton
-	//- 					span.item-text
-	//- 						| Open today until
-	//- 						span 4:00 pm
+	section.hero
+		canvas.hero-canvas
+		.hero-inner
+			.hero-logo
+				h1.hero-title
+					span Academy
+					span 
+						i.fa.fa-heartbeat
+						| Park
+					span Pediatrics
+				p.hero-tagline
+					span A partner in your child's health.
+			.hero-content
+				.hero-content-inner
+					.hero-item.hero-news(v-for="item in news", v-if="item.active")
+						.item-icon
+							i(:class="item.icon")
+						p.item-title {{ item.title }}
+						span.item-text {{ item.text }}
+					.hero-item.hero-loc
+						.item-icon
+							i.far.fa-clock
+						p.item-title Highlands Ranch
+						span.item-text
+							| Open today until
+							span 4:00 pm
+					.hero-item.hero-loc
+						.item-icon
+							i.far.fa-clock
+						p.item-title Littleton
+						span.item-text
+							| Open today until
+							span 4:00 pm
 </template>
 
 <static-query>
+query News {
+  news: allNews {
+    edges {
+      node {
+        news {
+          active
+          title
+          text
+          icon
+        }
+      }
+    }
+  }
+}
 </static-query>
 
 <script>
@@ -45,9 +58,9 @@ export default {
   name: "Hero",
   mixins: [Canvas],
   computed: {
-		// site() {
-		// 	return this.$static.site.edges[0].node
-		// }
+		news() {
+			return this.$static.news.edges[0].node.news
+		}
 	}
 };
 </script>

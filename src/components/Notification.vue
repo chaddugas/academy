@@ -1,17 +1,28 @@
 <template lang="pug">
-aside.note
-	//- aside.note(:class="{active, dismissed}")
-	//- 	.note-icon
-	//- 		i(:class="alert.icon")
-	//- 	.note-content
-	//- 		h6.note-title {{ alert.title }}
-	//- 		p.note-copy 
-	//- 			Markdown {{ alert.text }}
-	//- 	.note-close(@click="dismiss")
-	//- 		i.fas.fa-times-circle
+	aside.note(:class="{active, dismissed}")
+		.note-icon
+			i(:class="alert.icon")
+		.note-content
+			h6.note-title {{ alert.title }}
+			p.note-copy 
+				Markdown {{ alert.text }}
+		.note-close(@click="dismiss")
+			i.fas.fa-times-circle
 </template>
 
 <static-query>
+query Alert {
+  alert: allAlert {
+    edges {
+      node {
+        active
+        title
+        text
+        icon
+      }
+    }
+  }
+}
 </static-query>
 
 <script>
@@ -24,9 +35,9 @@ export default {
     };
   },
   computed: {
-    // alert() {
-    // 	return this.$static.alert.edges[0].node.alert
-    // }
+    alert() {
+    	return this.$static.alert.edges[0].node
+    }
   },
   methods: {
     activate() {
