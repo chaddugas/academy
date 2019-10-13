@@ -49,7 +49,7 @@ collections:
         label: 'Office Hours'
         file: 'static/_data/hours.json'
         fields:
-          - {label: 'Note', name: 'title', widget: 'string'}
+          - {label: 'Note', name: 'title', widget: 'string', required: false}
           - label: 'Highlands Ranch Office Hours' 
             widget: 'list'
             name: 'hr_hours'
