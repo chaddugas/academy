@@ -1,11 +1,5 @@
 {
-  "title": "Closed daily for lunch from 12:30 to 1:00",
-  "hr_hours": [
-    {
-      "title": "Monday",
-      "open": "8 00 am",
-      "close": "2000-01-01 17:00:00"
-    }
-  ],
+  "title": "Closed daily for lunch from 12:30 to 1:00.",
+  "hr_hours": [],
   "lt_hours": []
 }
