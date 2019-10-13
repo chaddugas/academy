@@ -1,16 +1,5 @@
 {
-  "hr_hours": [
-    {
-      "title": "Monday",
-      "open": "2019-10-13T14:00:00.000Z",
-      "close": "2019-10-01T23:00:00.000Z"
-    }
-  ],
-  "lt_hours": [
-    {
-      "title": "Monday",
-      "open": "2019-10-01T14:00:00.000Z",
-      "close": "2019-10-01T23:00:00.000Z"
-    }
-  ]
+  "title": "Closed daily for lunch from 12:30 to 1:00",
+  "hr_hours": [],
+  "lt_hours": []
 }
