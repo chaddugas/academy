@@ -55,9 +55,10 @@ collections:
             allow_add: true
             required: true
             fields:
-              - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
-              - {label: 'Open', name: 'open', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
-              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
+              - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
+              - {label: 'Open', name: 'open', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '8 00 am'}
+              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '5 00pm'}
+              - {label: 'Note', name: 'note', widget: 'string', required: false}
           - label: 'Littleton Office Hours' 
             widget: 'list'
             name: 'lt_hours'
@@ -65,6 +66,7 @@ collections:
             required: true
             fields:
               - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
-              - {label: 'Open', name: 'open', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
-              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
+              - {label: 'Open', name: 'open', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '8 00 am'}
+              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '5 00pm'}
+              - {label: 'Note', name: 'note', widget: 'string', required: false}
 
