@@ -72,7 +72,7 @@ export default {
 	data() {
 		return {
 			days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-			now: new Date('10/12/2019 12:45:00')
+			now: new Date()
 		}
 	},
   computed: {
@@ -104,23 +104,22 @@ export default {
 				if (weekday == item.title) (today = item, todayIndex = i)
 				return item
 			})
-			console.log(data[todayIndex])
 
 			if (!today) return 'Closed today'
 
-			if (this.now.getTime() < (new Date('10/12/2019')).setHours(today.open[0], today.open[1],0)) {
+			if (this.now.getTime() < (new Date()).setHours(today.open[0], today.open[1],0)) {
 				return `Opens today at ${data[todayIndex].open}`
 			}
-			if (this.now.getTime() < (new Date('10/12/2019')).setHours(today.close[0], today.close[1],0)) {
+			if (this.now.getTime() < (new Date()).setHours(today.close[0], today.close[1],0)) {
 				return `Open today until ${data[todayIndex].close}`
 			}
 			return 'Closed for the day'
 		}
 	},
 	created() {
-		// setInterval(() => {
-		// 	this.now = new Date('10/12/2019')
-		// }, 60000)
+		setInterval(() => {
+			this.now = new Date('10/12/2019')
+		}, 30000)
 	}
   
 };
