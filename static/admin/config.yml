@@ -27,10 +27,10 @@ collections:
         file: 'static/_data/alert.json'
         description: 'Popover Site Alert'
         fields: 
-          - {label: 'Active', name: 'active', widget: 'boolean', default: true}
           - {label: 'Alert', name: 'title', widget: 'string'}
           - {label: 'Text', name: 'text', widget: 'markdown', required: false}
           - {label: 'Icon Class', name: 'icon', widget: 'string', hint: 'See here for available icons: https://fontawesome.com/icons?d=gallery&m=free'}
+          - {label: 'Active', name: 'active', widget: 'boolean', default: true}
       - name: 'news'
         label: 'News Items'
         file: 'static/_data/news.json'
@@ -41,10 +41,10 @@ collections:
             allow_add: true
             required: false
             fields:
-              - {label: 'Active', name: 'active', widget: 'boolean', default: true}
               - {label: 'Title', name: 'title', widget: 'string'}
               - {label: 'Text', name: 'text', widget: 'string', required: false}
               - {label: 'Icon Class', name: 'icon', widget: 'string', hint: 'See here for available icons: https://fontawesome.com/icons?d=gallery&m=free'}
+              - {label: 'Active', name: 'active', widget: 'boolean', default: true}
       - name: 'hours'
         label: 'Office Hours'
         file: 'static/_data/hours.json'
