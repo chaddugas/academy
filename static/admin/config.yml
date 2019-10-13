@@ -49,6 +49,7 @@ collections:
         label: 'Office Hours'
         file: 'static/_data/hours.json'
         fields:
+          - {label: 'Note', name: 'title', widget: 'string'}
           - label: 'Highlands Ranch Office Hours' 
             widget: 'list'
             name: 'hr_hours'
@@ -57,8 +58,7 @@ collections:
             fields:
               - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
               - {label: 'Open', name: 'open', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '8 00 am'}
-              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '5 00pm'}
-              - {label: 'Note', name: 'note', widget: 'string', required: false}
+              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '5 00 pm'}
           - label: 'Littleton Office Hours' 
             widget: 'list'
             name: 'lt_hours'
@@ -67,6 +67,5 @@ collections:
             fields:
               - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
               - {label: 'Open', name: 'open', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '8 00 am'}
-              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '5 00pm'}
-              - {label: 'Note', name: 'note', widget: 'string', required: false}
+              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a', default: '5 00 pm'}
 
