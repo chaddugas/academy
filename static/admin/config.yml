@@ -1,11 +1,10 @@
 backend:
   name: git-gateway
-  # name: github
-  repo: chaddugas/academy
   branch: master
   accept_roles:
     - admin
     - editor
+  site_domain: cms.netlify.com
 
 site_url: https://academyparkpeds.netlify.com
 display_url: https://academyparkpeds.netlify.com
@@ -54,7 +53,7 @@ collections:
           - label: 'Highlands Ranch Office' 
             widget: 'list'
             name: 'hr_hours'
-            allow_add: false
+            allow_add: true
             required: true
             fields:
               - {label: 'Day', name: 'title', widget: 'select', options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
@@ -62,7 +61,7 @@ collections:
           - label: 'Littleton Office' 
             widget: 'list'
             name: 'lt_hours'
-            allow_add: false
+            allow_add: true
             required: true
             fields:
               - {label: 'Day', name: 'title', widget: 'select', options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
