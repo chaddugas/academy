@@ -4,7 +4,6 @@ backend:
   accept_roles:
     - admin
     - editor
-  site_domain: cms.netlify.com
 
 site_url: https://academyparkpeds.netlify.com
 display_url: https://academyparkpeds.netlify.com
@@ -57,7 +56,7 @@ collections:
             required: true
             fields:
               - {label: 'Day', name: 'title', widget: 'select', options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
-              - {label: 'Time', name: 'time', widget: 'datetime', dateFormat: false, timeFormat: 'h mm'}
+              - {label: 'Time', name: 'time', widget: 'datetime', dateFormat: false, timeFormat: 'hh mm'}
           - label: 'Littleton Office' 
             widget: 'list'
             name: 'lt_hours'
@@ -65,5 +64,5 @@ collections:
             required: true
             fields:
               - {label: 'Day', name: 'title', widget: 'select', options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
-              - {label: 'Time', name: 'time', widget: 'datetime', dateFormat: false, timeFormat: 'h mm'}
+              - {label: 'Time', name: 'time', widget: 'datetime', dateFormat: false, timeFormat: 'aa mm'}
 
