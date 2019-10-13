@@ -22,20 +22,16 @@
 						.item-icon
 							i.far.fa-clock
 						p.item-title Highlands Ranch
-						span.item-text
-							| Open today until
-							span 4:00 pm
+						span.item-text {{ hr_status }}
 					.hero-item.hero-loc
 						.item-icon
 							i.far.fa-clock
 						p.item-title Littleton
-						span.item-text
-							| Open today until
-							span 4:00 pm
+						span.item-text {{ lt_status }}
 </template>
 
 <static-query>
-query News {
+query {
   news: allNews {
     edges {
       node {
@@ -44,6 +40,22 @@ query News {
           title
           text
           icon
+        }
+      }
+    }
+  },
+  hours: allHours {
+    edges {
+      node {
+        hr_hours {
+          title
+          open
+          close
+        }
+        lt_hours {
+          title
+          open
+          close
         }
       }
     }
@@ -56,12 +68,61 @@ import Canvas from "@/mixins/Canvas";
 
 export default {
   name: "Hero",
-  mixins: [Canvas],
+	mixins: [Canvas],
+	data() {
+		return {
+			days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+			now: new Date('10/12/2019 12:45:00')
+		}
+	},
   computed: {
+		hr_status() {
+			return this.createStatusString(this.$static.hours.edges[0].node.hr_hours)
+		},
+		lt_status() {
+			return this.createStatusString(this.$static.hours.edges[0].node.lt_hours)
+		},
     news() {
       return this.$static.news.edges[0].node.news;
-    }
-  }
+		},
+	},
+	methods: {
+		createStatusString(data) {
+			let timeArray = JSON.parse(JSON.stringify(data))
+			let weekday = this.days[this.now.getDay()]
+			let today, todayIndex
+
+			timeArray = timeArray.map((item, i) => {
+				item.open = item.open.split(/ |\:/)
+				item.open[0] = parseInt(item.open[0])
+				item.open[1] = parseInt(item.open[1])
+				item.close = item.close.split(/ |\:/)
+				item.close[0] = parseInt(item.close[0])
+				item.close[1] = parseInt(item.close[1])
+				if (item.open[2].toLowerCase() == 'pm') item.open[0] = item.open[0] + 12
+				if (item.close[2].toLowerCase() == 'pm') item.close[0] = item.close[0] + 12
+				if (weekday == item.title) (today = item, todayIndex = i)
+				return item
+			})
+			console.log(data[todayIndex])
+
+			if (!today) return 'Closed today'
+
+			if (this.now.getTime() < (new Date('10/12/2019')).setHours(today.open[0], today.open[1],0)) {
+				return `Opens today at ${data[todayIndex].open}`
+			}
+			if (this.now.getTime() < (new Date('10/12/2019')).setHours(today.close[0], today.close[1],0)) {
+				return `Open today until ${data[todayIndex].close}`
+			}
+			return 'Closed for the day'
+		}
+	},
+	created() {
+		// setInterval(() => {
+		// 	this.now = new Date('10/12/2019')
+		// }, 60000)
+	}
+  
 };
 </script>
 

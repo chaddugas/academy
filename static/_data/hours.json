@@ -3,60 +3,60 @@
   "hr_hours": [
     {
       "title": "Monday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Tuesday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Wednesday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Thursday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Friday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     }
   ],
   "lt_hours": [
     {
       "title": "Monday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Tuesday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Wednesday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Thursday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Friday",
-      "open": "8 00 am",
-      "close": "5 00 pm"
+      "open": "8:00 am",
+      "close": "5:00 pm"
     },
     {
       "title": "Saturday",
-      "open": "9 00 am",
-      "close": "1 00 pm"
+      "open": "9:00 am",
+      "close": "1:00 pm"
     }
   ]
 }

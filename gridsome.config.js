@@ -17,7 +17,7 @@ module.exports = {
         // ...global plugins
       ]
     }
-  },
+	},
 
   plugins: [
     {
@@ -32,6 +32,13 @@ module.exports = {
       options: {
         path: 'static/_data/alert.json',
         typeName: 'Alert'
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'static/_data/hours.json',
+        typeName: 'Hours'
       }
     },
     {
