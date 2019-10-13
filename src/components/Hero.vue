@@ -167,9 +167,9 @@ $pull: 150px;
     font-size: 35px;
     margin-right: 20px;
     color: $red;
-  @media (min-width: $sm) {
-    font-size: 50px;
-	}
+    @media (min-width: $sm) {
+      font-size: 50px;
+    }
   }
 }
 
@@ -178,8 +178,8 @@ $pull: 150px;
   margin-top: 10px;
   white-space: nowrap;
   @media (min-width: $sm) {
-  font-size: 22px;
-	}
+    font-size: 22px;
+  }
 }
 
 .hero-content {

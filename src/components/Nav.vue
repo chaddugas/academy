@@ -5,11 +5,11 @@
 				i.nav-icon.fas.fa-walking
 				span.nav-text Visit
 			a(href="").nav-item 
-				i.nav-icon.fas.fa-file-invoice
-				span.nav-text Insurance
-			a(href="").nav-item 
 				i.nav-icon.fas.fa-id-badge
 				span.nav-text Staff
+			a(href="").nav-item 
+				i.nav-icon.fas.fa-file-invoice
+				span.nav-text Insurance
 			a(href="").nav-item 
 				i.nav-icon.fas.fa-file-medical-alt
 				span.nav-text Resources
