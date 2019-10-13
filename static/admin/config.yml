@@ -49,20 +49,22 @@ collections:
         label: 'Office Hours'
         file: 'static/_data/hours.json'
         fields:
-          - label: 'Highlands Ranch Office' 
+          - label: 'Highlands Ranch Office Hours' 
             widget: 'list'
             name: 'hr_hours'
             allow_add: true
             required: true
             fields:
-              - {label: 'Day', name: 'title', widget: 'select', options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
-              - {label: 'Time', name: 'time', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
-          - label: 'Littleton Office' 
+              - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
+              - {label: 'Open', name: 'open', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
+              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
+          - label: 'Littleton Office Hours' 
             widget: 'list'
             name: 'lt_hours'
             allow_add: true
             required: true
             fields:
-              - {label: 'Day', name: 'title', widget: 'select', options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
-              - {label: 'Time', name: 'time', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
+              - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
+              - {label: 'Open', name: 'open', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
+              - {label: 'Close', name: 'close', widget: 'datetime', dateFormat: false, timeFormat: 'h mm a'}
 
