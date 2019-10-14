@@ -43,6 +43,26 @@ query {
         }
       }
     }
+  },
+  office: allOffice {
+    edges {
+      node {
+        highlands {
+          hours {
+            title
+            open
+            close
+          }
+        }
+        lakewood {
+          hours {
+            title
+            open
+            close
+          }
+        }
+      }
+    }
   }
 }
 </static-query>
@@ -60,12 +80,12 @@ export default {
 		}
 	},
   computed: {
-		// hr_status() {
-		// 	return this.createStatusString(this.$static.hours.edges[0].node.hr_hours)
-		// },
-		// lt_status() {
-		// 	return this.createStatusString(this.$static.hours.edges[0].node.lt_hours)
-		// },
+		hr_status() {
+			return this.createStatusString(this.$static.office.edges[0].node.highlands)
+		},
+		lt_status() {
+			return this.createStatusString(this.$static.office.edges[0].node.lakewood)
+		},
     news() {
       return this.$static.news.edges[0].node.news;
 		},
