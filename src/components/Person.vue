@@ -166,13 +166,15 @@ $hover_time: 0.25s;
   background-position: 0 0;
   background-size: 0 0;
   overflow: hidden;
-  &:hover {
-    &:before {
-      background-size: 115% 115%;
-      filter: grayscale(75%) brightness(50%);
-    }
-    .person-name {
-      transform: translateY(0);
+  @media (hover: hover) {
+    &:hover {
+      &:before {
+        background-size: 115% 115%;
+        filter: grayscale(75%) brightness(50%);
+      }
+      .person-name {
+        transform: translateY(0);
+      }
     }
   }
   &:after {
