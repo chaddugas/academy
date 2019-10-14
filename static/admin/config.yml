@@ -24,7 +24,7 @@ collections:
     files:
       - name: 'alert'
         label: 'Site Alert'
-        file: 'static/data/alert.json'
+        file: 'static/data/settings/alert.json'
         description: 'Popover Site Alert'
         fields: 
           - {label: 'Alert', name: 'title', widget: 'string'}
@@ -33,7 +33,7 @@ collections:
           - {label: 'Active', name: 'active', widget: 'boolean', default: true}
       - name: 'news'
         label: 'News Items'
-        file: 'static/data/news.json'
+        file: 'static/data/settings/news.json'
         fields:
           - label: 'News' 
             widget: 'list'
@@ -47,7 +47,7 @@ collections:
               - {label: 'Active', name: 'active', widget: 'boolean', default: true}
       - name: 'office'
         label: 'Office Data'
-        file: 'static/data/office.json'
+        file: 'static/data/settings/office.json'
         fields:
           - label: 'Highlands Ranch'
             name: 'highlands'
