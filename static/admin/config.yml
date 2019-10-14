@@ -55,10 +55,11 @@ collections:
             fields:
               - {label: 'Title', name: 'title', widget: 'string'}
               - {label: 'Address', name: 'address', widget: 'text'}
-              - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
-              - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Phone', name: 'phone', widget: 'string', pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
               - {label: 'Fax', name: 'fax', widget: 'string', required: false, pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
+              - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
+              - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
+              - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
@@ -75,10 +76,11 @@ collections:
             fields:
               - {label: 'Title', name: 'title', widget: 'string'}
               - {label: 'Address', name: 'address', widget: 'text'}
-              - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
-              - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Phone', name: 'phone', widget: 'string', pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
               - {label: 'Fax', name: 'fax', widget: 'string', required: false, pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
+              - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
+              - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
+              - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
