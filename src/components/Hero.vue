@@ -85,7 +85,7 @@ export default {
 	},
 	created() {
 		setInterval(() => {
-			this.now = new Date('10/12/2019')
+			this.now = new Date()
 		}, 30000)
 	}
   
