@@ -37,8 +37,8 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'static/_data/hours.json',
-        typeName: 'Hours'
+        path: 'static/_data/office.json',
+        typeName: 'Office'
       }
     },
     {
