@@ -57,8 +57,8 @@ collections:
               - {label: 'Address', name: 'address', widget: 'text'}
               - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
-              - {label: 'Phone', name: 'phone', widget: 'text', pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
-              - {label: 'Fax', name: 'fax', widget: 'text', required: false, pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
+              - {label: 'Phone', name: 'phone', widget: 'string', pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
+              - {label: 'Fax', name: 'fax', widget: 'string', required: false, pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
@@ -69,16 +69,16 @@ collections:
                   - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
                   - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
               - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
-          - label: 'Littleton'
-            name: 'littleton'
+          - label: 'Lakewood'
+            name: 'Lakewood'
             widget: 'object'
             fields:
               - {label: 'Title', name: 'title', widget: 'string'}
               - {label: 'Address', name: 'address', widget: 'text'}
               - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
-              - {label: 'Phone', name: 'phone', widget: 'text', pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
-              - {label: 'Fax', name: 'fax', widget: 'text', required: false, pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
+              - {label: 'Phone', name: 'phone', widget: 'string', pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
+              - {label: 'Fax', name: 'fax', widget: 'string', required: false, pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
