@@ -113,6 +113,7 @@ collections:
     folder: 'static/data/staff'
     create: true
     delete: true
+    format: 'json'
     description: 'Profiles of staff members. These can be added, removed, hidden, and reordered.'
     fields:
       - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}

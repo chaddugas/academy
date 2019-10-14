@@ -23,22 +23,29 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'static/_data/news.json',
+        path: 'static/data/news.json',
         typeName: 'News'
       }
     },
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'static/_data/alert.json',
+        path: 'static/data/alert.json',
         typeName: 'Alert'
       }
     },
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'static/_data/office.json',
+        path: 'static/data/office.json',
         typeName: 'Office'
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'static/data/**.json',
+        typeName: 'Staff'
       }
     },
     {
