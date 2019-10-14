@@ -1,11 +1,8 @@
 {
   "highlands": {
-    "title": "Highlands Ranch Office",
-    "address": "4185 E. Wildcat Reserve Parkway\nSuite #230\nHighlands Ranch, CO 80126",
-    "lat": "39.529038",
     "lng": "-104.941598",
+    "popup": "## Academy Park Pediatrics - Highlands Ranch\n\n_Pediatric Practice_\n\n[Get Directions](https://www.google.com/maps/dir//Academy+Park+Pediatrics,+4185+E+Wildcat+Reserve+Pkwy+Suite+%23230,+Highlands+Ranch,+CO+80126/@39.5290376,-104.9437867,17)",
     "phone": "303 996-0730",
-    "fax": "303 996-0732",
     "hours": [
       {
         "title": "Monday",
@@ -33,15 +30,16 @@
         "close": "5:00 pm"
       }
     ],
-    "note": "Closed for lunch 12:30-1:30"
+    "note": "Closed for lunch 12:30-1:30",
+    "address": "4185 E. Wildcat Reserve Parkway\nSuite #230\nHighlands Ranch, CO 80126",
+    "title": "Highlands Ranch Office",
+    "fax": "303 996-0732",
+    "lat": "39.529038"
   },
   "Lakewood": {
-    "title": "Lakewood Office",
-    "address": "7373 West Jefferson Ave\nSuite #102\nLakewood, CO 80235",
-    "lat": "39.650403",
     "lng": "-105.078522",
+    "popup": "## Academy Park Pediatrics - Lakewood/Littleton\n\n_Pediatric Practice_\n\n[Get Directions](https://www.google.com/maps/dir//Academy+Park+Pediatrics,+West+Jefferson+Avenue,+Lakewood,+CO/@39.6505522,-105.0591941)",
     "phone": "303 988-5252",
-    "fax": "303 988-5632",
     "hours": [
       {
         "title": "Monday",
@@ -74,6 +72,10 @@
         "close": "1:00 pm"
       }
     ],
-    "note": "Closed for lunch 12:30-1:30"
+    "note": "Closed for lunch 12:30-1:30",
+    "address": "7373 West Jefferson Ave\nSuite #102\nLakewood, CO 80235",
+    "title": "Lakewood Office",
+    "fax": "303 988-5632",
+    "lat": "39.650403"
   }
 }
