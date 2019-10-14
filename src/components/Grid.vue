@@ -1,19 +1,44 @@
 <template lang="pug">
 	section#staff.grid
 		.grid-inner
-			app-person(:title="true")
-			app-person(v-for="(person, i) in 7", :key="i", :person="i", :title="false")
+			app-profile(:title="true")
+			app-profile(
+				v-for="(profile, i) in profiles", 
+				:key="i", :profile="profile", 
+				:title="false")
 </template>
 
 <script>
-import Person from "./Person";
+import Profile from "./Profile";
 export default {
 	name: "Staff",
   components: {
-    appPerson: Person
-  },
+    appProfile: Profile
+	},
+	computed: {
+		profiles() {
+			return this.$static.profiles.edges[0].node.profiles
+		}
+	}
 }
 </script>
+
+<static-query>
+query {
+  profiles:allProfiles {
+    edges {
+      node {
+        profiles {
+          title
+          photo
+          bio
+          visible
+        }
+      }
+    }
+  }
+}
+</static-query>
 
 <style lang="scss" scoped>
 .grid {
