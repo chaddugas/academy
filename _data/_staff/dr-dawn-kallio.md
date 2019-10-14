@@ -1,0 +1,25 @@
+---
+title: Dr. Dawn Kallio
+photo: /media/kallio-dawn_full.jpg
+bio: >-
+  Dawn was raised in a military family so she spent most of her early life
+  moving from place to place. She finished high school and college in Colorado,
+  and is now happy to call it home again. She received her medical degree from
+  the University of Colorado School of Medicine in 2005. She then completed her
+  residency training in 2008 at the Barbara Bush Children's Hospital at Maine
+  Medical Center. She is pictured here with her husband Steve and her children
+  Bryce, Tyler and Sydney. She moved to Highlands Ranch in September 2008 and
+  started working with Academy Park Pediatrics in October.
+
+
+  > I would like to be a consultant for parents to help them guide their
+  children through life so that they can reach their fullest potential. I also
+  see myself as a strong advocate for children.
+
+
+  Dawn is a board certified pediatrician, an active fellow of the American
+  Academy of Pediatrics and an active member of the Arapahoe County and Colorado
+  Medical Societies.
+visible: true
+---
+
