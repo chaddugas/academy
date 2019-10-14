@@ -116,7 +116,7 @@ export default {
   font-size: 30px;
   @media (min-width: $md) {
     margin-right: 8px;
-    font-size: 20px;
+    font-size: 22px;
   }
 }
 
