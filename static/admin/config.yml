@@ -108,16 +108,22 @@ collections:
                   - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
               - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
 
-  - name: 'staff'
-    label: 'Staff Profiles'
-    folder: 'static/data/staff'
-    create: true
-    delete: true
-    format: 'json'
-    description: 'Profiles of staff members. These can be added, removed, hidden, and reordered.'
-    fields:
-      - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
-      - {label: 'Photo', name: 'photo', widget: 'image'}
-      - {label: 'Bio', name: 'bio', widget: 'markdown'}
-      - {label: 'Visible', name: 'visible', widget: 'boolean', default: true}
+  - name: 'content'
+    label: 'Site Content'
+    description: 'Staff profiles, insurance, downloads, and links.'
+    files:
+      - label: 'Staff Profiles' 
+        name: 'profiles'
+        file: 'static/data/profiles.json'
+        widget: 'list'
+        allow_add: true
+        required: true
+        create: true
+        delete: true
+        fields:
+          fields:
+            - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
+            - {label: 'Photo', name: 'photo', widget: 'image'}
+            - {label: 'Bio', name: 'bio', widget: 'markdown'}
+            - {label: 'Visible', name: 'visible', widget: 'boolean', default: true}
 
