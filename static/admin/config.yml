@@ -117,6 +117,6 @@ collections:
     fields:
       - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
       - {label: 'Photo', name: 'photo', widget: 'image'}
-      - {label: 'Bio', name: 'bio', widget: 'wysiwyg'}
+      - {label: 'Bio', name: 'bio', widget: 'markdown'}
       - {label: 'Visible', name: 'visible', widget: 'boolean', default: true}
 
