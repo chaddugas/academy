@@ -5,9 +5,10 @@ import VueMarkdown from 'vue-markdown'
 import smoothscroll from 'smoothscroll-polyfill'
 import '~/assets/scss/1-destyle.css'
 
-smoothscroll.polyfill();
-
 export default function (Vue, { router, head, isClient }) {
 	Vue.component('Layout', DefaultLayout)
 	Vue.component('Markdown', VueMarkdown)
+	if (process.isClient) {
+		smoothscroll.polyfill();
+	}
 }
