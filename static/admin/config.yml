@@ -45,27 +45,44 @@ collections:
               - {label: 'Text', name: 'text', widget: 'string', required: false}
               - {label: 'Icon Class', name: 'icon', widget: 'string', hint: 'See here for available icons: https://fontawesome.com/icons?d=gallery&m=free'}
               - {label: 'Active', name: 'active', widget: 'boolean', default: true}
-      - name: 'hours'
-        label: 'Office Hours'
-        file: 'static/_data/hours.json'
+      - name: 'office'
+        label: 'Office Data'
+        file: 'static/_data/office.json'
         fields:
-          - {label: 'Note', name: 'title', widget: 'string', required: false}
-          - label: 'Highlands Ranch Office Hours' 
-            widget: 'list'
-            name: 'hr_hours'
-            allow_add: true
-            required: true
+          - label: 'Highlands Ranch'
+            name: 'highlands'
+            widget: 'object'
             fields:
-              - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
-              - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
-              - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
-          - label: 'Littleton Office Hours' 
-            widget: 'list'
-            name: 'lt_hours'
-            allow_add: true
-            required: true
+              - {label: 'Title', name: 'title', widget: 'string'}
+              - {label: 'Address', name: 'address', widget: 'text'}
+              - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
+              - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
+              - label: 'Hours' 
+                name: 'hours'
+                widget: 'list'
+                allow_add: true
+                required: true
+                fields:
+                  - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
+                  - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
+                  - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
+              - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
+          - label: 'Littleton'
+            name: 'littleton'
+            widget: 'object'
             fields:
-              - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']}
-              - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
-              - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
+              - {label: 'Title', name: 'title', widget: 'string'}
+              - {label: 'Address', name: 'address', widget: 'text'}
+              - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
+              - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
+              - label: 'Hours' 
+                name: 'hours'
+                widget: 'list'
+                allow_add: true
+                required: true
+                fields:
+                  - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
+                  - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
+                  - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
+              - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
 

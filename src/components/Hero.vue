@@ -43,22 +43,6 @@ query {
         }
       }
     }
-  },
-  hours: allHours {
-    edges {
-      node {
-        hr_hours {
-          title
-          open
-          close
-        }
-        lt_hours {
-          title
-          open
-          close
-        }
-      }
-    }
   }
 }
 </static-query>
@@ -76,12 +60,12 @@ export default {
 		}
 	},
   computed: {
-		hr_status() {
-			return this.createStatusString(this.$static.hours.edges[0].node.hr_hours)
-		},
-		lt_status() {
-			return this.createStatusString(this.$static.hours.edges[0].node.lt_hours)
-		},
+		// hr_status() {
+		// 	return this.createStatusString(this.$static.hours.edges[0].node.hr_hours)
+		// },
+		// lt_status() {
+		// 	return this.createStatusString(this.$static.hours.edges[0].node.lt_hours)
+		// },
     news() {
       return this.$static.news.edges[0].node.news;
 		},
