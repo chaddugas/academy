@@ -1,7 +1,7 @@
 {
   "highlands": {
     "lng": "-104.941598",
-    "popup": "## Academy Park Pediatrics - Highlands Ranch\n\n_Pediatric Practice_\n\n[Get Directions](https://www.google.com/maps/dir//Academy+Park+Pediatrics,+4185+E+Wildcat+Reserve+Pkwy+Suite+%23230,+Highlands+Ranch,+CO+80126/@39.5290376,-104.9437867,17)",
+    "popup": "# Academy Park Pediatrics\n\n## Highlands Ranch\n\n_Pediatric Practice_",
     "phone": "303 996-0730",
     "hours": [
       {
@@ -38,7 +38,7 @@
   },
   "lakewood": {
     "lng": "-105.078522",
-    "popup": "## Academy Park Pediatrics - Lakewood/Littleton\n\n_Pediatric Practice_\n\n[Get Directions](https://www.google.com/maps/dir//Academy+Park+Pediatrics,+West+Jefferson+Avenue,+Lakewood,+CO/@39.6505522,-105.0591941)",
+    "popup": "# Academy Park Pediatrics\n\n## Lakewood/Littleton\n\n_Pediatric Practice_",
     "phone": "303 988-5252",
     "hours": [
       {
