@@ -30,43 +30,6 @@
 						span.item-text {{ lt_status }}
 </template>
 
-<static-query>
-query {
-  news: allNews {
-    edges {
-      node {
-        news {
-          active
-          title
-          text
-          icon
-        }
-      }
-    }
-  },
-  office: allOffice {
-    edges {
-      node {
-        highlands {
-          hours {
-            title
-            open
-            close
-          }
-        }
-        lakewood {
-          hours {
-            title
-            open
-            close
-          }
-        }
-      }
-    }
-  }
-}
-</static-query>
-
 <script>
 import Canvas from "@/mixins/Canvas";
 
@@ -81,10 +44,10 @@ export default {
 	},
   computed: {
 		hr_status() {
-			// return this.createStatusString(this.$static.office.edges[0].node.highlands)
+			return this.createStatusString(this.$static.office.edges[0].node.highlands.hours)
 		},
 		lt_status() {
-			// return this.createStatusString(this.$static.office.edges[0].node.lakewood)
+			return this.createStatusString(this.$static.office.edges[0].node.lakewood.hours)
 		},
     news() {
       return this.$static.news.edges[0].node.news;
@@ -128,6 +91,43 @@ export default {
   
 };
 </script>
+
+<static-query>
+query {
+  news: allNews {
+    edges {
+      node {
+        news {
+          active
+          title
+          text
+          icon
+        }
+      }
+    }
+  },
+  office: allOffice {
+    edges {
+      node {
+        highlands {
+          hours {
+            title
+            open
+            close
+          }
+        }
+        lakewood {
+          hours {
+            title
+            open
+            close
+          }
+        }
+      }
+    }
+  }
+}
+</static-query>
 
 <style lang="scss" scoped>
 $pull: 150px;

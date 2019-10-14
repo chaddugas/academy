@@ -1,5 +1,8 @@
 <template lang="pug">
-	.map
+	div
+		.map-popup(v-show="false")
+			Markdown.map-content {{ location.popup }}
+		.map
 </template>
 
 <script>
@@ -172,7 +175,7 @@ export default {
   methods: {
     init() {
       const styles = this.styles
-      const map = new google.maps.Map(this.$el, {
+      const map = new google.maps.Map(this.$el.querySelector('.map'), {
 				mapTypeControl: false,
 				streetViewControl: false,
 				fullscreenControl: false,
@@ -181,12 +184,12 @@ export default {
         zoom: 16
       })
       const infowindow = new google.maps.InfoWindow({
-        content: this.location.popup
+        content: this.$el.querySelector('.map-popup').innerHTML
       })
       const marker = new google.maps.Marker({
         map,
         position: this.location.coords,
-        title: ""
+        title: this.location.name
       })
       marker.addListener("click", function() {
         infowindow.open(map, marker)
@@ -198,6 +201,32 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss">
+.map-content {
+	text-align: left;
+	line-height: 1.6;
+	h1,
+	h2 {
+		color: $indigo;
+	}
+	h1 {
+		font-size: 16px;
+	}
+	h2 {
+		font-size: 15px;
+	}
+	em {
+		color: lighten($onyx, 15%);
+		font-size: 12px;
+	}
+	a {
+		color: $teal;
+		text-decoration: underline;
+		font-size: 12px;
+	}
+}
+</style>
 
 <style lang="scss">
 .map {

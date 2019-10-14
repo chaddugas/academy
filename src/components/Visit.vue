@@ -1,19 +1,20 @@
 <template lang="pug">
 	section#visit.visit
 		.visit-inner 
-			.visit-item(v-for="loc in locations")
+			.visit-item(v-for="office in locations")
 				.visit-map
-					app-map(v-if="ready", :location="loc")
+					app-map(v-if="ready", :location="map(office)")
 				.visit-content
-					h2.visit-title {{ loc.name }}
+					h2.visit-title 
+						span {{ office.title }}
+						a(:href="`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${office.lat},${office.long}`", target="_blank") directions
 					.visit-address
-						span(v-for="line in loc.address") {{ line }}
-						a(@click="directions(loc)") Get Directions
-					.visit-phone {{ loc.phone }}
-					.visit-fax {{ loc.fax }}
+						span(v-for="line in address(office.address)") {{ line }}
+					.visit-phone {{ office.phone }}
+					.visit-fax {{ office.fax }}
 					.visit-hours
-						span.visit-hour(v-for="hour in loc.hours")
-							strong {{ hour.day.substring(0, 2) }}
+						span.visit-hour(v-for="hour in office.hours")
+							strong {{ hour.title.substring(0, 2) }}
 							span {{ timeString(hour) }}
 </template>
 
@@ -33,100 +34,18 @@ export default {
       reject: null,
       initialized: false,
       ready: false,
-      mapPromise: null,
-      locations: [
-        {
-          coords: { lat: 39.529038, lng: -104.941598 },
-          name: "Highlands Ranch Office",
-          address: [
-            "4185 E. Wildcat Reserve Parkway",
-            "Suite #230",
-            "Highlands Ranch, CO 80126"
-          ],
-          phone: "303 996-0730",
-          fax: "303 996-0732",
-          hours: [
-            {
-              day: "Monday",
-              open: { hour: 8, minute: 30 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Tuesday",
-              open: { hour: 8, minute: 0 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Wednesday",
-              open: { hour: 8, minute: 0 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Thursday",
-              open: { hour: 8, minute: 0 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Friday",
-              open: { hour: 8, minute: 0 },
-              close: { hour: 5, minute: 0 }
-            }
-          ],
-          popup: "<h1>test</h1>"
-        },
-        {
-          coords: { lat: 39.650403, lng: -105.078522 },
-          name: "Lakewood Office",
-          address: [
-            "7373 West Jefferson Ave",
-            "Suite #102",
-            "Lakewood, CO 80235"
-          ],
-          phone: "303 996-0730",
-          fax: "303 996-0732",
-          hours: [
-            {
-              day: "Monday",
-              open: { hour: 8, minute: 30 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Tuesday",
-              open: { hour: 8, minute: 30 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Wednesday",
-              open: { hour: 8, minute: 30 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Thursday",
-              open: { hour: 8, minute: 30 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Friday",
-              open: { hour: 8, minute: 30 },
-              close: { hour: 5, minute: 0 }
-            },
-            {
-              day: "Saturday",
-              open: { hour: 8, minute: 30 },
-              close: { hour: 10, minute: 30 }
-            }
-          ],
-          popup: "<h1>test</h1>"
-        }
-      ]
+      mapPromise: null
     };
   },
+  computed: {
+    locations() {
+      return [
+        JSON.parse(JSON.stringify(this.$static.office.edges[0].node.highlands)),
+        JSON.parse(JSON.stringify(this.$static.office.edges[0].node.lakewood))
+      ];
+    }
+  },
   methods: {
-    directions(loc) {
-      let params = {};
-
-      // window.location.href = 'https://www.google.com/maps/dir/?api=1&parameters'
-    },
     createMapPromise() {
       this.mapPromise = new Promise((res, rej) => {
         this.resolve = res;
@@ -150,13 +69,26 @@ export default {
       document.head.appendChild(script);
       return;
     },
+    address(addr) {
+      return addr.split(/\n+?/);
+    },
+    map(office) {
+      return {
+        coords: {
+          lat: parseFloat(office.lat),
+          lng: parseFloat(office.lng)
+        },
+        popup: office.popup,
+        name: office.name
+      };
+    },
     timeString(hour) {
-      let timeString = hour.open.hour;
-      if (hour.open.minute > 0) timeString += `${hour.open.minute}`;
-      timeString += ` - `;
-      timeString += hour.close.hour;
-      if (hour.close.minute > 0) timeString += `${hour.close.minute}`;
-      return timeString;
+      let open = hour.open.split(/ |\:/);
+      let close = hour.close.split(/ |\:/);
+      let str;
+      str = `${open[0]}${open[1] == "00" ? "" : `:${open[1]}`} - `;
+      str += `${close[0]}${close[1] == "00" ? "" : `:${close[1]}`}`;
+      return str;
     }
   },
   mounted() {
@@ -165,6 +97,44 @@ export default {
 };
 </script>
 
+<static-query>
+	query {
+		office: allOffice {
+			edges {
+				node {
+					highlands {
+						title
+						address
+						phone
+						fax
+						lng
+						lat
+						popup
+						hours {
+							title
+							open
+							close
+						}
+					}
+					lakewood {
+						title
+						address
+						phone
+						fax
+						lng
+						lat
+						popup
+						hours {
+							title
+							open
+							close
+						}
+					}
+				}
+			}
+		}
+	}
+</static-query>
 
 <style lang="scss">
 .visit {
@@ -216,10 +186,10 @@ export default {
 .visit-item {
   display: flex;
   flex-direction: column;
-	padding: 15px 0 30px;
+  padding: 15px 0 30px;
   margin-bottom: 15px;
   justify-content: space-between;
-		border-bottom: 1px solid $gray;
+  border-bottom: 1px solid $gray;
   text-align: left;
   &:last-child {
     border-bottom: none;
@@ -228,15 +198,26 @@ export default {
   }
   @media (min-width: $md) {
     display: grid;
-		grid-template: auto / max-content 1fr;
-		grid-gap: 40px;
-		padding: 30px 0 60px;
-		&:last-child {
-			padding-bottom: 30px;
-		}
+    grid-template: auto / max-content 1fr;
+    grid-gap: 40px;
+    padding: 30px 0 60px;
+    &:last-child {
+      padding-bottom: 30px;
+    }
     &:nth-child(even) {
       text-align: right;
       grid-template: auto / 1fr max-content;
+			.visit-title {
+				align-items: flex-end;
+				a::after {
+					left: 100%;
+					right: 0;
+				}
+				&:hover a::after {
+					left: 0;
+					right: 0;
+				}
+			}
       .visit-map {
         grid-area: 1 / 1 / 2 / 2;
       }
@@ -268,8 +249,43 @@ export default {
 }
 
 .visit-title {
-  font-size: 22px;
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  span {
+    font-size: 22px;
+  }
+  a {
+    margin: -3px 0 10px;
+    color: lighten($onyx, 20%);
+    font-size: 14px;
+    position: relative;
+		transition: 0.5s ease;
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc(100% - 2px);
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $orange;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(100% - 2px);
+      left: 0;
+      right: 100%;
+      height: 2px;
+      background: $teal;
+			transition: 0.5s ease;
+    }
+		&:hover {
+			&::after {
+				right: 0;
+			}
+		}
+  }
 }
 
 .visit-address,
