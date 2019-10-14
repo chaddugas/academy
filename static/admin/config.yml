@@ -67,7 +67,7 @@ collections:
                 required: false
                 fields:
                   - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
-                  - {label: 'Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: 'false'}
+                  - {label: 'Closed Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', dateFormat: 'MM-DD-YYYY', timeFormat: 'false'}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
@@ -96,7 +96,7 @@ collections:
                 required: false
                 fields:
                   - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
-                  - {label: 'Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: 'false'}
+                  - {label: 'Closed Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', dateFormat: 'MM-DD-YYYY', timeFormat: 'false'}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
