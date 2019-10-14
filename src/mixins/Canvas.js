@@ -46,9 +46,11 @@ export default {
 			const dots = {
 				total: (window.innerWidth * window.innerHeight) / 5000,
 				proximity: Math.min(window.innerHeight, window.innerWidth) * 0.1,
-				radius: 150,
+				radius: Math.max(window.innerHeight, window.innerWidth) * 0.1,
 				array: []
 			}
+
+			dots.total = dots.total < 150 ? 150 : dots.total
 
 			class Dots {
 				constructor() {

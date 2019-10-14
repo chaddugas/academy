@@ -1,19 +1,19 @@
 <template lang="pug">
 	transition(name="fade")
 		nav.nav(v-if="active")
-			a(href="").nav-item 
+			.nav-item(@click="navigate('visit')")
 				i.nav-icon.fas.fa-walking
 				span.nav-text Visit
-			a(href="").nav-item 
+			.nav-item(@click="navigate('staff')")
 				i.nav-icon.fas.fa-id-badge
 				span.nav-text Staff
-			a(href="").nav-item 
+			.nav-item(@click="navigate('insurance')")
 				i.nav-icon.fas.fa-file-invoice
 				span.nav-text Insurance
-			a(href="").nav-item 
+			.nav-item(@click="navigate('resources')")
 				i.nav-icon.fas.fa-file-medical-alt
 				span.nav-text Resources
-			a(href="").nav-item 
+			.nav-item(@click="navigate('about')")
 				i.nav-icon.fas.fa-dna
 				span.nav-text About
 </template>
@@ -27,21 +27,26 @@ export default {
     };
   },
   methods: {
+		navigate(id) {
+			let dest = document.querySelector(`#${id}`)
+
+			if (dest) window.scrollBy({top: dest.getBoundingClientRect().top - 30, behavior: 'smooth'})
+		},
     activate() {
       this.active = window.scrollY > 200;
-		},
-		init() {
-			window.addEventListener("scroll", this.activate)
-		},
-		destroy() {
-			window.removeEventListener("scroll", this.activate)
-		}
+    },
+    init() {
+      window.addEventListener("scroll", this.activate);
+    },
+    destroy() {
+      window.removeEventListener("scroll", this.activate);
+    }
   },
-	mounted() {
-		if (process.isClient) this.init()
-	},
+  mounted() {
+    if (process.isClient) this.init();
+  },
   beforeDestroy() {
-		this.destroy()
+    this.destroy();
   }
 };
 </script>
@@ -71,7 +76,7 @@ export default {
 
 .nav-item {
   font-weight: 700;
-  padding: 0 20px;
+  padding: 0 17px;
   line-height: 1;
   color: $onyx;
   position: relative;
@@ -79,7 +84,11 @@ export default {
   display: flex;
   align-items: center;
   text-align: center;
-  transition: 0.25s ease;
+	transition: 0.25s ease;
+	cursor: pointer;
+  @media (min-width: $md) {
+  padding: 0 20px;
+	}
   &:before {
     transition: bottom 0.2s ease, right 0s 0.2s linear,
       background 0.2s 0.2s ease;
@@ -93,7 +102,7 @@ export default {
     z-index: -1;
   }
   &:hover {
-    color: $white;
+    color: $orange;
     &:before {
       transition: right 0.2s ease, bottom 0s linear, background 0.2s ease;
       right: 0;
@@ -104,12 +113,19 @@ export default {
 }
 
 .nav-icon {
-  font-size: 20px;
-  margin-right: 8px;
+  font-size: 30px;
+  @media (min-width: $md) {
+    margin-right: 8px;
+    font-size: 20px;
+  }
 }
 
 .nav-text {
   font-size: 18px;
   text-transform: uppercase;
+  display: none;
+  @media (min-width: $md) {
+    display: block;
+  }
 }
 </style>

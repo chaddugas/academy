@@ -166,8 +166,8 @@ $pull: 150px;
 }
 
 .hero-logo {
-  margin: 100px 20px 50px;
-  padding: 40px;
+  margin: 50px 20px 30px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -179,7 +179,7 @@ $pull: 150px;
   background: rgba($indigo, 0.5);
 
   @media (min-width: $sm) {
-    margin: 100px auto 50px;
+    margin: 50px auto;
     padding: 80px;
   }
 
@@ -215,7 +215,7 @@ $pull: 150px;
 .hero-title {
   display: flex;
   flex-direction: column;
-  font-size: 40px;
+  font-size: 38px;
   line-height: 1.3;
   text-transform: uppercase;
   @media (min-width: $sm) {
@@ -238,7 +238,7 @@ $pull: 150px;
 }
 
 .hero-tagline {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 10px;
   white-space: nowrap;
   @media (min-width: $sm) {
