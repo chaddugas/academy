@@ -273,7 +273,8 @@ export default {
     color: lighten($onyx, 20%);
     font-size: 14px;
     position: relative;
-    transition: 0.5s ease;
+		transition: 0.5s ease;
+		font-family: $body;
     &::before {
       content: "";
       position: absolute;

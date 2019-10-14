@@ -42,7 +42,7 @@ query {
 
 <style lang="scss" scoped>
 .grid {
-	@include container;
+	@include container($max: 1100px);
 	padding: 30px 0;
 }
 

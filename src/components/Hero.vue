@@ -9,7 +9,7 @@
 						i.fa.fa-heartbeat
 						| Park
 					span Pediatrics
-				p.hero-tagline
+				h6.hero-tagline
 					span A partner in your child's health.
 			.hero-content
 				.hero-content-inner

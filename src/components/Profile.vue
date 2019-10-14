@@ -35,14 +35,14 @@ export default {
       let top = 0;
 
       if (window.matchMedia("(min-width: 850px)").matches) {
-        if (items.indexOf(this.$el) < 9) {
+        if (items.indexOf(this.$el) < 5) {
           top = grid.getBoundingClientRect().top;
         } else {
           top =
-            items[items.indexOf(this.$el) - 6].getBoundingClientRect().top - 30;
+            items[items.indexOf(this.$el) - 3].getBoundingClientRect().top - 30;
         }
       } else {
-        if (items.indexOf(this.$el) < 4) {
+        if (items.indexOf(this.$el) < 3) {
           top = grid.getBoundingClientRect().top;
         } else {
           top =
@@ -72,6 +72,22 @@ export default {
 };
 </script>
 
+
+<style lang="scss">
+.profile-wysiwyg {
+  // h1,
+  // h2,
+  // h3,
+  // h4,
+  // h5,
+  // h6 {
+  //   &:first-child {
+  //     margin-top: -20px;
+  //   }
+  // }
+}
+</style>
+
 <style lang="scss" scoped>
 $gap: 20px;
 $grow_time: 0.5s;
@@ -80,9 +96,9 @@ $hover_time: 0.25s;
 
 .person.person--title {
   grid-area: span 1 / span 1;
-	background: darken($indigo, 5%);
-	transition: none;
-	transition-delay: 0;
+  background: darken($indigo, 5%);
+  transition: none;
+  transition-delay: 0;
   @media (min-width: $xs) {
     padding: 30px;
   }
@@ -136,27 +152,27 @@ $hover_time: 0.25s;
   position: relative;
   z-index: -1;
   transition: z-index 0ms linear;
-	transition-delay: 500ms;
-	background-size: 0 0;
+  transition-delay: 500ms;
+  background-size: 0 0;
   &:before {
     content: "";
     display: block;
     position: relative;
     padding-top: 100%;
-	}
-	&:after {
-		content: '';
-		position: absolute;
-		top:0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-image: inherit;
-		background-size: cover;
-		filter: grayscale(100%);
-		z-index: -1;
-		opacity: .25;
-	}
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    background-size: cover;
+    filter: grayscale(100%);
+    z-index: -1;
+    opacity: 0.25;
+  }
 }
 
 .person-profile {
@@ -191,6 +207,7 @@ $hover_time: 0.25s;
   width: 100%;
   transition: 500ms ease;
   overflow-y: auto;
+  overflow-x: hidden;
   pointer-events: none;
   background-color: $white;
   background-image: inherit;
@@ -216,6 +233,7 @@ $hover_time: 0.25s;
   transform: scale(1, 1);
   filter: grayscale(0%) brightness(100%);
   will-change: transform, filter;
+  z-index: 1;
   img {
     max-width: 100%;
   }
@@ -252,7 +270,7 @@ $hover_time: 0.25s;
   margin: 20px;
   opacity: 0;
   visibility: hidden;
-	will-change: opacity;
+  will-change: opacity;
 }
 
 .person.active {
@@ -275,9 +293,8 @@ $hover_time: 0.25s;
   }
   .profile-image {
     transform: scale(1, 1);
-    filter: none;
-    margin-right: 20px;
-    margin-bottom: 10px;
+		filter: none;
+		margin: 20px 20px 10px;
   }
   .profile-name {
     transform: translateY(0);

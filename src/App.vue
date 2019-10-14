@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Archivo:700|Overpass:300,400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=#{str-replace($headings, ' ', '+')}:700,400|#{$body}:300,400,700&display=swap");
 
 html {
   font-size: 16px;
@@ -27,9 +27,9 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: "Overpass", serif;
-  font-weight: 400;
-  font-size: 1rem;
+  font-family: $body, sans-serif;
+  font-weight: $b_weight;
+  font-size: $b_size;
   line-height: 1.4;
   background: $gray;
 }
@@ -45,8 +45,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Archivo", sans-serif;
-  font-weight: 700;
+  font-family: $headings, sans-serif;
+  font-weight: $h_weight;
 }
 
 [class*="wysiwyg"] {
@@ -129,17 +129,20 @@ h6 {
     font-weight: 700;
 		line-height: 1.2;
 		position: relative;
-		padding-bottom: 20px;
+		padding: 20px 0;
 		color: $teal;
-		&:after {
-			position: absolute;
-			left: 0;
-			width: 100vw;
-			bottom: 0;
-			height: 10px;
-			background: $indigo;
-			content: '';
-		}
+		z-index: 1;
+		// color: $white;
+		// &:after {
+		// 	position: absolute;
+		// 	left: 0;
+		// 	right: 0;
+		// 	bottom: 0;
+		// 	top: 0;
+		// 	z-index: -1;
+		// 	background: $indigo;
+		// 	content: '';
+		// }
   }
   h1:first-child,
   h2:first-child,
@@ -226,11 +229,34 @@ h6 {
     list-style-type: circle;
   }
   blockquote {
-    border-left: 4px solid #e6e6e6;
-    padding: 0.6em 1.2em;
+		padding: 0.6em 1.2em;
+		text-align: right;
+		font-family: $headings, sans-serif;
+		position: relative;
+		z-index: 1;
+		color: lighten($onyx, 20%);
+		font-style: italic;
+		font-size: 1.2rem;
+		margin: 2.25rem 3rem;
+		&:after {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: 8px;
+			background: $orange;
+			z-index: 1;
+			content: '';
+		}
   }
   blockquote p {
     margin-bottom: 0;
+		&:before {
+			content: '"'
+		}
+		&:after {
+			content: '"'
+		}
   }
   code,
   kbd,
