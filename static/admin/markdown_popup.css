@@ -1,0 +1,266 @@
+.cms-editor-visual * {
+	box-sizing: border-box;
+}
+.cms-editor-visual ::before,
+.cms-editor-visual ::after {
+	box-sizing: inherit;
+}
+.cms-editor-visual html {
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
+}
+.cms-editor-visual body {
+	margin: 0;
+}
+.cms-editor-visual main {
+	display: block;
+}
+.cms-editor-visual p,
+.cms-editor-visual table,
+.cms-editor-visual blockquote,
+.cms-editor-visual address,
+.cms-editor-visual pre,
+.cms-editor-visual iframe,
+.cms-editor-visual form,
+.cms-editor-visual figure,
+.cms-editor-visual dl {
+	margin: 0;
+}
+.cms-editor-visual h1,
+.cms-editor-visual h2,
+.cms-editor-visual h3,
+.cms-editor-visual h4,
+.cms-editor-visual h5,
+.cms-editor-visual h6 {
+	font-size: inherit;
+	line-height: inherit;
+	font-weight: inherit;
+	margin: 0;
+}
+.cms-editor-visual ul,
+.cms-editor-visual ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.cms-editor-visual dt {
+	font-weight: bold;
+}
+.cms-editor-visual dd {
+	margin-left: 0;
+}
+.cms-editor-visual hr {
+	box-sizing: content-box;
+	height: 0;
+	overflow: visible;
+	border: 0;
+	border-top: 1px solid;
+	margin: 0;
+	clear: both;
+	color: inherit;
+}
+.cms-editor-visual pre {
+	font-family: monospace, monospace;
+	font-size: inherit;
+}
+.cms-editor-visual address {
+	font-style: inherit;
+}
+.cms-editor-visual a {
+	background-color: transparent;
+	text-decoration: none;
+	color: inherit;
+}
+.cms-editor-visual abbr[title] {
+	border-bottom: none;
+	text-decoration: underline;
+	text-decoration: underline dotted;
+}
+.cms-editor-visual b,
+.cms-editor-visual strong {
+	font-weight: bolder;
+}
+.cms-editor-visual code,
+.cms-editor-visual kbd,
+.cms-editor-visual samp {
+	font-family: monospace, monospace;
+	font-size: inherit;
+}
+.cms-editor-visual small {
+	font-size: 80%;
+}
+.cms-editor-visual sub,
+.cms-editor-visual sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+.cms-editor-visual sub {
+	bottom: -0.25em;
+}
+.cms-editor-visual sup {
+	top: -0.5em;
+}
+.cms-editor-visual img {
+	border-style: none;
+	vertical-align: bottom;
+}
+.cms-editor-visual embed,
+.cms-editor-visual object,
+.cms-editor-visual iframe {
+	border: 0;
+	vertical-align: bottom;
+}
+.cms-editor-visual button,
+.cms-editor-visual input,
+.cms-editor-visual optgroup,
+.cms-editor-visual select,
+.cms-editor-visual textarea {
+	-webkit-appearance: none;
+	appearance: none;
+	vertical-align: middle;
+	color: inherit;
+	font: inherit;
+	border: inherit;
+	background: transparent;
+	padding: 0;
+	margin: 0;
+	outline: 0;
+	border-radius: 0;
+	text-align: inherit;
+}
+.cms-editor-visual [type=checkbox] {
+	-webkit-appearance: checkbox;
+	appearance: checkbox;
+}
+.cms-editor-visual [type=radio] {
+	-webkit-appearance: radio;
+	appearance: radio;
+}
+.cms-editor-visual button,
+.cms-editor-visual input {
+	overflow: visible;
+}
+.cms-editor-visual button,
+.cms-editor-visual select {
+	text-transform: none;
+}
+.cms-editor-visual button,
+.cms-editor-visual [type=button],
+.cms-editor-visual [type=reset],
+.cms-editor-visual [type=submit] {
+	cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.cms-editor-visual button[disabled],
+.cms-editor-visual [type=button][disabled],
+.cms-editor-visual [type=reset][disabled],
+.cms-editor-visual [type=submit][disabled] {
+	cursor: default;
+}
+.cms-editor-visual button::-moz-focus-inner,
+.cms-editor-visual [type=button]::-moz-focus-inner,
+.cms-editor-visual [type=reset]::-moz-focus-inner,
+.cms-editor-visual [type=submit]::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+.cms-editor-visual button:-moz-focusring,
+.cms-editor-visual [type=button]:-moz-focusring,
+.cms-editor-visual [type=reset]:-moz-focusring,
+.cms-editor-visual [type=submit]:-moz-focusring {
+	outline: 1px dotted ButtonText;
+}
+.cms-editor-visual fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+.cms-editor-visual legend {
+	color: inherit;
+	display: table;
+	max-width: 100%;
+	padding: 0;
+	white-space: normal;
+}
+.cms-editor-visual progress {
+	vertical-align: baseline;
+}
+.cms-editor-visual textarea {
+	overflow: auto;
+}
+.cms-editor-visual [type=checkbox],
+.cms-editor-visual [type=radio] {
+	padding: 0;
+}
+.cms-editor-visual [type=number]::-webkit-inner-spin-button,
+.cms-editor-visual [type=number]::-webkit-outer-spin-button {
+	height: auto;
+}
+.cms-editor-visual [type=search] {
+	outline-offset: -2px;
+}
+.cms-editor-visual [type=search]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+.cms-editor-visual ::-webkit-file-upload-button {
+	-webkit-appearance: button;
+	font: inherit;
+}
+.cms-editor-visual label[for] {
+	cursor: pointer;
+}
+.cms-editor-visual details {
+	display: block;
+}
+.cms-editor-visual summary {
+	display: list-item;
+}
+.cms-editor-visual table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.cms-editor-visual caption {
+	text-align: left;
+}
+.cms-editor-visual td,
+.cms-editor-visual th {
+	vertical-align: top;
+}
+.cms-editor-visual th {
+	text-align: left;
+	font-weight: bold;
+}
+.cms-editor-visual template {
+	display: none;
+}
+.cms-editor-visual [hidden] {
+	display: none;
+}
+
+.cms-editor-visual {
+	text-align: left;
+	line-height: 1.5;
+	font-size: 14px;
+}
+.cms-editor-visual h1 {
+	font-size: 16px;
+	color: #5b5f97;
+}
+.cms-editor-visual h2 {
+	font-size: 14px;
+	color: #4389a2;
+}
+.cms-editor-visual em {
+	color: #858585;
+	font-size: 12px;
+}
+.cms-editor-visual a {
+	color: #4389a2;
+	text-decoration: underline;
+	font-size: 12px;
+}

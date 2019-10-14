@@ -205,16 +205,14 @@ export default {
 <style lang="scss">
 .map-content {
 	text-align: left;
-	line-height: 1.6;
-	h1,
-	h2 {
-		color: $indigo;
-	}
+	line-height: 1.5;
 	h1 {
 		font-size: 16px;
+		color: $indigo;
 	}
 	h2 {
-		font-size: 15px;
+		font-size: 14px;
+		color: $teal;
 	}
 	em {
 		color: lighten($onyx, 15%);
