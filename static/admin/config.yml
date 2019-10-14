@@ -11,7 +11,7 @@ display_url: https://academyparkpeds.netlify.com
 
 show_preview_links: true
 
-media_folder: 'static/_media'
+media_folder: 'static/media'
 public_folder: '/media'
 
 collections:
@@ -24,7 +24,7 @@ collections:
     files:
       - name: 'alert'
         label: 'Site Alert'
-        file: 'static/_data/alert.json'
+        file: 'static/data/alert.json'
         description: 'Popover Site Alert'
         fields: 
           - {label: 'Alert', name: 'title', widget: 'string'}
@@ -33,7 +33,7 @@ collections:
           - {label: 'Active', name: 'active', widget: 'boolean', default: true}
       - name: 'news'
         label: 'News Items'
-        file: 'static/_data/news.json'
+        file: 'static/data/news.json'
         fields:
           - label: 'News' 
             widget: 'list'
@@ -47,7 +47,7 @@ collections:
               - {label: 'Active', name: 'active', widget: 'boolean', default: true}
       - name: 'office'
         label: 'Office Data'
-        file: 'static/_data/office.json'
+        file: 'static/data/office.json'
         fields:
           - label: 'Highlands Ranch'
             name: 'highlands'
@@ -110,10 +110,10 @@ collections:
 
   - name: 'staff'
     label: 'Staff Profiles'
-    folder: '_data/_staff'
+    folder: 'static/data/staff'
     create: true
     delete: true
-    description: 'Profiles of staff members. These can be added, removed, and reordered.'
+    description: 'Profiles of staff members. These can be added, removed, hidden, and reordered.'
     fields:
       - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
       - {label: 'Photo', name: 'photo', widget: 'image'}
