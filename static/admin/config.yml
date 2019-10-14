@@ -17,8 +17,7 @@ public_folder: '/media'
 collections:
   - name: 'settings'
     label: 'Settings'
-    delete: false
-    description: 'Update site alert & news items here.'
+    description: 'Update site alert, news items here, and office information here.'
     editor:
       preview: false
     files:
@@ -36,8 +35,8 @@ collections:
         file: 'static/data/settings/news.json'
         fields:
           - label: 'News' 
-            widget: 'list'
             name: 'news'
+            widget: 'list'
             allow_add: true
             required: false
             fields:
@@ -110,19 +109,20 @@ collections:
 
   - name: 'content'
     label: 'Site Content'
-    description: 'Staff profiles, insurance, downloads, and links.'
+    description: 'Create and edit staff profiles, insurance, downloads, and links here.'
     files:
-      - label: 'Staff Profiles' 
-        name: 'profiles'
+      - name: 'staff_profiles'
+        label: 'Staff Profiles' 
         file: 'static/data/profiles.json'
-        widget: 'list'
-        allow_add: true
-        required: true
-        create: true
-        delete: true
         fields:
-          - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
-          - {label: 'Photo', name: 'photo', widget: 'image'}
-          - {label: 'Bio', name: 'bio', widget: 'markdown'}
-          - {label: 'Visible', name: 'visible', widget: 'boolean', default: true}
+          - label: 'Profile' 
+            name: 'profiles'
+            widget: 'list'
+            allow_add: true
+            required: true
+            fields:
+              - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
+              - {label: 'Photo', name: 'photo', widget: 'image'}
+              - {label: 'Bio', name: 'bio', widget: 'markdown'}
+              - {label: 'Visible', name: 'visible', widget: 'boolean', default: true}
 
