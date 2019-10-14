@@ -44,8 +44,8 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'static/data/staff/*.json',
-        typeName: 'Staff'
+        path: 'static/data/profiles.json',
+        typeName: 'Profiles'
       }
     },
     {
