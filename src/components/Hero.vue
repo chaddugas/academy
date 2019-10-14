@@ -81,10 +81,10 @@ export default {
 	},
   computed: {
 		hr_status() {
-			return this.createStatusString(this.$static.office.edges[0].node.highlands)
+			// return this.createStatusString(this.$static.office.edges[0].node.highlands)
 		},
 		lt_status() {
-			return this.createStatusString(this.$static.office.edges[0].node.lakewood)
+			// return this.createStatusString(this.$static.office.edges[0].node.lakewood)
 		},
     news() {
       return this.$static.news.edges[0].node.news;
