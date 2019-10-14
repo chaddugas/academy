@@ -110,6 +110,8 @@ collections:
   - name: 'content'
     label: 'Site Content'
     description: 'Create and edit staff profiles, insurance, downloads, and links here.'
+    editor:
+      preview: false
     files:
       - name: 'staff_profiles'
         label: 'Staff Profiles' 
