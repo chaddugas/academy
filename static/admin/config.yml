@@ -60,6 +60,14 @@ collections:
               - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
+              - label: 'Holidays & Closures' 
+                name: 'closures'
+                widget: 'list'
+                allow_add: true
+                required: false
+                fields:
+                  - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
+                  - {label: 'Date', name: 'date', widget: 'datetime', format: 'mm/dd/yyyy', dateFormat: 'mm/dd/yyyy', timeFormat: 'false'}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
@@ -81,6 +89,14 @@ collections:
               - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
+              - label: 'Holidays & Closures' 
+                name: 'closures'
+                widget: 'list'
+                allow_add: true
+                required: false
+                fields:
+                  - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
+                  - {label: 'Date', name: 'date', widget: 'datetime', format: 'mm/dd/yyyy', dateFormat: 'mm/dd/yyyy', timeFormat: 'false'}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
@@ -91,4 +107,16 @@ collections:
                   - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
                   - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
               - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
+
+  - name: 'staff'
+    label: 'Staff Profiles'
+    folder: '_data/_staff'
+    create: true
+    delete: true
+    description: 'Profiles of staff members. These can be added, removed, and reordered.'
+    fields:
+      - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
+      - {label: 'Photo', name: 'photo', widget: 'image'}
+      - {label: 'Bio', name: 'bio', widget: 'wysiwyg'}
+      - {label: 'Visible', name: 'visible', widget: 'boolean', default: true}
 
