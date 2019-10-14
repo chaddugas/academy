@@ -96,7 +96,7 @@ collections:
                 required: false
                 fields:
                   - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
-                  - {label: 'Date', name: 'date', widget: 'datetime', format: 'mm/dd/yyyy', dateFormat: 'mm/dd/yyyy', timeFormat: 'false'}
+                  - {label: 'Date', name: 'date', widget: 'datetime', format: 'M/D/YYYY', dateFormat: 'M/D/YYYY', timeFormat: 'false'}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
