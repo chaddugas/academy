@@ -10,8 +10,12 @@
 						a(:href="`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${office.lat},${office.long}`", target="_blank") directions
 					.visit-address
 						span(v-for="line in address(office.address)") {{ line }}
-					.visit-phone {{ office.phone }}
-					.visit-fax {{ office.fax }}
+					.visit-phone 
+						i.fas.fa-phone
+						span {{ office.phone }}
+					.visit-fax
+						i.fas.fa-file-contract
+						span {{ office.fax }}
 					.visit-hours
 						span.visit-hour(v-for="hour in office.hours")
 							strong {{ hour.title.substring(0, 2) }}
@@ -207,19 +211,28 @@ export default {
     &:nth-child(even) {
       text-align: right;
       grid-template: auto / 1fr max-content;
-			.visit-title {
-				align-items: flex-end;
-				a::after {
-					left: 100%;
-					right: 0;
-				}
-				&:hover a::after {
-					left: 0;
-					right: 0;
-				}
-			}
+      .visit-title {
+        align-items: flex-end;
+        a::after {
+          left: 100%;
+          right: 0;
+        }
+        &:hover a::after {
+          left: 0;
+          right: 0;
+        }
+      }
       .visit-map {
         grid-area: 1 / 1 / 2 / 2;
+      }
+      .visit-phone,
+      .visit-fax {
+				justify-content: flex-end;
+				i {
+					order: 1;
+					margin-right: 0;
+					margin-left: 5px;
+				}
       }
       .visit-hours {
         justify-content: flex-end;
@@ -260,7 +273,7 @@ export default {
     color: lighten($onyx, 20%);
     font-size: 14px;
     position: relative;
-		transition: 0.5s ease;
+    transition: 0.5s ease;
     &::before {
       content: "";
       position: absolute;
@@ -278,13 +291,13 @@ export default {
       right: 100%;
       height: 2px;
       background: $teal;
-			transition: 0.5s ease;
+      transition: 0.5s ease;
     }
-		&:hover {
-			&::after {
-				right: 0;
-			}
-		}
+    &:hover {
+      &::after {
+        right: 0;
+      }
+    }
   }
 }
 
@@ -295,6 +308,16 @@ export default {
   margin-bottom: 10px;
   span {
     margin-bottom: 2px;
+  }
+}
+
+.visit-phone,
+.visit-fax {
+  display: flex;
+  i {
+		text-align: center;
+		width: 18px;
+    margin-right: 5px;
   }
 }
 
