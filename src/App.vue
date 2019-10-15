@@ -126,23 +126,9 @@ h6 {
   h4,
   h5,
   h6 {
-    font-weight: 700;
-		line-height: 1.2;
-		position: relative;
-		padding: 20px 0;
+		font-weight:700;
+		line-height:1.2;
 		color: $teal;
-		z-index: 1;
-		// color: $white;
-		// &:after {
-		// 	position: absolute;
-		// 	left: 0;
-		// 	right: 0;
-		// 	bottom: 0;
-		// 	top: 0;
-		// 	z-index: -1;
-		// 	background: $indigo;
-		// 	content: '';
-		// }
   }
   h1:first-child,
   h2:first-child,
@@ -150,7 +136,7 @@ h6 {
   h4:first-child,
   h5:first-child,
   h6:first-child {
-    margin-top: 0;
+    margin-top: 2.5rem;
   }
   h1 {
     font-size: 2.4em;

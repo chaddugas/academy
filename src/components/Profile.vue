@@ -4,7 +4,7 @@
 			span Meet 
 			span Our
 			span Staff
-	.person(v-else-if="profile.visible", :class="{active}", :style="`background-image: url(${profile.photo})`")
+	.person(v-else-if="profile.visible", :class="{active}")
 		.person-profile(@click="toggle")
 			.profile-content
 				.profile-data
@@ -72,27 +72,7 @@ export default {
 };
 </script>
 
-
-<style lang="scss">
-.profile-wysiwyg {
-  // h1,
-  // h2,
-  // h3,
-  // h4,
-  // h5,
-  // h6 {
-  //   &:first-child {
-  //     margin-top: -20px;
-  //   }
-  // }
-}
-</style>
-
 <style lang="scss" scoped>
-$gap: 20px;
-$grow_time: 0.5s;
-$fade_time: 0.15s;
-$hover_time: 0.25s;
 
 .person.person--title {
   grid-area: span 1 / span 1;
@@ -153,25 +133,11 @@ $hover_time: 0.25s;
   z-index: -1;
   transition: z-index 0ms linear;
   transition-delay: 500ms;
-  background-size: 0 0;
   &:before {
     content: "";
     display: block;
     position: relative;
     padding-top: 100%;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: inherit;
-    background-size: cover;
-    filter: grayscale(100%);
-    z-index: -1;
-    opacity: 0.25;
   }
 }
 
@@ -196,7 +162,7 @@ $hover_time: 0.25s;
       }
       .profile-image {
         transform: scale(1.15, 1.15);
-        filter: grayscale(60%) brightness(50%);
+        filter: grayscale(70%) brightness(80%);
       }
     }
   }
@@ -210,10 +176,6 @@ $hover_time: 0.25s;
   overflow-x: hidden;
   pointer-events: none;
   background-color: $white;
-  background-image: inherit;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: 100% 100%;
   transform: scale(1, 1);
 }
 
