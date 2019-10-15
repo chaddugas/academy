@@ -1,11 +1,14 @@
 <template lang="pug">
-	section#staff.grid
+	section#staff.grid(:class="{'grid--fill1': (profiles.length + 1)%3 == 2, 'grid--fill2': (profiles.length + 1)%3 == 1}")
 		.grid-inner
-			app-profile(:title="true")
+			.grid-title
+				h2
+					span Meet 
+					span Our
+					span Staff
 			app-profile(
 				v-for="(profile, i) in profiles", 
-				:key="i", :profile="profile", 
-				:title="false")
+				:key="i", :profile="profile")
 </template>
 
 <script>
@@ -17,7 +20,9 @@ export default {
 	},
 	computed: {
 		profiles() {
-			return this.$static.profiles.edges[0].node.profiles
+			let profiles = this.$static.profiles.edges[0].node.profiles
+			profiles = profiles.filter(profile => profile.visible)
+			return profiles
 		}
 	}
 }
@@ -56,5 +61,81 @@ query {
 	@media (min-width: $md) {
 		grid-template-columns: repeat(3, 1fr);
 	}
+	// &::before {
+	// 	order: 1;
+	// 	grid-area: span 1 / span 1;
+	// 	background-image: $grad;
+	// }
+	// &::after {
+	// 	order: 2;
+	// 	grid-area: span 1 / span 1;
+	// 	background-image: $grad3;
+	// }
+	// .grid--fill1 & {
+	// 	&::before {
+	// 		content: '';
+	// 	}
+	// }
+	// .grid--fill2 & {
+	// 	&::before,
+	// 	&::after {
+	// 		content: '';
+	// 	}
+	// }
+}
+
+.grid-title {
+	position: relative;
+  z-index: -1;
+  grid-area: span 1 / span 1;
+	background-image: $grad;
+  transition: none;
+  transition-delay: 0;
+  @media (min-width: $xs) {
+    padding: 30px;
+  }
+  @media (min-width: $sm) {
+    padding: 40px;
+  }
+  h2 {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    text-align: right;
+    color: $white;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 22px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    @media (min-width: $xs) {
+      font-size: 28px;
+    }
+    @media (min-width: $sm) {
+      font-size: 45px;
+    }
+    @media (min-width: $md) {
+      font-size: 50px;
+      line-height: 1.2;
+    }
+    @media (min-width: $lg) {
+      font-size: 55px;
+    }
+    @media (min-width: $xl) {
+      font-size: 65px;
+    }
+    span {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+  }
 }
 </style>

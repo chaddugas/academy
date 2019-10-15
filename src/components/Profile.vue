@@ -1,10 +1,5 @@
 <template lang="pug">
-	.person.person--title(v-if="title")
-		h2
-			span Meet 
-			span Our
-			span Staff
-	.person(v-else-if="profile.visible", :class="{active}")
+	.person(:class="{active}")
 		.person-profile(@click="toggle")
 			.profile-content
 				.profile-data
@@ -73,60 +68,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.person.person--title {
-  grid-area: span 1 / span 1;
-  background: darken($indigo, 5%);
-  transition: none;
-  transition-delay: 0;
-  @media (min-width: $xs) {
-    padding: 30px;
-  }
-  @media (min-width: $sm) {
-    padding: 40px;
-  }
-  h2 {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    height: 100%;
-    width: 100%;
-    text-align: right;
-    color: $white;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    font-size: 22px;
-    line-height: 1.1;
-    text-transform: uppercase;
-    @media (min-width: $xs) {
-      font-size: 28px;
-    }
-    @media (min-width: $sm) {
-      font-size: 45px;
-    }
-    @media (min-width: $md) {
-      font-size: 50px;
-      line-height: 1.2;
-    }
-    @media (min-width: $lg) {
-      font-size: 55px;
-    }
-    @media (min-width: $xl) {
-      font-size: 65px;
-    }
-    span {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      white-space: nowrap;
-    }
-  }
-}
-
 .person {
   grid-area: span 1 / span 1;
   position: relative;

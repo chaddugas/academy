@@ -30,8 +30,8 @@ export default {
 			this.c_canvas.height = this.c_wrapper.offsetHeight
 
 			this.c_ctx.fillStyle = this.c_color
-			this.c_ctx.lineWidth = this.c_lineWidth
 			this.c_ctx.strokeStyle = this.c_color
+			this.c_ctx.lineWidth = this.c_lineWidth
 		},
 		c_animate() {
 			const _this = this
@@ -59,7 +59,6 @@ export default {
 					this.velocity_x = Math.random() - 0.5
 					this.velocity_y = Math.random() - 0.5
 					this.radius = (Math.random() * 1.5) + 0.25
-
 					this.draw()
 				}
 
@@ -101,7 +100,7 @@ export default {
 						}
 						else if (dot.x < 0 || dot.x > _this.c_canvas.width) {
 							dot.velocity_x = - dot.velocity_x;
-						}
+						}_this.c_ctx.fillStyle
 						dot.x += dot.velocity_x;
 						dot.y += dot.velocity_y;
 					} while (i++ < dots.total - 1)
