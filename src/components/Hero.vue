@@ -138,10 +138,11 @@ $pull: 150px;
   position: relative;
   padding-bottom: #{$pull};
   margin-bottom: #{$pull * -1};
-  background-image: $grad;
+  background: $teal;
+	z-index: 1;
   @media (min-width: $lg) {
     padding-bottom: 0;
-    min-height: calc(100vh + #{$pull});
+    min-height: calc(100vh);
   }
 }
 
@@ -166,7 +167,7 @@ $pull: 150px;
 }
 
 .hero-logo {
-  margin: 50px 20px 30px;
+  margin: 50px 20px;
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -176,7 +177,8 @@ $pull: 150px;
   position: relative;
   flex: 0 0 auto;
   color: $white;
-  background: rgba($indigo, 0.5);
+	z-index: 1;
+  background: rgba($indigo, 1);
 
   @media (min-width: $sm) {
     margin: 50px auto;
@@ -199,17 +201,21 @@ $pull: 150px;
       border: 30px solid rgba($orange, 1);
     }
   }
-  @media (min-width: $sm) {
-    &:after {
-      position: absolute;
-      top: 0;
-      right: 100%;
-      bottom: 0;
-      width: 100vw;
-      background: $orange;
-      content: "";
-    }
-  }
+	&:after {
+		position: absolute;
+		top: 0;
+		right: 50%;
+		transform: translateX(50%);
+		z-index: -1;
+		bottom: 0;
+		width: 100vw;
+		background: $orange;
+		content: "";
+		@media (min-width: $sm) {
+		right: 100%;
+		transform: none;
+		}
+	}
 }
 
 .hero-title {
@@ -265,48 +271,57 @@ $pull: 150px;
     right: 0;
     overflow-y: auto;
     flex-flow: column nowrap;
+		&::after {
+			content: '';
+			min-height: $pull * 1.5;
+			display: block;
+		}
   }
 }
 
 .hero-item {
-  color: $white;
+  color: $onyx;
   display: grid;
   padding: 30px 20px;
   grid-template: repeat(2, max-content) / auto 1fr;
   border-right: none;
-  // margin-right: 0;
   border-top: 1px solid transparent;
-  border-bottom: 1px solid rgba($white, 0.25);
+  // border-bottom: 1px solid rgba($white, 0.25);
   grid-gap: 0 20px;
   flex: 0 0 100%;
   min-width: 100%;
   &:last-child {
     border-bottom: none;
   }
+	@for $n from 0 to 10 {
+		$perc: $n * 5%;
+		&:nth-child(#{$n + 1}) {
+			background: rgba(darken($white, $perc), 0.75)
+		}
+	}
   @media (min-width: $sm) {
     flex: 0 0 50%;
     min-width: 50%;
-    &:nth-last-child(2):nth-child(odd) {
-      border-bottom: none;
-    }
+    // &:nth-last-child(2):nth-child(odd) {
+    //   border-bottom: none;
+    // }
   }
   @media (min-width: $lg) {
-    grid-template: repeat(2, max-content) / 1fr auto;
+    grid-template: repeat(2, max-content) / auto 1fr;
     flex: 0 1 auto;
     max-width: 320px;
-    text-align: right;
+    text-align: left;
     padding: 40px 20px 40px 30px;
     min-width: none;
     &:first-child {
       margin-top: auto;
     }
     &:nth-last-child(2):nth-child(odd) {
-      border-bottom: 1px solid rgba($white, 0.25);
+      // border-bottom: 1px solid rgba($white, 0.25);
     }
     &:last-child {
       border-bottom: none;
-      padding-bottom: $pull * 1.5;
-      margin-bottom: auto;
+			margin-bottom: auto;
     }
   }
 }
@@ -315,12 +330,14 @@ $pull: 150px;
   grid-area: 1 / 1 / 3 / 2;
   display: flex;
   justify-content: center;
+	width: 50px;
   align-items: center;
   @media (min-width: $lg) {
-    grid-area: 1 / 2 / 3 / 3;
+    grid-area: 1 / 1 / 3 / 2;
   }
   i {
     font-size: 50px;
+		color: $teal;
   }
 }
 
@@ -330,14 +347,14 @@ $pull: 150px;
   margin-bottom: 5px;
   grid-area: 1 / 2 / 2 / 3;
   @media (min-width: $lg) {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 2 / 2 / 3;
   }
 }
 
 .item-text {
   grid-area: 2 / 2 / 3 / 3;
   @media (min-width: $lg) {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 2 / 2 / 3 / 3;
   }
   span {
     &:before {

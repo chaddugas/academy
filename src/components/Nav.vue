@@ -4,12 +4,12 @@
 			.nav-item(@click="navigate('visit')")
 				i.nav-icon.fas.fa-walking
 				span.nav-text Visit
-			.nav-item(@click="navigate('staff')")
-				i.nav-icon.fas.fa-id-badge
-				span.nav-text Staff
 			.nav-item(@click="navigate('insurance')")
 				i.nav-icon.fas.fa-file-invoice
 				span.nav-text Insurance
+			.nav-item(@click="navigate('staff')")
+				i.nav-icon.fas.fa-id-badge
+				span.nav-text Staff
 			.nav-item(@click="navigate('resources')")
 				i.nav-icon.fas.fa-file-medical-alt
 				span.nav-text Resources

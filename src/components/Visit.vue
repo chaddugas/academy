@@ -143,6 +143,7 @@ export default {
 <style lang="scss">
 .visit {
   margin-bottom: 80px;
+	padding-top: 30px;
 }
 .visit-inner {
   @include container($max: 1200px);

@@ -1,7 +1,7 @@
 export default {
 	data() {
 		return {
-			c_color: 'rgba(255,255,255,.4)',
+			c_color: 'rgba(255,255,255,.05)',
 			c_lineWidth: .08,
 			c_wrapper: null,
 			c_canvas: null,
@@ -44,21 +44,22 @@ export default {
 			}
 
 			const dots = {
-				total: (window.innerWidth * window.innerHeight) / 5000,
-				proximity: Math.min(window.innerHeight, window.innerWidth) * 0.1,
-				radius: Math.max(window.innerHeight, window.innerWidth) * 0.1,
+				total: 9,
+				proximity: Math.min(window.innerHeight, window.innerWidth) * 0.085,
+				radius: Math.max(window.innerHeight, window.innerWidth) * 0.085,
 				array: []
 			}
 
-			dots.total = dots.total < 150 ? 150 : dots.total
+			// dots.total = dots.total < 150 ? 150 : dots.total
 
 			class Dots {
 				constructor() {
 					this.x = Math.random() * _this.c_canvas.width
 					this.y = Math.random() * _this.c_canvas.height
-					this.velocity_x = Math.random() - 0.5
-					this.velocity_y = Math.random() - 0.5
-					this.radius = (Math.random() * 1.5) + 0.25
+					this.velocity_x = (Math.random() - 0.5)
+					this.velocity_y = (Math.random() - 0.5)
+					this.radius = (Math.random() * 200 - 100) + 100
+					console.log(this.radius)
 					this.draw()
 				}
 
@@ -124,9 +125,11 @@ export default {
 				else {
 					dots.array.forEach(dot => dot.draw())
 				}
-				Dots.connect();
+				// Dots.connect();
 				Dots.move();
 			}
+
+			draw()
 
 			const moveApex = () => {
 				if (apex.y < 0 || apex.y > _this.c_canvas.height) {
@@ -142,7 +145,7 @@ export default {
 			}
 
 			this.c_dotInterval = setInterval(draw, 30)
-			this.c_apexInterval = setInterval(moveApex, 30)
+			// this.c_apexInterval = setInterval(moveApex, 30)
 		}
 	},
 	mounted() {

@@ -136,19 +136,25 @@ h6 {
   h4:first-child,
   h5:first-child,
   h6:first-child {
-    margin-top: 2.5rem;
+    margin-top: 0;
   }
   h1 {
-    font-size: 2.4em;
+    font-size: 1.8em;
     margin-bottom: 0.58333em;
     margin-top: 0.58333em;
     line-height: 1;
+		@media (min-width: $md) {
+			font-size: 2.4em;
+		}
   }
   h2 {
-    font-size: 1.6em;
+    font-size: 1.4em;
     margin-bottom: 0.875em;
     margin-top: 1.75em;
     line-height: 1.1;
+		@media (min-width: $md) {
+			font-size: 1.6em;
+		}
   }
   h3 {
     font-size: 1.3em;
@@ -215,15 +221,20 @@ h6 {
     list-style-type: circle;
   }
   blockquote {
-		padding: 0.6em 1.2em;
+		padding: 0.4em 1.5em 0.4em 0;
 		text-align: right;
 		font-family: $headings, sans-serif;
 		position: relative;
 		z-index: 1;
 		color: lighten($onyx, 20%);
 		font-style: italic;
+		font-size: 1.1rem;
+		margin: 1.75rem 0;
+		@media (min-width: $md) {
+			margin: 2.25rem 3rem;
 		font-size: 1.2rem;
-		margin: 2.25rem 3rem;
+		padding: 0.6em 1.2em;
+		}
 		&:after {
 			position: absolute;
 			top: 0;
