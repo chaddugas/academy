@@ -13,7 +13,7 @@
       "info": "We now participate in Bright Health."
     },
     {
-      "title": "Cigna/Great West",
+      "title": "Cigna",
       "info": "We accept most products. No Connect & no Sure Fit plans."
     },
     {
@@ -27,6 +27,10 @@
     {
       "title": "Coventry",
       "info": "Please call out business office to verify which coverages we accept."
+    },
+    {
+      "title": "Great West",
+      "info": "We accept most products. No Connect & no Sure Fit plans."
     },
     {
       "title": "Humana",
@@ -43,10 +47,6 @@
     {
       "title": "Rocky Mountain Health",
       "info": "We accept most products. No exchange plans."
-    },
-    {
-      "title": "Tricare",
-      "info": "We are non-participating."
     },
     {
       "title": "United Healthcare",
