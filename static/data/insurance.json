@@ -1,0 +1,56 @@
+{
+  "insurance": [
+    {
+      "title": "Aetna",
+      "info": "We accept most products. No health exchange plans."
+    },
+    {
+      "title": "Anthem",
+      "info": "We accept most plans. No Pathways plans or Blue Priority Exchange plans."
+    },
+    {
+      "title": "Bright Health",
+      "info": "We now participate in Bright Health."
+    },
+    {
+      "title": "Cigna/Great West",
+      "info": "We accept most products. No Connect & no Sure Fit plans."
+    },
+    {
+      "title": "Cofinity",
+      "info": "Please call out business office to verify which coverages we accept."
+    },
+    {
+      "title": "Colorado Access",
+      "info": "Established patients only; limited basis/restricted status."
+    },
+    {
+      "title": "Coventry",
+      "info": "Please call out business office to verify which coverages we accept."
+    },
+    {
+      "title": "Humana",
+      "info": "PPO only. No exchange plans."
+    },
+    {
+      "title": "Medicaid",
+      "info": "(Health First) We are not accepting additional patients/restricted status."
+    },
+    {
+      "title": "Ph Cs",
+      "info": "Please call our business office. We accept some but not all of these plans. No discount card program plans."
+    },
+    {
+      "title": "Rocky Mountain Health",
+      "info": "We accept most products. No exchange plans."
+    },
+    {
+      "title": "Tricare",
+      "info": "We are non-participating."
+    },
+    {
+      "title": "United Healthcare",
+      "info": "We accept most products. No charter, compass, or core plans."
+    }
+  ]
+}
