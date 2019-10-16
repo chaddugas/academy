@@ -1,5 +1,5 @@
 <template lang="pug">
-	section#staff.grid(:class="{'grid--fill1': (profiles.length + 1)%3 == 2, 'grid--fill2': (profiles.length + 1)%3 == 1}")
+	section#staff.grid
 		.grid-inner
 			.grid-title
 				h2
@@ -61,34 +61,13 @@ query {
 	@media (min-width: $md) {
 		grid-template-columns: repeat(3, 1fr);
 	}
-	// &::before {
-	// 	order: 1;
-	// 	grid-area: span 1 / span 1;
-	// 	background-image: $grad;
-	// }
-	// &::after {
-	// 	order: 2;
-	// 	grid-area: span 1 / span 1;
-	// 	background-image: $grad3;
-	// }
-	// .grid--fill1 & {
-	// 	&::before {
-	// 		content: '';
-	// 	}
-	// }
-	// .grid--fill2 & {
-	// 	&::before,
-	// 	&::after {
-	// 		content: '';
-	// 	}
-	// }
 }
 
 .grid-title {
 	position: relative;
   z-index: -1;
   grid-area: span 1 / span 1;
-	background-image: $grad;
+	background: $red;
   transition: none;
   transition-delay: 0;
   @media (min-width: $xs) {

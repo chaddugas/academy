@@ -45,7 +45,7 @@ export default {
         }
       }
 
-      this.active = true;
+      this.active = true
       window.scrollBy({
         top,
         behavior: "smooth"
