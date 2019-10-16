@@ -2,6 +2,7 @@
 	section#staff.grid
 		.grid-inner
 			.grid-title
+				canvas.title-canvas
 				h2
 					span Meet 
 					span Our
@@ -13,8 +14,11 @@
 
 <script>
 import Profile from "./Profile";
+import Canvas from "@/mixins/Canvas";
+
 export default {
 	name: "Staff",
+  mixins: [Canvas],
   components: {
     appProfile: Profile
 	},
@@ -116,5 +120,16 @@ query {
       white-space: nowrap;
     }
   }
+}
+
+.title-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
 }
 </style>

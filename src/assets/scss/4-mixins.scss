@@ -23,8 +23,8 @@
 	margin-right: $margin;
 	margin-left: $margin;
 	@media (min-width: #{$max + ($margin*2)}) {
+		width: 100%;
 		margin-right: auto;
 		margin-left: auto;
-		width: 100%;
 	}
 }
