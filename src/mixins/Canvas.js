@@ -59,7 +59,6 @@ export default {
 					this.velocity_x = (Math.random() - 0.5)
 					this.velocity_y = (Math.random() - 0.5)
 					this.radius = (Math.random() * 200 - 100) + 100
-					console.log(this.radius)
 					this.draw()
 				}
 

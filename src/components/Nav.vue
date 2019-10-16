@@ -13,9 +13,9 @@
 			.nav-item(@click="navigate('resources')")
 				i.nav-icon.fas.fa-file-medical-alt
 				span.nav-text Resources
-			.nav-item(@click="navigate('about')")
-				i.nav-icon.fas.fa-dna
-				span.nav-text About
+			//- .nav-item(@click="navigate('about')")
+			//- 	i.nav-icon.fas.fa-dna
+			//- 	span.nav-text About
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template lang="pug">
-	.person(:class="{active}")
-		.person-profile(@click="toggle")
+	.person(:class="{active}", :style="`background-image: url(${profile.photo})`", @click.self="active = false")
+		.person-profile(@click.stop="toggle")
 			.profile-content
 				.profile-data
 					.profile-image
@@ -45,7 +45,7 @@ export default {
         }
       }
 
-      this.active = true
+      this.active = true;
       window.scrollBy({
         top,
         behavior: "smooth"
@@ -73,13 +73,28 @@ export default {
   position: relative;
   z-index: -1;
   transition: z-index 0ms linear;
-  transition-delay: 500ms;
+	transition-delay: 500ms;
+	background-size: 0 0;
   &:before {
     content: "";
     display: block;
     position: relative;
     padding-top: 100%;
-  }
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+		background-size: cover;
+		background-position: 50% 50%;
+		background-image: inherit;
+		filter: grayscale(50%);
+		opacity: .25;
+	}
 }
 
 .person-profile {
@@ -91,8 +106,9 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
-  right: 0;
+	right: 0;
   bottom: 0;
+	z-index: 1;
   transition: 500ms ease;
   will-change: height, width, top, left;
   @media (hover: hover) {
@@ -118,6 +134,39 @@ export default {
   pointer-events: none;
   background-color: $white;
   transform: scale(1, 1);
+	position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 0;
+    bottom: 0;
+    right: 40%;
+    z-index: -1;
+    background-image: linear-gradient(
+      to top right,
+      rgba($gray, 0.45),
+      rgba($gray, 0.45) 50%,
+      transparent 50%,
+      transparent
+    );
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    top: 60%;
+    right: 0;
+    z-index: -1;
+    background-image: linear-gradient(
+      to top left,
+      rgba($gray, 0.45),
+      rgba($gray, 0.45) 50%,
+      transparent 50%,
+      transparent
+    );
+  }
 }
 
 .profile-data {
@@ -184,7 +233,7 @@ export default {
     width: calc(200% + 20px);
     box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
     @media (min-width: $md) {
-      width: calc(300% + 40px);
+      width: calc(200% + 20px);
     }
   }
   .profile-content {
@@ -196,8 +245,8 @@ export default {
   }
   .profile-image {
     transform: scale(1, 1);
-		filter: none;
-		margin: 20px 20px 10px;
+    filter: none;
+    margin: 20px 20px 10px;
   }
   .profile-name {
     transform: translateY(0);

@@ -12,48 +12,28 @@
 			
 		.insurance-items
 			.insurance-item(
-				@mouseover="setContent()",
-				@click="scroll()",
+				v-for="item in insurance"
+				@mouseover="setContent(item)",
+				@click="scroll(item)",
 				@mouseleave="active = false")
-				span.insurance-mono A
-				span.insurance-name Aetna
-			.insurance-item
-				span.insurance-mono A
-				span.insurance-name Anthem
-			.insurance-item
-				span.insurance-mono B
-				span.insurance-name Bright Health
-			.insurance-item
-				span.insurance-mono C
-				span.insurance-name Cigna
-			.insurance-item
-				span.insurance-mono G
-				span.insurance-name Great West
-			.insurance-item
-				span.insurance-mono C
-				span.insurance-name Cofinity
-			.insurance-item
-				span.insurance-mono C
-				span.insurance-name Colorado Access
-			.insurance-item
-				span.insurance-mono C
-				span.insurance-name Coventry
-			.insurance-item
-				span.insurance-mono H
-				span.insurance-name Humana
-			.insurance-item
-				span.insurance-mono M
-				span.insurance-name Medicaid
-			.insurance-item
-				span.insurance-mono P
-				span.insurance-name Ph Cs
-			.insurance-item
-				span.insurance-mono R
-				span.insurance-name Rocky Mountain Health
-			.insurance-item
-				span.insurance-mono U
-				span.insurance-name United Healthcare
+				span.insurance-mono {{item.title[0].toUpperCase()}}
+				span.insurance-name {{item.title}}
 </template>
+
+<static-query>
+query {
+  insurance: allInsurance {
+    edges {
+      node {
+        insurance {
+          title
+          info 
+        }
+      }
+    }
+  }
+}
+</static-query>
 
 <script>
 export default {
@@ -61,16 +41,19 @@ export default {
   data() {
     return {
       active: false,
-      active_item: 0
+      active_item: null
     };
   },
   computed: {
     heading() {
-      return "Aetna";
+			return this.active_item.title
     },
     content() {
-      return "We accept most products. No health exchange plans.";
-    }
+			return this.active_item.info
+		},
+		insurance() {
+			return this.$static.insurance.edges[0].node.insurance
+		}
   },
   methods: {
     setContent(item) {
@@ -105,11 +88,44 @@ export default {
   background: $white;
   align-self: stretch;
   position: relative;
-  margin-bottom: 20px;
+	margin-bottom: 20px;
+	z-index: 1;
   @media (min-width: $lg) {
     margin-right: 20px;
     margin-bottom: 0;
 		flex: 0 1 500px;
+  }
+  &:before {
+		content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 10%;
+    right: 40%;
+    z-index: -1;
+    background-image: linear-gradient(
+      to bottom right,
+      rgba($gray, 0.35),
+      rgba($gray, 0.35) 50%,
+      transparent 50%,
+      transparent
+    );
+  }
+  &:after {
+		content: "";
+    position: absolute;
+    top: 0;
+    left: 0%;
+    bottom: 40%;
+    right: 0;
+    z-index: -1;
+    background-image: linear-gradient(
+      to bottom left,
+      rgba($gray, 0.35),
+      rgba($gray, 0.35) 50%,
+      transparent 50%,
+      transparent
+    );
   }
 }
 
@@ -152,6 +168,7 @@ export default {
   grid-auto-rows: 1fr;
   grid-gap: 20px;
 	width: 100%;
+	z-index: 1;
 	@media (min-width: $sm) {
 		grid-template-columns: repeat(3, 1fr);
 	}
@@ -159,22 +176,6 @@ export default {
 		flex-grow: 0;
 		width: auto;
 		grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.insurance-item {
-	&:nth-child(3),
-	&:nth-child(4),
-	&:nth-child(6),
-	&:nth-child(7),
-	&:nth-child(9),
-	&:nth-child(10),
-	&:nth-child(13) {
-		background: lighten($black, 25%);
-		color: $white;
-		&:nth-child(5n-1) .insurance-mono {
-			color: $orange !important;
-		}
 	}
 }
 
@@ -187,8 +188,18 @@ export default {
   padding: 15px;
 	transition: 0.25s ease;
   cursor: pointer;
+	position: relative;
+	&:after {
+		position: absolute;
+		top: -10px;
+		left: -10px;
+		right: -10px;
+		bottom: -10px;
+		z-index: -1;
+		content: '';
+	}
 	@media ($md) {
-  padding: 20px;
+		padding: 20px;
 	}
 	&:hover {
 		box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
