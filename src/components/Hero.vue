@@ -1,5 +1,6 @@
 <template lang="pug">
-	section.hero(style="background-image: url(media/hero.jpg)")
+	section.hero
+		.hero-bg(:style="parallax")
 		canvas.hero-canvas
 		.hero-inner
 			app-logo
@@ -11,33 +12,41 @@
 
 <script>
 import Canvas from "@/mixins/Canvas";
+import Parallax from "@/mixins/Parallax";
 import Logo from "@/components/Logo";
 import HeroItem from "@/components/HeroItem";
+import HeroImage from "@/assets/images/hero.jpg"
 
 export default {
   name: "Hero",
-	mixins: [Canvas],
-	components: {
-		appLogo: Logo,
-		appHeroItem: HeroItem
-	},
+  mixins: [Canvas, Parallax],
+  components: {
+    appLogo: Logo,
+    appHeroItem: HeroItem
+  },
   computed: {
-		offices() {
-			return [
-				{
-					title: this.$static.office.edges[0].node.highlands.title,
-					hours: this.$static.office.edges[0].node.highlands.hours,
-					icon: "far fa-clock"
-				},
-				{
-					title: this.$static.office.edges[0].node.lakewood.title,
-					hours: this.$static.office.edges[0].node.lakewood.hours,
-					icon: "far fa-clock"
-				}
-			]
+		parallax() {
+			return {
+				backgroundImage: `url(${HeroImage})`,
+				...this.transform
+			}
 		},
+    offices() {
+      return [
+        {
+          title: this.$static.office.edges[0].node.highlands.title,
+          hours: this.$static.office.edges[0].node.highlands.hours,
+          icon: "far fa-clock"
+        },
+        {
+          title: this.$static.office.edges[0].node.lakewood.title,
+          hours: this.$static.office.edges[0].node.lakewood.hours,
+          icon: "far fa-clock"
+        }
+      ];
+    },
     news() {
-      return this.$static.news.edges[0].node.news
+      return this.$static.news.edges[0].node.news;
     }
   }
 };
@@ -87,17 +96,19 @@ query {
 <style lang="scss" scoped>
 $pull: 150px;
 .hero {
+	--parallax: 500px;
   width: 100%;
   display: flex;
   position: relative;
   padding-bottom: #{$pull};
   margin-bottom: #{$pull * -1};
   z-index: 1;
-  background-size: 0 0;
   align-items: center;
+	overflow: hidden;
   @media (min-width: $lg) {
     padding-bottom: 0;
-    min-height: calc(90vh);
+    min-height: calc(100vh + #{$pull});
+    height: auto;
   }
   &:before {
     content: "";
@@ -109,19 +120,20 @@ $pull: 150px;
     bottom: 0;
     z-index: -5;
   }
-  &:after {
-    content: "";
-    background-image: inherit;
-    background-size: cover;
-    background-position: bottom center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -2;
-    opacity: 0.4;
-  }
+}
+
+.hero-bg {
+  position: absolute;
+  top: calc(var(--parallax) * -1);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+	height: calc(100% + var(--parallax));
+	width: 100%;
+	background-size: cover;
+	background-position: bottom center;
+  opacity: 0.4;
 }
 
 .hero-canvas {
@@ -140,8 +152,7 @@ $pull: 150px;
   display: flex;
   flex-direction: column;
   position: relative;
-	padding: #{$pull} 0 30px;
-	top: #{$pull * -1};
+  padding: 30px 0;
   width: 100%;
   margin-top: 30px;
   &:after {
@@ -162,12 +173,12 @@ $pull: 150px;
     padding: 30px 60px;
   }
   @media (min-width: $lg) {
-    padding: 30px 0;
+    padding: 0;
     flex-direction: row;
     justify-content: flex-end;
     height: 460px;
-    margin-top: 0;
-    padding: 0;
+    top: #{$pull * -1};
+    margin-top: #{$pull + 30};
   }
 }
 
