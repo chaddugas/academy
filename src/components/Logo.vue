@@ -1,12 +1,12 @@
 <template lang="pug">
-.hero-logo
-	h1.hero-title
+.logo
+	h1.logo-title
 		span Academy
 		span 
 			i.fa.fa-heartbeat
 			| Park
 		span Pediatrics
-	h6.hero-tagline
+	h6.logo-tagline
 		span A partner in your child's health.
 </template>
 
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss">
-.hero-logo {
+.logo {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,6 +26,7 @@ export default {
   flex: 0 0 auto;
   color: $white;
   padding: 40px;
+	z-index: 1;
   @media (min-width: $sm) {
     padding: 60px;
   }
@@ -40,7 +41,7 @@ export default {
     right: 0;
     bottom: 0;
     content: "";
-    z-index: -1;
+    z-index: -2;
     background: $indigo;
     @media (min-width: $lg) {
       background-clip: content-box;
@@ -49,7 +50,7 @@ export default {
   }
 }
 
-.hero-title {
+.logo-title {
   display: flex;
   flex-direction: column;
   font-size: 38px;
@@ -74,7 +75,7 @@ export default {
   }
 }
 
-.hero-tagline {
+.logo-tagline {
   font-size: 16px;
   margin-top: 10px;
   white-space: nowrap;
