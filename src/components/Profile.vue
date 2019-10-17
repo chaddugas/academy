@@ -1,6 +1,6 @@
 <template lang="pug">
 	.person(:class="{active}", :style="`background-image: url(${profile.photo})`", @click.self="active = false")
-		.person-profile(@click.stop="toggle")
+		.person-profile(@click="toggle")
 			.profile-content
 				.profile-data
 					.profile-image
