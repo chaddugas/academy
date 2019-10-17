@@ -119,7 +119,7 @@ export default {
       }
       .profile-image {
         transform: scale(1.15, 1.15);
-        filter: grayscale(70%) brightness(80%);
+        filter: grayscale(0%);
       }
     }
   }
@@ -183,7 +183,6 @@ export default {
   position: relative;
   transition: 500ms ease;
   transform: scale(1, 1);
-  filter: grayscale(0%) brightness(100%);
   will-change: transform, filter;
   z-index: 1;
   img {
@@ -232,9 +231,6 @@ export default {
     height: calc(200% + 20px);
     width: calc(200% + 20px);
     box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
-    @media (min-width: $md) {
-      width: calc(200% + 20px);
-    }
   }
   .profile-content {
     pointer-events: all;
@@ -245,7 +241,6 @@ export default {
   }
   .profile-image {
     transform: scale(1, 1);
-    filter: none;
     margin: 20px 20px 10px;
   }
   .profile-name {
