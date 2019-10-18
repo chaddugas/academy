@@ -160,8 +160,8 @@ query {
     "l l l . e"
     "l l l . ."
     "a a . . ."
-    "d d d d ."
-    "b b c c c";
+    "c c c c ."
+    "b b d d d";
 
   @media (min-width: $sm) {
     grid-template: repeat(4, 1fr) / repeat(5, 1fr);
@@ -176,7 +176,7 @@ query {
       "e . . . ."
       "l l . . ."
       "l l a . ."
-      "d c f b .";
+      "c d f b .";
   }
 }
 
