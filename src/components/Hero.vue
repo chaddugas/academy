@@ -1,30 +1,29 @@
 <template lang="pug">
-	section.hero
-		.hero-grid(:style="bg")
-			- var n = 0
-			while n < 3
-				div.grid-tile
-				- n++
+	section.hero(:style="transform")
+		.hero-bg
+			app-cell(v-for="item in 20", :key="item", :item="item")
+		.hero-content
 			app-logo
-			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title", v-if="media == 'lg'")
-			app-hero-item(v-for="(item, i) in news", :type="'news'", :item="item", :key="item.title", v-if="media == 'lg'")
-		.hero-content(v-if="media == 'sm'")
-			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
-			app-hero-item(v-for="(item, i) in news", :type="'news'", :item="item", :key="item.title")
+			app-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
+			app-item(v-for="(item, i) in news", v-if="i < 3" :type="'news'", :item="item", :key="item.title")
+			span.blank
+			span.blank
+			span.blank
 </template>
 
 <script>
 import Parallax from "@/mixins/Parallax";
 import Logo from "@/components/Logo";
-import HeroItem from "@/components/HeroItem";
-import HeroImage from "@/assets/images/hero.jpg";
+import Cell from "@/components/Cell";
+import Item from "@/components/Item";
 
 export default {
   name: "Hero",
   mixins: [Parallax],
   components: {
     appLogo: Logo,
-    appHeroItem: HeroItem
+    appCell: Cell,
+    appItem: Item
   },
   data() {
     return {
@@ -32,12 +31,6 @@ export default {
     };
   },
   computed: {
-    bg() {
-      return {
-        backgroundImage: `linear-gradient(#4389A2, #4389A2), url(${HeroImage})`,
-        ...this.transform
-      };
-    },
     offices() {
       return [
         {
@@ -112,7 +105,7 @@ query {
 }
 </static-query>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .hero {
   width: 100%;
   display: flex;
@@ -120,164 +113,105 @@ query {
   z-index: 1;
   height: auto;
   display: flex;
-  flex-direction: column;
+	flex-direction: column;
+	height: 100vw;
+	@media (min-width: $sm) {
+		height: 80vw;
+	}
 }
 
-$gap: 10px;
-$h_divisions: 5;
-$h_perc: 100% / $h_divisions;
-$h_adjust: ($gap/$h_divisions) + 1px;
-$v_divisions: 4;
-$v_perc: 100% / $v_divisions;
-$v_adjust: ($gap/$v_divisions) + 1px;
-$background: $gray;
-.hero-grid {
+.hero-bg,
+.hero-content {
+  display: grid;
+  grid-gap: 10px;
   z-index: 1;
-  width: 100%;
-  min-height: 80vw;
-  background-color: transparent;
-  background-position: bottom right, bottom right;
-  background-size: 100% auto, 100% auto;
-  background-repeat: no-repeat, no-repeat;
-  background-blend-mode: screen;
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-        to left,
-        transparent,
-        transparent calc(#{$h_perc} + #{$h_adjust} - #{$gap}),
-        $background calc(#{$h_perc} + #{$h_adjust} - #{$gap}),
-        $background calc(#{$h_perc} + #{$h_adjust})
-      ),
-      repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent calc(#{$v_perc} + #{$v_adjust} - #{$gap}),
-        $background calc(#{$v_perc} + #{$v_adjust} - #{$gap}),
-        $background calc(#{$v_perc} + #{$v_adjust})
-      );
-    background-repeat: repeat-x, repeat-y;
-    background-position: 80% 0;
-  }
+	margin: 5px;
+	@media (min-width: $lg) {
+		margin: 0;
+	}
 }
 
-div.grid-tile {
+.hero-bg {
   position: absolute;
-  background: $background;
-  height: calc(#{$v_perc} + #{$v_adjust});
-  width: calc(#{$h_perc} + #{$h_adjust});
-  &:nth-of-type(1) {
-    top: calc(#{$v_perc * 2} + #{$v_adjust * 2} - #{$gap});
-    right: calc(#{$h_perc * 4} + #{$h_adjust * 4} - #{$gap});
-  }
-  &:nth-of-type(2) {
-    top: calc(#{$v_perc * 1} + #{$v_adjust * 1} - #{$gap});
-    right: 0;
-  }
-  &:nth-of-type(3) {
-    top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
-    right: calc(#{$h_perc * 1} + #{$h_adjust * 1} - #{$gap});
-  }
-  @media (min-width: $lg) {
-    &:nth-of-type(1) {
-      top: 0;
-      right: calc(#{$h_perc * 4} + #{$h_adjust * 4} - #{$gap});
-    }
-    &:nth-of-type(2) {
-      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
-      right: calc(#{$h_perc * 2} + #{$h_adjust * 2} - #{$gap});
-    }
-    &:nth-of-type(3) {
-      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
-      right: calc(#{$h_perc * 3} + #{$h_adjust * 3} - #{$gap});
-    }
-  }
-}
-
-.grid-tile.grid-logo {
-  position: absolute;
-  height: calc(#{$v_perc * 2} + #{$v_adjust * 2} - #{$gap});
-  width: calc(#{$h_perc * 3} + #{$h_adjust * 3});
   top: 0;
-  right: calc(#{$h_perc * 2} + #{$h_adjust * 2} - #{$gap});
-  padding: 30px 30px 20px 20px;
-  border-right: 10px solid $background;
-  z-index: 2;
-  @media (min-width: $lg) {
-    border-top: 10px solid $background;
-    height: calc(#{$v_perc * 2} + #{$v_adjust * 2});
-    width: calc(#{$h_perc * 2} + #{$h_adjust * 2});
-    top: calc(#{$v_perc * 1} + #{$v_adjust * 1} - #{$gap});
-    right: calc(#{$h_perc * 3} + #{$h_adjust * 3} - #{$gap});
-  }
+  left: 0;
+	right: 0;
+	bottom: 0;
+		height: 100%;
+	grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+	@media (min-width: $sm) {
+		grid-template: repeat(4, 1fr) / repeat(5, 1fr);
+	}
 }
 
 .hero-content {
-  display: flex;
-  flex-flow: row wrap;
-  .grid-tile.grid-item {
-    position: relative;
-    flex: 0 0 100%;
-    padding: 20px 10px;
-    border-top: 10px solid $background;
-    height: 20vw;
-    @media (min-width: $sm) {
-      padding: 20px 30px;
-      flex: 0 0 80%;
-      &:nth-child(even) {
-        margin-left: auto;
-      }
-    }
-    @media (min-width: $md) {
-      flex: 0 0 calc(40% - #{$h_adjust * 2} + #{$gap});
-      &:nth-child(even) {
-				border-left: 5px solid $background;
-				margin-left: 0;
-      }
-      &:nth-child(odd) {
-        border-right: 5px solid $background;
-      }
-      &:nth-child(2) {
-        margin-right: auto;
-        border-right: 5px solid $background;
-      }
-      &:nth-child(3) {
-        margin-left: auto;
-        border-left: 5px solid $background;
-      }
-    }
-  }
+	height: 100%;
+	grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+	grid-template-areas:
+		"l l l . e"
+		"l l l . ."
+		"a a a . ."
+		"f d d d ."
+		"b b c c c";
+
+	@media (min-width: $sm) {
+		grid-template: repeat(4, 1fr) / repeat(5, 1fr);
+		grid-template-areas:
+			"l l l a a"
+			"l l l . e"
+			"f b b . ."
+			"c c d d .";
+	}
+	@media (min-width: $lg) {
+		grid-template-areas:
+			"e . . . ."
+			"l l . . ."
+			"l l a . ."
+			"d c f b .";
+	}
 }
 
-.grid-tile.grid-item {
-  @media (min-width: $lg) {
+.logo {
+  position: relative;
+	grid-area: l;
+}
+
+.item {
+  position: relative;
+	&:nth-of-type(1) {
+		grid-area: a;
+	}
+	&:nth-of-type(2) {
+		grid-area: b;
+	}
+	&:nth-of-type(3) {
+		grid-area: c;
+	}
+	&:nth-of-type(4) {
+		grid-area: d;
+	}
+}
+
+.blank {
+  z-index: -1;
+  position: relative;
+  &:nth-of-type(1) {
+    grid-area: e;
+  }
+  &:nth-of-type(2) {
+    grid-area: d;
+  }
+  &:nth-of-type(3) {
+    grid-area: f;
+  }
+  &:after {
+    background: $gray;
+    content: "";
     position: absolute;
-    padding: 30px 30px 20px 20px;
-    border-right: 10px solid $background;
-    border-top: 10px solid $background;
-    height: calc(#{$v_perc * 1} + #{$v_adjust * 1});
-    width: calc(#{$h_perc * 1} + #{$h_adjust * 1});
-    &:nth-of-type(1) {
-      top: calc(#{$v_perc * 2} + #{$v_adjust * 2} - #{$gap});
-      right: calc(#{$h_perc * 2} + #{$h_adjust * 2} - #{$gap});
-    }
-    &:nth-of-type(2) {
-      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
-      right: calc(#{$h_perc * 1} + #{$h_adjust * 1} - #{$gap});
-    }
-    &:nth-of-type(3) {
-      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
-      right: calc(#{$h_perc * 3} + #{$h_adjust * 3} - #{$gap});
-    }
-    &:nth-of-type(4) {
-      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
-      right: calc(#{$h_perc * 4} + #{$h_adjust * 4} - #{$gap});
-    }
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
   }
 }
 </style>

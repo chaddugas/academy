@@ -1,34 +1,54 @@
 <template lang="pug">
-h1.grid-tile.grid-logo
-	span.logo-text Academy 
-	span.logo-text 
-		i.fa.fa-heartbeat
-		| Park
-	span.logo-text Pediatrics
+header.logo
+	canvas.logo-canvas
+	.logo-inner
+		span.logo-text Academy 
+		span.logo-text 
+			i.fa.fa-heartbeat
+			| Park
+		span.logo-text Pediatrics
 </template>
 
 <script>
+import Canvas from "@/mixins/Canvas";
 export default {
-  name: "Logo"
+  name: "Logo",
+  mixins: [Canvas]
 };
 </script>
 
 <style lang="scss">
-.grid-tile.grid-logo {
-	display: flex;
-	flex-direction: column;
-	z-index: 2;
-	background: $indigo;
-	justify-content: center;
+.logo {
+  background: $indigo;
+}
+
+.logo-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.logo-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30px;
 }
 
 .logo-text {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
   white-space: nowrap;
-	color: $white;
-	text-align: right;
+  color: $white;
+  text-align: right;
   font-size: 22px;
   line-height: 1.3;
   text-transform: uppercase;
@@ -38,11 +58,11 @@ export default {
     color: $red;
   }
   @media (min-width: $sm) {
-		font-size: 38px;
-		i {
-			font-size: 35px;
-    margin-right: 20px;
-		}
+    font-size: 38px;
+    i {
+      font-size: 35px;
+      margin-right: 20px;
+    }
   }
 }
 

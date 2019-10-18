@@ -1,8 +1,8 @@
 export default {
 	data() {
 		return {
-			c_color: 'rgba(0,0,0,0.2)',
-			c_lineWidth: .2,
+			c_color: 'rgba(255,255,255,.05)',
+			c_lineWidth: .1,
 			c_wrapper: null,
 			c_canvas: null,
 			c_ctx: null,
@@ -13,7 +13,7 @@ export default {
 	},
 	methods: {
 		c_init() {
-			this.c_wrapper = this.$el
+			this.c_wrapper = this.$el.querySelector('canvas').parentElement
 			this.c_canvas = this.$el.querySelector('canvas')
 			this.c_ctx = this.c_canvas.getContext('2d')
 
@@ -35,16 +35,16 @@ export default {
 			const _this = this
 
 			const apex = {
-				x: (Math.random() * 100 * window.innerWidth) / 100,
-				y: ((Math.random() * 100 * window.innerHeight) / 100),
-				velocity_x: (Math.random() * 2) + 1,
-				velocity_y: (Math.random() * 2) + 1
+				x: Math.random() * this.c_canvas.width,
+				y: Math.random() * this.c_canvas.height,
+				velocity_x: Math.random() + 1,
+				velocity_y: Math.random() + 1
 			}
 
 			const dots = {
-				total: 250,
-				proximity: Math.min(window.innerHeight, window.innerWidth) * 0.085,
-				radius: Math.max(window.innerHeight, window.innerWidth) * 0.085,
+				total: 6,
+				proximity: 40,
+				radius: 100,
 				array: []
 			}
 
@@ -56,7 +56,7 @@ export default {
 					this.y = Math.random() * _this.c_canvas.height
 					this.velocity_x = (Math.random() - 0.5)
 					this.velocity_y = (Math.random() - 0.5)
-					this.radius = (Math.random()) + 0.25
+					this.radius = (Math.random() * 80) + 30
 					this.draw()
 				}
 
@@ -122,7 +122,7 @@ export default {
 				else {
 					dots.array.forEach(dot => dot.draw())
 				}
-				Dots.connect();
+				// Dots.connect();
 				Dots.move();
 			}
 
@@ -142,7 +142,7 @@ export default {
 			}
 
 			this.c_dotInterval = setInterval(draw, 30)
-			this.c_apexInterval = setInterval(moveApex, 30)
+			// this.c_apexInterval = setInterval(moveApex, 30)
 		}
 	},
 	mounted() {

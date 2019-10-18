@@ -16,8 +16,9 @@
 				@mouseover="setContent(item)",
 				@click="scroll(item)",
 				@mouseleave="active = false")
-				span.insurance-mono {{item.title[0].toUpperCase()}}
-				span.insurance-name {{item.title}}
+				.insurance-inner
+					span.insurance-mono {{item.title[0].toUpperCase()}}
+					span.insurance-name {{item.title}}
 </template>
 
 <static-query>
@@ -93,7 +94,8 @@ export default {
   @media (min-width: $lg) {
     margin-right: 20px;
     margin-bottom: 0;
-    flex: 0 1 500px;
+    flex: 0 1 450px;
+		min-width: 450px;
   }
   &:before {
     content: "";
@@ -170,27 +172,30 @@ export default {
   grid-gap: 10px;
   z-index: 1;
   @media (min-width: $sm) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
   }
+  @media (min-width: $md) {
+    grid-template-columns: repeat(5, 1fr);
+  }
   @media (min-width: $lg) {
-    flex-grow: 0;
-    width: auto;
+		flex: 1 1 100%;
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .insurance-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background: lighten($black, 25%);
-  padding: 8px;
   transition: 0.25s ease;
   cursor: pointer;
   position: relative;
-  &:after {
+	&::before {
+		content: '';
+		position: relative;
+		padding-top: 100%;
+		display: block;
+	}
+  &::after {
     position: absolute;
     top: -10px;
     left: -10px;
@@ -234,6 +239,16 @@ export default {
       color: lighten(saturate($indigo, 30%), 15%);
     }
   }
+}
+
+.insurance-inner {
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
 }
 
 .insurance-mono {
