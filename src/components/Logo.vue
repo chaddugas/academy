@@ -1,6 +1,5 @@
 <template lang="pug">
 header.logo
-	canvas.logo-canvas
 	.logo-inner
 		span.logo-text Academy 
 		span.logo-text 
@@ -10,24 +9,14 @@ header.logo
 </template>
 
 <script>
-import Canvas from "@/mixins/Canvas";
 export default {
-  name: "Logo",
-  mixins: [Canvas]
+  name: "Logo"
 };
 </script>
 
 <style lang="scss">
 .logo {
   background: $indigo;
-}
-
-.logo-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 
 .logo-inner {

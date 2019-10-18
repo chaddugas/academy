@@ -2,7 +2,6 @@
 	section#staff.grid
 		.grid-inner
 			.grid-title
-				canvas.title-canvas
 				h2
 					span Meet 
 					span Our
@@ -14,11 +13,9 @@
 
 <script>
 import Profile from "./Profile";
-import Canvas from "@/mixins/Canvas";
 
 export default {
 	name: "Staff",
-  mixins: [Canvas],
   components: {
     appProfile: Profile
 	},
@@ -59,10 +56,14 @@ query {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-auto-rows: 1fr;
-	grid-gap: 20px;
+	grid-gap: 5px;
 	position: relative;
 	z-index: 1;
+	@media (min-width: $sm) {
+		grid-gap: 10px;
+	}
 	@media (min-width: $md) {
+		grid-gap: 20px;
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
@@ -120,16 +121,5 @@ query {
       white-space: nowrap;
     }
   }
-}
-
-.title-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
 }
 </style>

@@ -169,7 +169,7 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   width: 100%;
-  grid-gap: 10px;
+  grid-gap: 5px;
   z-index: 1;
   @media (min-width: $sm) {
     grid-template-columns: repeat(4, 1fr);

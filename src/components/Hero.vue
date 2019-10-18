@@ -113,83 +113,90 @@ query {
   z-index: 1;
   height: auto;
   display: flex;
-	flex-direction: column;
+  flex-direction: column;
 	height: 100vw;
-	@media (min-width: $sm) {
-		height: 80vw;
-	}
+	will-change: transform;
+	max-width: 1300px;
+	max-height: 1300px;
+	margin: 0 auto;
+  @media (min-width: $sm) {
+		max-height: 1040px;
+    height: 80vw;
+  }
 }
 
 .hero-bg,
 .hero-content {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 5px;
   z-index: 1;
-	margin: 5px;
-	@media (min-width: $lg) {
-		margin: 0;
-	}
+  @media (min-width: $sm) {
+    grid-gap: 10px;
+  }
+  @media (min-width: $lg) {
+    margin: 0;
+  }
 }
 
 .hero-bg {
   position: absolute;
   top: 0;
   left: 0;
-	right: 0;
-	bottom: 0;
-		height: 100%;
-	grid-template: repeat(5, 1fr) / repeat(5, 1fr);
-	@media (min-width: $sm) {
-		grid-template: repeat(4, 1fr) / repeat(5, 1fr);
-	}
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+  @media (min-width: $sm) {
+    grid-template: repeat(4, 1fr) / repeat(5, 1fr);
+  }
 }
 
 .hero-content {
-	height: 100%;
-	grid-template: repeat(5, 1fr) / repeat(5, 1fr);
-	grid-template-areas:
-		"l l l . e"
-		"l l l . ."
-		"a a a . ."
-		"f d d d ."
-		"b b c c c";
+  height: 100%;
+  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+  grid-template-areas:
+    "l l l . e"
+    "l l l . ."
+    "a a a . ."
+    "d d d d ."
+    "b b c c c";
 
-	@media (min-width: $sm) {
-		grid-template: repeat(4, 1fr) / repeat(5, 1fr);
-		grid-template-areas:
-			"l l l a a"
-			"l l l . e"
-			"f b b . ."
-			"c c d d .";
-	}
-	@media (min-width: $lg) {
-		grid-template-areas:
-			"e . . . ."
-			"l l . . ."
-			"l l a . ."
-			"d c f b .";
-	}
+  @media (min-width: $sm) {
+    grid-template: repeat(4, 1fr) / repeat(5, 1fr);
+    grid-template-areas:
+      "l l l a a"
+      "l l l . e"
+      "f b b . ."
+      "c c d d .";
+  }
+  @media (min-width: $lg) {
+    grid-template-areas:
+      "e . . . ."
+      "l l . . ."
+      "l l a . ."
+      "d c f b .";
+  }
 }
 
 .logo {
   position: relative;
-	grid-area: l;
+  grid-area: l;
 }
 
 .item {
   position: relative;
-	&:nth-of-type(1) {
-		grid-area: a;
-	}
-	&:nth-of-type(2) {
-		grid-area: b;
-	}
-	&:nth-of-type(3) {
-		grid-area: c;
-	}
-	&:nth-of-type(4) {
-		grid-area: d;
-	}
+  &:nth-of-type(1) {
+    grid-area: a;
+  }
+  &:nth-of-type(2) {
+    grid-area: b;
+  }
+  &:nth-of-type(3) {
+    grid-area: c;
+  }
+  &:nth-of-type(4) {
+    grid-area: d;
+  }
 }
 
 .blank {
@@ -202,7 +209,10 @@ query {
     grid-area: d;
   }
   &:nth-of-type(3) {
-    grid-area: f;
+    grid-area: e;
+    @media (min-width: $sm) {
+      grid-area: f;
+    }
   }
   &:after {
     background: $gray;

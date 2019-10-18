@@ -9,7 +9,14 @@ export default {
 	},
 	computed: {
 		transform() {
-			return { 'transform': this.para_state }
+			if (window.innerHeight > window.innerWidth * .8 || window.matchMedia("(min-width: 1300px)").matches) {
+				return { 'transform': this.para_state }
+			}
+			else {
+				return {
+					'transform': 'none'
+				}
+			}
 		}
 	},
 	methods: {
@@ -38,11 +45,13 @@ export default {
 		}
 	},
 	mounted() {
-		window.addEventListener('scroll', this.para_move)
-		window.addEventListener('resize', this.para_update)
-		window.addEventListener('orientationchange', this.para_update)
-		this.para_update()
-		this.para_move()
+		if (process.isClient) {
+			window.addEventListener('scroll', this.para_move)
+			window.addEventListener('resize', this.para_update)
+			window.addEventListener('orientationchange', this.para_update)
+			this.para_update()
+			this.para_move()
+		}
 	},
 	beforeDestroy() {
 		window.removeEventListener('scroll', this.para_move)
