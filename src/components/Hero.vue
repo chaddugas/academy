@@ -8,7 +8,7 @@
 			app-logo
 			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title", v-if="media == 'lg'")
 			app-hero-item(v-for="(item, i) in news", :type="'news'", :item="item", :key="item.title", v-if="media == 'lg'")
-		.hero-content(v-if="media == 'sm'", :style="transform")
+		.hero-content(v-if="media == 'sm'")
 			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
 			app-hero-item(v-for="(item, i) in news", :type="'news'", :item="item", :key="item.title")
 </template>
@@ -126,10 +126,10 @@ query {
 $gap: 10px;
 $h_divisions: 5;
 $h_perc: 100% / $h_divisions;
-$h_adjust: $gap/$h_divisions;
+$h_adjust: ($gap/$h_divisions) + 1px;
 $v_divisions: 4;
 $v_perc: 100% / $v_divisions;
-$v_adjust: $gap/$v_divisions;
+$v_adjust: ($gap/$v_divisions) + 1px;
 $background: $gray;
 .hero-grid {
   z-index: 1;
@@ -171,18 +171,18 @@ div.grid-tile {
   background: $background;
   height: calc(#{$v_perc} + #{$v_adjust});
   width: calc(#{$h_perc} + #{$h_adjust});
-	&:nth-of-type(1) {
-		top: calc(#{$v_perc * 2} + #{$v_adjust * 2} - #{$gap});
-		right: calc(#{$h_perc * 4} + #{$h_adjust * 4} - #{$gap});
-	}
-	&:nth-of-type(2) {
-		top: calc(#{$v_perc * 1} + #{$v_adjust * 1} - #{$gap});
-		right: 0;
-	}
-	&:nth-of-type(3) {
-		top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
-		right: calc(#{$h_perc * 1} + #{$h_adjust * 1} - #{$gap});
-	}
+  &:nth-of-type(1) {
+    top: calc(#{$v_perc * 2} + #{$v_adjust * 2} - #{$gap});
+    right: calc(#{$h_perc * 4} + #{$h_adjust * 4} - #{$gap});
+  }
+  &:nth-of-type(2) {
+    top: calc(#{$v_perc * 1} + #{$v_adjust * 1} - #{$gap});
+    right: 0;
+  }
+  &:nth-of-type(3) {
+    top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
+    right: calc(#{$h_perc * 1} + #{$h_adjust * 1} - #{$gap});
+  }
   @media (min-width: $lg) {
     &:nth-of-type(1) {
       top: 0;
@@ -223,15 +223,32 @@ div.grid-tile {
   .grid-tile.grid-item {
     position: relative;
     flex: 0 0 100%;
-    padding: 20px 30px;
+    padding: 20px 10px;
     border-top: 10px solid $background;
+    height: 20vw;
     @media (min-width: $sm) {
-      flex: 0 0 50%;
+      padding: 20px 30px;
+      flex: 0 0 80%;
       &:nth-child(even) {
-        border-left: 5px solid $background;
+        margin-left: auto;
+      }
+    }
+    @media (min-width: $md) {
+      flex: 0 0 calc(40% - #{$h_adjust * 2} + #{$gap});
+      &:nth-child(even) {
+				border-left: 5px solid $background;
+				margin-left: 0;
       }
       &:nth-child(odd) {
         border-right: 5px solid $background;
+      }
+      &:nth-child(2) {
+        margin-right: auto;
+        border-right: 5px solid $background;
+      }
+      &:nth-child(3) {
+        margin-left: auto;
+        border-left: 5px solid $background;
       }
     }
   }

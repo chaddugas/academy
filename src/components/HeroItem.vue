@@ -1,5 +1,5 @@
 <template lang="pug">
-	aside.grid-tile.grid-item(v-if="type == 'loc' || item.active", :class="`hero-${type}`")
+	aside.grid-tile.grid-item(v-if="type == 'loc' || item.active", :class="`grid-item--${type}`")
 		.item-inner
 			.item-icon
 				i(:class="item.icon")
@@ -77,7 +77,12 @@ export default {
   background: $teal;
   display: flex;
   align-items: center;
-  z-index: 1;
+	z-index: 1;
+  color: $white;
+	&--loc {
+		background: $orange;
+  color: $onyx;
+	}
   @media (min-width: $lg) {
     justify-content: flex-end;
   }
@@ -87,8 +92,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: $white;
-  padding-left: 60px;
+  @media (min-width: $sm) {
+    padding-left: 60px;
+  }
   @media (min-width: $lg) {
     padding-left: 0;
     text-align: right;
@@ -103,29 +109,39 @@ export default {
   z-index: -1;
   opacity: 0.1;
   width: 50px;
-  display: flex;
+  display: none;
   justify-items: center;
-	align-items: center;
+  align-items: center;
   i {
     margin: 0 auto;
   }
+  @media (min-width: $sm) {
+    display: flex;
+  }
   @media (min-width: $lg) {
-		top: 20px;
-		left: 20px;
-		width: 60px;
+    top: 20px;
+    left: 20px;
+    width: 60px;
     font-size: 60px;
   }
 }
 
 .item-title {
   font-weight: 700;
-  font-size: 18px;
-  margin: 0 0 5px;
+  font-size: 16px;
+  @media (min-width: $sm) {
+    font-size: 18px;
+    margin: 0 0 5px;
+  }
   @media (min-width: $lg) {
     font-size: 22px;
   }
 }
 
 .item-text {
+  font-size: 14px;
+  @media (min-width: $sm) {
+		font-size: 16px;
+	}
 }
 </style>

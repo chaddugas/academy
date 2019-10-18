@@ -29,18 +29,19 @@ export default {
   white-space: nowrap;
 	color: $white;
 	text-align: right;
-  font-size: 30px;
+  font-size: 22px;
   line-height: 1.3;
   text-transform: uppercase;
   i {
-    font-size: 28px;
-    margin-right: 20px;
+    font-size: 18px;
+    margin-right: 10px;
     color: $red;
   }
   @media (min-width: $sm) {
 		font-size: 38px;
 		i {
 			font-size: 35px;
+    margin-right: 20px;
 		}
   }
 }

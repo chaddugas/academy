@@ -46,28 +46,28 @@ export default {
   },
   computed: {
     heading() {
-			return this.active_item.title
+      return this.active_item.title;
     },
     content() {
-			return this.active_item.info
-		},
-		insurance() {
-			return this.$static.insurance.edges[0].node.insurance
-		}
+      return this.active_item.info;
+    },
+    insurance() {
+      return this.$static.insurance.edges[0].node.insurance;
+    }
   },
   methods: {
     setContent(item) {
       this.active_item = item;
-			this.active = true;
-		},
-		scroll(item) {
-			let top = this.$el.getBoundingClientRect().top - 30;
+      this.active = true;
+    },
+    scroll(item) {
+      let top = this.$el.getBoundingClientRect().top - 30;
       window.scrollBy({
         top,
         behavior: "smooth"
-			});
-			setContent(item)
-		}
+      });
+      setContent(item);
+    }
   }
 };
 </script>
@@ -88,15 +88,15 @@ export default {
   background: $white;
   align-self: stretch;
   position: relative;
-	margin-bottom: 20px;
-	z-index: 1;
+  margin-bottom: 20px;
+  z-index: 1;
   @media (min-width: $lg) {
     margin-right: 20px;
     margin-bottom: 0;
-		flex: 0 1 500px;
+    flex: 0 1 500px;
   }
   &:before {
-		content: "";
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -112,7 +112,7 @@ export default {
     );
   }
   &:after {
-		content: "";
+    content: "";
     position: absolute;
     top: 0;
     left: 0%;
@@ -132,17 +132,17 @@ export default {
 .insurance-info,
 .insurance-wysiwyg {
   width: 100%;
-	pointer-events: none;
+  pointer-events: none;
   padding: 30px;
 }
 
 .insurance-wysiwyg {
-	opacity: 1;
+  opacity: 1;
   transition: opacity 0.25s;
-	font-size: 1rem;
-	&.hidden {
-		opacity: 0;
-	}
+  font-size: 1rem;
+  &.hidden {
+    opacity: 0;
+  }
 }
 
 .insurance-info {
@@ -164,47 +164,51 @@ export default {
 
 .insurance-items {
   display: grid;
-	grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
-  grid-gap: 20px;
-	width: 100%;
-	z-index: 1;
-	@media (min-width: $sm) {
-		grid-template-columns: repeat(3, 1fr);
-	}
+  width: 100%;
+  grid-gap: 10px;
+  z-index: 1;
+  @media (min-width: $sm) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
   @media (min-width: $lg) {
-		flex-grow: 0;
-		width: auto;
-		grid-template-columns: repeat(4, 1fr);
-	}
+    flex-grow: 0;
+    width: auto;
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .insurance-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-	justify-content: center;
-	background: lighten($black, 25%);
-  padding: 15px;
-	transition: 0.25s ease;
+  justify-content: center;
+  background: lighten($black, 25%);
+  padding: 8px;
+  transition: 0.25s ease;
   cursor: pointer;
-	position: relative;
-	&:after {
-		position: absolute;
-		top: -10px;
-		left: -10px;
-		right: -10px;
-		bottom: -10px;
-		z-index: -1;
-		content: '';
-	}
-	@media ($md) {
-		padding: 20px;
-	}
-	&:hover {
-		box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
-		transform: scale(1.035, 1.035);
-	}
+  position: relative;
+  &:after {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: -1;
+    content: "";
+  }
+  @media ($sm) {
+    padding: 15px;
+  }
+  @media ($md) {
+    padding: 20px;
+  }
+  &:hover {
+    box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
+    transform: scale(1.035, 1.035);
+  }
   &:nth-child(5n-4) {
     .insurance-mono {
       color: $red;
@@ -237,21 +241,21 @@ export default {
   font-weight: bold;
   text-transform: uppercase;
   font-family: $headings;
-	line-height: 1;
-	margin-bottom: 5px;
-	@media (min-width: $md) {
-		font-size: 50px;
-	}
+  line-height: 1;
+  margin-bottom: 5px;
+  @media (min-width: $md) {
+    font-size: 50px;
+  }
 }
 
 .insurance-name {
   font-weight: 700;
   text-align: center;
-	font-size: .75rem;
-	color: $white;
-	@media (min-width: $md) {
-		font-size: 1rem;
-	}
+  font-size: 0.75rem;
+  color: $white;
+  @media (min-width: $md) {
+    font-size: 1rem;
+  }
 }
 
 .fade-enter-active,
