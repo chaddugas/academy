@@ -1,8 +1,8 @@
 export default {
 	data() {
 		return {
-			c_color: 'rgba(255,255,255,.05)',
-			c_lineWidth: .08,
+			c_color: 'rgba(0,0,0,0.2)',
+			c_lineWidth: .2,
 			c_wrapper: null,
 			c_canvas: null,
 			c_ctx: null,
@@ -17,15 +17,13 @@ export default {
 			this.c_canvas = this.$el.querySelector('canvas')
 			this.c_ctx = this.c_canvas.getContext('2d')
 
-			this.c_canvas.style.display = 'block'
-
 			this.c_resize()
 			this.c_animate()
 			
-
 			window.addEventListener('resize', this.c_resize)
 		},
 		c_resize() {
+			this.c_canvas.style.display = 'block'
 			this.c_canvas.width = this.c_wrapper.offsetWidth
 			this.c_canvas.height = this.c_wrapper.offsetHeight
 
@@ -44,7 +42,7 @@ export default {
 			}
 
 			const dots = {
-				total: 9,
+				total: 250,
 				proximity: Math.min(window.innerHeight, window.innerWidth) * 0.085,
 				radius: Math.max(window.innerHeight, window.innerWidth) * 0.085,
 				array: []
@@ -58,7 +56,7 @@ export default {
 					this.y = Math.random() * _this.c_canvas.height
 					this.velocity_x = (Math.random() - 0.5)
 					this.velocity_y = (Math.random() - 0.5)
-					this.radius = (Math.random() * 200 - 100) + 100
+					this.radius = (Math.random()) + 0.25
 					this.draw()
 				}
 
@@ -124,7 +122,7 @@ export default {
 				else {
 					dots.array.forEach(dot => dot.draw())
 				}
-				// Dots.connect();
+				Dots.connect();
 				Dots.move();
 			}
 
@@ -144,7 +142,7 @@ export default {
 			}
 
 			this.c_dotInterval = setInterval(draw, 30)
-			// this.c_apexInterval = setInterval(moveApex, 30)
+			this.c_apexInterval = setInterval(moveApex, 30)
 		}
 	},
 	mounted() {

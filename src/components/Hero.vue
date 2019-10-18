@@ -1,36 +1,43 @@
 <template lang="pug">
 	section.hero
-		.hero-bg(:style="parallax")
-		canvas.hero-canvas
-		.hero-inner
+		.hero-grid(:style="bg")
+			- var n = 0
+			while n < 3
+				div.grid-tile
+				- n++
 			app-logo
-			.hero-content
-				.hero-items
-					app-hero-item(v-for="item in news", :type="'news'", :item="item", :key="item.title")
-					app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
+			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title", v-if="media == 'lg'")
+			app-hero-item(v-for="(item, i) in news", :type="'news'", :item="item", :key="item.title", v-if="media == 'lg'")
+		.hero-content(v-if="media == 'sm'", :style="transform")
+			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
+			app-hero-item(v-for="(item, i) in news", :type="'news'", :item="item", :key="item.title")
 </template>
 
 <script>
-import Canvas from "@/mixins/Canvas";
 import Parallax from "@/mixins/Parallax";
 import Logo from "@/components/Logo";
 import HeroItem from "@/components/HeroItem";
-import HeroImage from "@/assets/images/hero.jpg"
+import HeroImage from "@/assets/images/hero.jpg";
 
 export default {
   name: "Hero",
-  mixins: [Canvas, Parallax],
+  mixins: [Parallax],
   components: {
     appLogo: Logo,
     appHeroItem: HeroItem
   },
+  data() {
+    return {
+      media: null
+    };
+  },
   computed: {
-		parallax() {
-			return {
-				backgroundImage: `url(${HeroImage})`,
-				...this.transform
-			}
-		},
+    bg() {
+      return {
+        backgroundImage: `linear-gradient(#4389A2, #4389A2), url(${HeroImage})`,
+        ...this.transform
+      };
+    },
     offices() {
       return [
         {
@@ -48,6 +55,18 @@ export default {
     news() {
       return this.$static.news.edges[0].node.news;
     }
+  },
+  created() {
+    let media = window.matchMedia("(min-width: 1100px)");
+    let swap = e => {
+      if (e.matches) {
+        this.media = "lg";
+      } else {
+        this.media = "sm";
+      }
+    };
+    swap(media);
+    media.addListener(swap);
   }
 };
 </script>
@@ -93,107 +112,155 @@ query {
 }
 </static-query>
 
-<style lang="scss" scoped>
-$pull: 150px;
+<style lang="scss">
 .hero {
-	--parallax: 500px;
   width: 100%;
   display: flex;
   position: relative;
-  padding-bottom: #{$pull};
-  margin-bottom: #{$pull * -1};
   z-index: 1;
-  align-items: center;
-	overflow: hidden;
-  @media (min-width: $lg) {
-    padding-bottom: 0;
-    min-height: calc(100vh + #{$pull});
-    height: auto;
-  }
-  &:before {
-    content: "";
-    background: $teal;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -5;
-  }
-}
-
-.hero-bg {
-  position: absolute;
-  top: calc(var(--parallax) * -1);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -2;
-	height: calc(100% + var(--parallax));
-	width: 100%;
-	background-size: cover;
-	background-position: bottom center;
-  opacity: 0.4;
-}
-
-.hero-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-}
-
-.hero-inner {
-  @include container($max: 1200px);
+  height: auto;
   display: flex;
   flex-direction: column;
-  position: relative;
-  padding: 30px 0;
+}
+
+$gap: 10px;
+$h_divisions: 5;
+$h_perc: 100% / $h_divisions;
+$h_adjust: $gap/$h_divisions;
+$v_divisions: 4;
+$v_perc: 100% / $v_divisions;
+$v_adjust: $gap/$v_divisions;
+$background: $gray;
+.hero-grid {
+  z-index: 1;
   width: 100%;
-  margin-top: 30px;
+  min-height: 80vw;
+  background-color: transparent;
+  background-position: bottom right, bottom right;
+  background-size: 100% auto, 100% auto;
+  background-repeat: no-repeat, no-repeat;
+  background-blend-mode: screen;
   &:after {
+    content: "";
     position: absolute;
-    z-index: -3;
     top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
-    left: 0;
-    background: lighten($orange, 0%);
-    @media (min-width: $lg) {
-      width: 100vw;
-      left: auto;
-      content: "";
+    background: repeating-linear-gradient(
+        to left,
+        transparent,
+        transparent calc(#{$h_perc} + #{$h_adjust} - #{$gap}),
+        $background calc(#{$h_perc} + #{$h_adjust} - #{$gap}),
+        $background calc(#{$h_perc} + #{$h_adjust})
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent calc(#{$v_perc} + #{$v_adjust} - #{$gap}),
+        $background calc(#{$v_perc} + #{$v_adjust} - #{$gap}),
+        $background calc(#{$v_perc} + #{$v_adjust})
+      );
+    background-repeat: repeat-x, repeat-y;
+    background-position: 80% 0;
+  }
+}
+
+div.grid-tile {
+  position: absolute;
+  background: $background;
+  height: calc(#{$v_perc} + #{$v_adjust});
+  width: calc(#{$h_perc} + #{$h_adjust});
+	&:nth-of-type(1) {
+		top: calc(#{$v_perc * 2} + #{$v_adjust * 2} - #{$gap});
+		right: calc(#{$h_perc * 4} + #{$h_adjust * 4} - #{$gap});
+	}
+	&:nth-of-type(2) {
+		top: calc(#{$v_perc * 1} + #{$v_adjust * 1} - #{$gap});
+		right: 0;
+	}
+	&:nth-of-type(3) {
+		top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
+		right: calc(#{$h_perc * 1} + #{$h_adjust * 1} - #{$gap});
+	}
+  @media (min-width: $lg) {
+    &:nth-of-type(1) {
+      top: 0;
+      right: calc(#{$h_perc * 4} + #{$h_adjust * 4} - #{$gap});
+    }
+    &:nth-of-type(2) {
+      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
+      right: calc(#{$h_perc * 2} + #{$h_adjust * 2} - #{$gap});
+    }
+    &:nth-of-type(3) {
+      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
+      right: calc(#{$h_perc * 3} + #{$h_adjust * 3} - #{$gap});
     }
   }
-  @media (min-width: $sm) {
-    padding: 30px 60px;
-  }
+}
+
+.grid-tile.grid-logo {
+  position: absolute;
+  height: calc(#{$v_perc * 2} + #{$v_adjust * 2} - #{$gap});
+  width: calc(#{$h_perc * 3} + #{$h_adjust * 3});
+  top: 0;
+  right: calc(#{$h_perc * 2} + #{$h_adjust * 2} - #{$gap});
+  padding: 30px 30px 20px 20px;
+  border-right: 10px solid $background;
+  z-index: 2;
   @media (min-width: $lg) {
-    padding: 0;
-    flex-direction: row;
-    justify-content: flex-end;
-    height: 460px;
-    top: #{$pull * -1};
-    margin-top: #{$pull + 30};
+    border-top: 10px solid $background;
+    height: calc(#{$v_perc * 2} + #{$v_adjust * 2});
+    width: calc(#{$h_perc * 2} + #{$h_adjust * 2});
+    top: calc(#{$v_perc * 1} + #{$v_adjust * 1} - #{$gap});
+    right: calc(#{$h_perc * 3} + #{$h_adjust * 3} - #{$gap});
   }
 }
 
 .hero-content {
-  position: relative;
-  @media (min-width: $lg) {
-    height: 100%;
-    margin-right: auto;
+  display: flex;
+  flex-flow: row wrap;
+  .grid-tile.grid-item {
+    position: relative;
+    flex: 0 0 100%;
+    padding: 20px 30px;
+    border-top: 10px solid $background;
+    @media (min-width: $sm) {
+      flex: 0 0 50%;
+      &:nth-child(even) {
+        border-left: 5px solid $background;
+      }
+      &:nth-child(odd) {
+        border-right: 5px solid $background;
+      }
+    }
   }
 }
 
-.hero-items {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.grid-tile.grid-item {
+  @media (min-width: $lg) {
+    position: absolute;
+    padding: 30px 30px 20px 20px;
+    border-right: 10px solid $background;
+    border-top: 10px solid $background;
+    height: calc(#{$v_perc * 1} + #{$v_adjust * 1});
+    width: calc(#{$h_perc * 1} + #{$h_adjust * 1});
+    &:nth-of-type(1) {
+      top: calc(#{$v_perc * 2} + #{$v_adjust * 2} - #{$gap});
+      right: calc(#{$h_perc * 2} + #{$h_adjust * 2} - #{$gap});
+    }
+    &:nth-of-type(2) {
+      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
+      right: calc(#{$h_perc * 1} + #{$h_adjust * 1} - #{$gap});
+    }
+    &:nth-of-type(3) {
+      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
+      right: calc(#{$h_perc * 3} + #{$h_adjust * 3} - #{$gap});
+    }
+    &:nth-of-type(4) {
+      top: calc(#{$v_perc * 3} + #{$v_adjust * 3} - #{$gap});
+      right: calc(#{$h_perc * 4} + #{$h_adjust * 4} - #{$gap});
+    }
+  }
 }
 </style>

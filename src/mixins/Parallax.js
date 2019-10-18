@@ -14,15 +14,12 @@ export default {
 	},
 	methods: {
 		para_update() {
-			this.para_distance = parseInt(getComputedStyle(this.$el).getPropertyValue('--parallax').replace('px', ''))
-			this.para_start = window.innerHeight
+			this.para_start = 0
 			this.para_end = this.$el.offsetHeight * -1
 		},
 		para_move() {
 			let top = this.$el.getBoundingClientRect().top
 			let move = this.between(top, this.para_start, this.para_end) * this.para_distance
-
-			move = move > this.para_distance ? this.para_distance : move < 0 ? 0 : move
 			
 			this.para_state = `translateY(${move}px)`
 		},

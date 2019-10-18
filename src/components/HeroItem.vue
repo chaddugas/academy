@@ -1,6 +1,6 @@
 <template lang="pug">
-	.hero-item(v-if="type == 'loc' || item.active", :class="`.hero-${type}`")
-		.hero-item-inner
+	aside.grid-tile.grid-item(v-if="type == 'loc' || item.active", :class="`hero-${type}`")
+		.item-inner
 			.item-icon
 				i(:class="item.icon")
 			p.item-title {{ item.title }}
@@ -10,8 +10,8 @@
 
 <script>
 export default {
-	name: "HeroItem",
-	props: ["item", "type"],
+  name: "HeroItem",
+  props: ["item", "type"],
   data() {
     return {
       days: [
@@ -28,107 +28,104 @@ export default {
   },
   methods: {
     createStatusString(data) {
-      let timeArray = JSON.parse(JSON.stringify(data))
-      let weekday = this.days[this.now.getDay()]
-      let today, todayIndex
+      let timeArray = JSON.parse(JSON.stringify(data));
+      let weekday = this.days[this.now.getDay()];
+      let today, todayIndex;
 
       timeArray = timeArray.map((item, i) => {
-        item.open = item.open.split(/ |\:/)
-        item.open[0] = parseInt(item.open[0])
-        item.open[1] = parseInt(item.open[1])
-        item.close = item.close.split(/ |\:/)
-        item.close[0] = parseInt(item.close[0])
-        item.close[1] = parseInt(item.close[1])
+        item.open = item.open.split(/ |\:/);
+        item.open[0] = parseInt(item.open[0]);
+        item.open[1] = parseInt(item.open[1]);
+        item.close = item.close.split(/ |\:/);
+        item.close[0] = parseInt(item.close[0]);
+        item.close[1] = parseInt(item.close[1]);
         if (item.open[2].toLowerCase() == "pm")
-          item.open[0] = item.open[0] + 12
+          item.open[0] = item.open[0] + 12;
         if (item.close[2].toLowerCase() == "pm")
-          item.close[0] = item.close[0] + 12
-        if (weekday == item.title) (today = item), (todayIndex = i)
-        return item
-      })
+          item.close[0] = item.close[0] + 12;
+        if (weekday == item.title) (today = item), (todayIndex = i);
+        return item;
+      });
 
-      if (!today) return "Closed today"
+      if (!today) return "Closed today";
 
       if (
         this.now.getTime() <
         new Date().setHours(today.open[0], today.open[1], 0)
       ) {
-        return `Opens today at ${data[todayIndex].open}`
+        return `Opens today at ${data[todayIndex].open}`;
       }
       if (
         this.now.getTime() <
         new Date().setHours(today.close[0], today.close[1], 0)
       ) {
-        return `Open today until ${data[todayIndex].close}`
+        return `Open today until ${data[todayIndex].close}`;
       }
-      return "Closed for the day"
+      return "Closed for the day";
     }
   },
   created() {
     setInterval(() => {
-      this.now = new Date()
-    }, 30000)
+      this.now = new Date();
+    }, 30000);
   }
-}
+};
 </script>
 
 <style lang="scss">
-.hero-item {
+.grid-tile.grid-item {
+  background: $teal;
   display: flex;
   align-items: center;
-  padding: 0 40px;
-  flex: 1 1 100%;
-  min-height: 105px;
-  @for $n from 0 to 10 {
-    $perc: $n * 5%;
-    &:nth-child(#{$n + 1}) {
-      background: rgba(darken($white, $perc), 0.75);
-    }
+  z-index: 1;
+  @media (min-width: $lg) {
+    justify-content: flex-end;
   }
 }
 
-.hero-item-inner {
-  display: grid;
-  grid-gap: 0 20px;
-  grid-template: repeat(2, max-content) / auto 1fr;
+.item-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: $white;
+  padding-left: 60px;
+  @media (min-width: $lg) {
+    padding-left: 0;
+    text-align: right;
+    align-items: flex-end;
+  }
 }
 
 .item-icon {
-  grid-area: 1 / 1 / 3 / 2;
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  left: 30px;
+  font-size: 50px;
+  z-index: -1;
+  opacity: 0.1;
   width: 50px;
-  align-items: center;
-  @media (min-width: $lg) {
-    grid-area: 1 / 1 / 3 / 2;
-  }
+  display: flex;
+  justify-items: center;
+	align-items: center;
   i {
-    font-size: 50px;
-    color: $teal;
+    margin: 0 auto;
+  }
+  @media (min-width: $lg) {
+		top: 20px;
+		left: 20px;
+		width: 60px;
+    font-size: 60px;
   }
 }
 
 .item-title {
-  color: $onyx;
   font-weight: 700;
   font-size: 18px;
-  margin-bottom: 5px;
-  grid-area: 1 / 2 / 2 / 3;
+  margin: 0 0 5px;
   @media (min-width: $lg) {
-    grid-area: 1 / 2 / 2 / 3;
+    font-size: 22px;
   }
 }
 
 .item-text {
-  color: $onyx;
-  grid-area: 2 / 2 / 3 / 3;
-  @media (min-width: $lg) {
-    grid-area: 2 / 2 / 3 / 3;
-  }
-  span {
-    &:before {
-      content: " ";
-    }
-  }
 }
 </style>
