@@ -159,7 +159,7 @@ query {
   grid-template-areas:
     "l l l . e"
     "l l l . ."
-    "a a a . ."
+    "a a . . ."
     "d d d d ."
     "b b c c c";
 
