@@ -10,7 +10,7 @@ export default {
 	computed: {
 		transform() {
 			if (process.isClient) {
-				if (window.innerHeight > window.innerWidth * .8 || window.matchMedia("(min-width: 1300px)").matches) {
+				if (window.innerHeight > window.innerWidth * .8 || (window.matchMedia("(min-width: 1300px)").matches) && (window.matchMedia("(min-height: 1300px)").matches)) {
 					return { 'transform': this.para_state }
 				}
 				else {
