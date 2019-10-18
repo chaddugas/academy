@@ -62,12 +62,14 @@ export default {
       this.active = true;
     },
     scroll(item) {
-      let top = this.$el.getBoundingClientRect().top - 30;
-      window.scrollBy({
-        top,
-        behavior: "smooth"
-      });
-      setContent(item);
+      if (process.isClient) {
+        let top = this.$el.getBoundingClientRect().top - 30;
+        window.scrollBy({
+          top,
+          behavior: "smooth"
+        });
+        setContent(item);
+      }
     }
   }
 };
@@ -95,7 +97,7 @@ export default {
     margin-right: 20px;
     margin-bottom: 0;
     flex: 0 1 450px;
-		min-width: 450px;
+    min-width: 450px;
   }
   &:before {
     content: "";
@@ -179,7 +181,7 @@ export default {
     grid-template-columns: repeat(5, 1fr);
   }
   @media (min-width: $lg) {
-		flex: 1 1 100%;
+    flex: 1 1 100%;
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -189,12 +191,12 @@ export default {
   transition: 0.25s ease;
   cursor: pointer;
   position: relative;
-	&::before {
-		content: '';
-		position: relative;
-		padding-top: 100%;
-		display: block;
-	}
+  &::before {
+    content: "";
+    position: relative;
+    padding-top: 100%;
+    display: block;
+  }
   &::after {
     position: absolute;
     top: -10px;
@@ -242,8 +244,11 @@ export default {
 }
 
 .insurance-inner {
-	position: absolute;
-	top: 0; left: 0; right: 0; bottom: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;

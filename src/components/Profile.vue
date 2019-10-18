@@ -22,34 +22,38 @@ export default {
   },
   methods: {
     toggle() {
-      this.$el.querySelector(".profile-content").scrollTop = 0;
-      if (this.active) return (this.active = false);
+      if (process.isClient) {
+        this.$el.querySelector(".profile-content").scrollTop = 0;
+        if (this.active) return (this.active = false);
 
-      let grid = this.$el.closest(".grid");
-      let items = [...grid.querySelectorAll(".person")];
-      let top = 0;
+        let grid = this.$el.closest(".grid");
+        let items = [...grid.querySelectorAll(".person")];
+        let top = 0;
 
-      if (window.matchMedia("(min-width: 850px)").matches) {
-        if (items.indexOf(this.$el) < 5) {
-          top = grid.getBoundingClientRect().top;
+        if (window.matchMedia("(min-width: 850px)").matches) {
+          if (items.indexOf(this.$el) < 5) {
+            top = grid.getBoundingClientRect().top;
+          } else {
+            top =
+              items[items.indexOf(this.$el) - 3].getBoundingClientRect().top -
+              30;
+          }
         } else {
-          top =
-            items[items.indexOf(this.$el) - 3].getBoundingClientRect().top - 30;
+          if (items.indexOf(this.$el) < 3) {
+            top = grid.getBoundingClientRect().top;
+          } else {
+            top =
+              items[items.indexOf(this.$el) - 2].getBoundingClientRect().top -
+              20;
+          }
         }
-      } else {
-        if (items.indexOf(this.$el) < 3) {
-          top = grid.getBoundingClientRect().top;
-        } else {
-          top =
-            items[items.indexOf(this.$el) - 2].getBoundingClientRect().top - 20;
-        }
+
+        this.active = true;
+        window.scrollBy({
+          top,
+          behavior: "smooth"
+        });
       }
-
-      this.active = true;
-      window.scrollBy({
-        top,
-        behavior: "smooth"
-      });
     },
     close(e) {
       let closest = e.target.closest(".person");
@@ -59,10 +63,14 @@ export default {
     }
   },
   mounted() {
-    document.addEventListener("click", this.close);
+    if (process.isClient) {
+      document.addEventListener("click", this.close);
+    }
   },
   beforeDestroy() {
-    document.removeEventListener("click", this.close);
+    if (process.isClient) {
+      document.removeEventListener("click", this.close);
+    }
   }
 };
 </script>
@@ -73,28 +81,28 @@ export default {
   position: relative;
   z-index: -1;
   transition: z-index 0ms linear;
-	transition-delay: 500ms;
-	background-size: 0 0;
+  transition-delay: 500ms;
+  background-size: 0 0;
   &:before {
     content: "";
     display: block;
     position: relative;
     padding-top: 100%;
-	}
-	&:after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: -1;
-		background-size: cover;
-		background-position: 50% 50%;
-		background-image: inherit;
-		filter: grayscale(50%);
-		opacity: .25;
-	}
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: inherit;
+    filter: grayscale(50%);
+    opacity: 0.25;
+  }
 }
 
 .person-profile {
@@ -106,9 +114,9 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
-	right: 0;
+  right: 0;
   bottom: 0;
-	z-index: 1;
+  z-index: 1;
   transition: 500ms ease;
   will-change: height, width, top, left;
   @media (hover: hover) {
@@ -134,7 +142,7 @@ export default {
   pointer-events: none;
   background-color: $white;
   transform: scale(1, 1);
-	position: relative;
+  position: relative;
   &:before {
     content: "";
     position: absolute;

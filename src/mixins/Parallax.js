@@ -9,13 +9,18 @@ export default {
 	},
 	computed: {
 		transform() {
-			if (window.innerHeight > window.innerWidth * .8 || window.matchMedia("(min-width: 1300px)").matches) {
-				return { 'transform': this.para_state }
+			if (process.isClient) {
+				if (window.innerHeight > window.innerWidth * .8 || window.matchMedia("(min-width: 1300px)").matches) {
+					return { 'transform': this.para_state }
+				}
+				else {
+					return {
+						'transform': 'none'
+					}
+				}
 			}
 			else {
-				return {
-					'transform': 'none'
-				}
+				return
 			}
 		}
 	},
@@ -27,20 +32,20 @@ export default {
 		para_move() {
 			let top = this.$el.getBoundingClientRect().top
 			let move = this.between(top, this.para_start, this.para_end) * this.para_distance
-			
+
 			this.para_state = `translateY(${move}px)`
 		},
 		between(val, min, max, percent = false) {
 			let upper = val - min;
 			let lower = max - min;
 			let result = (upper / lower);
-		
+
 			if (percent) {
 				result = result * 100;
 			}
-		
+
 			result = parseFloat(result.toFixed(8));
-		
+
 			return result;
 		}
 	},
@@ -54,8 +59,10 @@ export default {
 		}
 	},
 	beforeDestroy() {
-		window.removeEventListener('scroll', this.para_move)
-		window.removeEventListener('resize', this.para_update)
-		window.removeEventListener('orientationchange', this.para_update)
+		if (process.isClient) {
+			window.removeEventListener('scroll', this.para_move)
+			window.removeEventListener('resize', this.para_update)
+			window.removeEventListener('orientationchange', this.para_update)
+		}
 	}
 }

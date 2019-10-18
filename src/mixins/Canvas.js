@@ -146,6 +146,8 @@ export default {
 		}
 	},
 	mounted() {
-		this.c_init()
+		if (process.isClient) {
+			this.c_init()
+		}
 	}
 }

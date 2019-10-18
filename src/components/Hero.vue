@@ -50,16 +50,18 @@ export default {
     }
   },
   created() {
-    let media = window.matchMedia("(min-width: 1100px)");
-    let swap = e => {
-      if (e.matches) {
-        this.media = "lg";
-      } else {
-        this.media = "sm";
-      }
-    };
-    swap(media);
-    media.addListener(swap);
+		if (process.isClient) {
+			let media = window.matchMedia("(min-width: 1100px)");
+			let swap = e => {
+				if (e.matches) {
+					this.media = "lg";
+				} else {
+					this.media = "sm";
+				}
+			};
+			swap(media);
+			media.addListener(swap);
+		}
   }
 };
 </script>
