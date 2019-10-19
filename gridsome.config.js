@@ -71,6 +71,14 @@ module.exports = {
     },
 	],
 	
+	css: {
+		loaderOptions: {
+			postcss: {
+				plugins: [require('autoprefixer')({ grid: true })]
+			}
+		}
+	},
+
   chainWebpack: (config) => {
     // Load variables for all vue-files
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']

@@ -108,7 +108,6 @@ query {
 </static-query>
 
 <style lang="scss" scoped>
-/* autoprefixer grid: on */
 .hero {
   width: 100%;
   display: flex;

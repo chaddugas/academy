@@ -19,7 +19,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-/* autoprefixer grid: on */
 .hero-cell {
   position: relative;
   background-size: cover;
