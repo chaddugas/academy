@@ -7,7 +7,8 @@ function addStyleResource (rule) {
 }
 
 module.exports = {
-  siteName: 'Academy Park Pediatrics',
+	siteName: 'Academy Park Pediatrics',
+	titleTemplate: `Academy Park Pediatrics`,
   transformers: {
     remark: {
       externalLinksTarget: '_blank',
