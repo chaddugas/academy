@@ -32,12 +32,7 @@
     ],
     "note": "Closed for lunch 12:30-1:30",
     "address": "4185 E. Wildcat Reserve Parkway\nSuite #230\nHighlands Ranch, CO 80126",
-    "closures": [
-      {
-        "title": "Office Party",
-        "date": "2019-10-19T20:48:03.683Z"
-      }
-    ],
+    "closures": [ ],
     "title": "Wildcat",
     "fax": "303 996-0732",
     "lat": "39.529038"
@@ -46,6 +41,7 @@
     "lng": "-105.078522",
     "popup": "# Academy Park Pediatrics\n\n## Lakewood/Littleton\n\n_Pediatric Practice_",
     "phone": "303 988-5252",
+    "closures": [ ],
     "hours": [
       {
         "title": "Monday",
