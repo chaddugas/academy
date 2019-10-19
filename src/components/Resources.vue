@@ -1,49 +1,46 @@
 <template lang="pug">
 	section#resources.resources
 		.resources-inner
-			a.resource(:href="`/`", :download="false", target="_blank")
+			a.resource(
+				v-for="item in resources",
+				:key="item.title",
+				:href="item.file ? item.file : item.link",
+				:download="item.file ? item.title : false",
+				target="_blank")
 				.resource-icon
-					i.fas.fa-notes-medical
-				p.resource-title Incoming Medical Release (Lakewood)
+					i(:class="item.icon")
+				p.resource-title {{ item.title }}
 				.resource-action
-					i.fas.fa-download
-			a.resource(:href="`/`", :download="true", target="_blank")
-				.resource-icon
-					i.fas.fa-notes-medical
-				p.resource-title Incoming Medical Release (Highlands Ranch)
-				.resource-action
-					i.fas.fa-download
-			a.resource(:href="`/`", :download="true", target="_blank")
-				.resource-icon
-					i.fas.fa-comment-medical
-				p.resource-title Outgoing Medical Release
-				.resource-action
-					i.fas.fa-download
-			a.resource(:href="`/`", :download="true", target="_blank")
-				.resource-icon
-					i.fas.fa-star-of-life
-				p.resource-title New Registration
-				.resource-action
-					i.fas.fa-download
-			a.resource(:href="`/`", :download="true", target="_blank")
-				.resource-icon
-					i.fas.fa-pills
-				p.resource-title OTC Dosing Chart
-				.resource-action
-					i.fas.fa-download
-			a.resource(:href="`/`", :download="true", target="_blank")
-				.resource-icon
-					i.fas.fa-microscope
-				p.resource-title American Academy of Pediatrics
-				.resource-action
-					i.fas.fa-external-link-square-alt
+					i(:class="item.file ? 'fas fa-download' : 'fas fa-external-link-square-alt'")
 </template>
 
 <script>
 export default {
-	name: "Resources"
-}
+  name: "Resources",
+  computed: {
+    resources() {
+      return this.$static.resources.edges[0].node.resources;
+    }
+  }
+};
 </script>
+
+<static-query>
+query {
+  resources: allResources {
+    edges {
+      node {
+        resources {
+          title
+          icon
+          file
+          link
+        }
+      }
+    }
+  }
+}
+</static-query>
 
 <style lang="scss" scoped>
 .resources {
@@ -51,48 +48,75 @@ export default {
 }
 .resources-inner {
   @include container($max: 1200px);
-	position: relative;
-	display: flex;
-	flex-direction: column;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   background: $white;
-	padding: 30px 20px;
+  padding: 20px;
   @media (min-width: $md) {
     padding: 30px 40px;
   }
 }
 
 .resource {
-	display: flex;
-	align-items: center;
-	padding: 20px 30px;
-	border-top: 1px solid transparent;
-	border-bottom: 1px solid $gray;
-	transition: .2s ease;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 20px 10px;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid $gray;
+  transition: 0.2s ease;
+  cursor: pointer;
   &:last-child {
-		border-bottom: none;
-	}
-	&:hover {
-		background: $gray;
-		.resource-action {
-			color: $sky;
-		}
-	}
+    border-bottom: none;
+  }
+  &:hover {
+    background: $gray;
+    &:nth-child(4n-3) {
+      color: $red;
+    }
+    &:nth-child(4n-2) {
+      color: $indigo;
+    }
+    &:nth-child(4n-1) {
+      color: $sky;
+    }
+    &:nth-child(4n) {
+      color: $teal;
+    }
+  }
+  @media (min-width: $md) {
+    padding: 20px 30px;
+    margin: 0 -10px;
+  }
 }
 
 .resource-icon {
-	width: 60px;
-	font-size: 40px;
-	display: flex;
-	margin-right: 10px;
+  width: 35px;
+  min-width: 35px;
+  font-size: 28px;
+  display: flex;
+  margin-right: 10px;
+  @media (min-width: $sm) {
+    width: 60px;
+    font-size: 40px;
+  }
 }
 
 .resource-title {
-	margin-right: auto;
+  margin-right: auto;
+  font-size: 14px;
+  @media (min-width: $sm) {
+    font-size: 1rem;
+  }
 }
 
 .resource-action {
-	font-size: 24px;
-	transition: .2s ease;
+  font-size: 20px;
+  margin-left: 10px;
+  width: 25px;
+  @media (min-width: $sm) {
+    width: 30px;
+    font-size: 24px;
+  }
 }
 </style>

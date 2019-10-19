@@ -2,6 +2,7 @@
 	#academy
 		app-notification
 		app-nav
+		app-utility
 		slot
 </template>
 
@@ -11,11 +12,13 @@
 <script>
 import Notification from "@/components/Notification"
 import Nav from "@/components/Nav"
+import Utility from "@/components/Utility"
 export default {
 	name: "Layout",
   components: {
     appNotification: Notification,
-		appNav: Nav
+		appNav: Nav,
+		appUtility: Utility
   }
 }
 </script>
