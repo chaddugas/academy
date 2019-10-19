@@ -86,10 +86,6 @@ query {
         highlands {
 					title
 					phone
-					closures {
-						title
-						date
-					}
           hours {
             title
             open
@@ -99,10 +95,6 @@ query {
         lakewood {
 					title
 					phone
-					closures {
-						title
-						date
-					}
           hours {
             title
             open
