@@ -1,17 +1,17 @@
 <template lang="pug">
-		nav.nav(:class="{active}")
-			.nav-item(@click="navigate('locations')")
-				i.nav-icon.fas.fa-walking
-				span.nav-text Visit
-			.nav-item(@click="navigate('insurance')")
-				i.nav-icon.fas.fa-file-invoice
-				span.nav-text Insurance
-			.nav-item(@click="navigate('staff')")
-				i.nav-icon.fas.fa-id-badge
-				span.nav-text Staff
-			.nav-item(@click="navigate('resources')")
-				i.nav-icon.fas.fa-file-medical-alt
-				span.nav-text Resources
+nav.nav(:class="{active}")
+	.nav-item(@click="navigate('locations')")
+		i.nav-icon.fas.fa-walking
+		span.nav-text Visit
+	.nav-item(@click="navigate('insurance')")
+		i.nav-icon.fas.fa-file-invoice
+		span.nav-text Insurance
+	.nav-item(@click="navigate('staff')")
+		i.nav-icon.fas.fa-id-badge
+		span.nav-text Staff
+	.nav-item(@click="navigate('resources')")
+		i.nav-icon.fas.fa-file-medical-alt
+		span.nav-text Resources
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     navigate(id) {
-      let dest = document.querySelector(`#${id}`);
+      let dest = document.querySelector(`#${id}`)
 
       if (dest)
         window.scrollBy({
@@ -33,20 +33,20 @@ export default {
         });
     },
     activate() {
-      this.active = window.scrollY > 200;
+      this.active = window.scrollY > 200
     },
     init() {
-      window.addEventListener("scroll", this.activate);
+      window.addEventListener("scroll", this.activate)
     },
     destroy() {
-      window.removeEventListener("scroll", this.activate);
+      window.removeEventListener("scroll", this.activate)
     }
   },
   mounted() {
-    if (process.isClient) this.init();
+    if (process.isClient) this.init()
   },
   beforeDestroy() {
-    this.destroy();
+    this.destroy()
   }
 };
 </script>

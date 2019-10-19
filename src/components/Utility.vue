@@ -1,15 +1,37 @@
 <template lang="pug">
-	aside.utility
-		a.utility-item(href="https://mychart.childrenscolorado.org/MyChart/", target="_blank")
-			.utility-icon
-				i.fas.fa-baby
-			p.utility-text My Chart
+aside.utility(:class="{deactivated}")
+	a.utility-item(href="https://mychart.childrenscolorado.org/MyChart/", target="_blank")
+		.utility-icon
+			i.fas.fa-baby
+		p.utility-text My Chart
 </template>
 
 <script>
 export default {
   name: "Utility",
-};
+  data() {
+    return {
+      deactivated: process.isClient ? window.scrollY > 200 : false
+    };
+  },
+  methods: {
+    deactivate() {
+      this.deactivated = window.scrollY > 200
+		},
+    init() {
+      window.addEventListener("scroll", this.deactivate)
+    },
+    destroy() {
+      window.removeEventListener("scroll", this.deactivate)
+    }
+	},
+  mounted() {
+    if (process.isClient) this.init()
+  },
+  beforeDestroy() {
+    this.destroy()
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -21,6 +43,11 @@ export default {
 	padding: 10px 20px;
 	z-index: 10;
 	display: flex;
+	transform: translateY(0);
+	transition: 0.2s ease;
+	&.deactivated {
+		transform: translateY(-100%);
+	}
 }
 
 .utility-item {
