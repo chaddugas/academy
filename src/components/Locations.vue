@@ -244,12 +244,13 @@ export default {
 }
 
 .location-map {
+	order: -1;
   position: relative;
   min-height: 200px;
-  order: 1;
   margin-bottom: 20px;
   flex: 1 1 auto;
   @media (min-width: $md) {
+		order: 1;
     margin-left: 20px;
     margin-bottom: 0;
   }
@@ -326,7 +327,8 @@ export default {
 .location-hours {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
+	margin-top: 10px;
+	width: 100%;
   @media (min-width: $md) {
     max-width: 250px;
     justify-content: flex-start;

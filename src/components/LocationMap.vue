@@ -204,6 +204,16 @@ export default {
 </script>
 
 <style lang="scss">
+.map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .map-content {
 	text-align: left;
 	line-height: 1.5;
@@ -224,17 +234,5 @@ export default {
 		text-decoration: underline;
 		font-size: 12px;
 	}
-}
-</style>
-
-<style lang="scss">
-.map {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 </style>
