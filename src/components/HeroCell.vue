@@ -23,7 +23,6 @@ export default {
   grid-area: span 1 / span 1;
   position: relative;
 	background-size: cover;
-	// opacity: .75;
   &::before {
     content: "";
     position: absolute;

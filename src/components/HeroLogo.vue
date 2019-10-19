@@ -10,7 +10,7 @@ header.logo
 
 <script>
 export default {
-  name: "Logo"
+  name: "HeroLogo"
 };
 </script>
 

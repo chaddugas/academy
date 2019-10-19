@@ -1,6 +1,6 @@
 <template lang="pug">
-	.person(:class="{active}", :style="`background-image: url(${profile.photo})`", @click.self="active = false")
-		.person-profile(@click="toggle")
+	.profile(:class="{active}", :style="`background-image: url(${profile.photo})`", @click.self="close")
+		.profile-inner(@click="toggle")
 			.profile-content
 				.profile-data
 					.profile-image
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { ProfileBus } from '@/EventBus.js'
 export default {
   name: "Profile",
   props: ["title", "profile"],
@@ -22,61 +23,22 @@ export default {
   },
   methods: {
     toggle() {
-      if (process.isClient) {
-        this.$el.querySelector(".profile-content").scrollTop = 0;
-        if (this.active) return (this.active = false);
-
-        let grid = this.$el.closest(".grid");
-        let items = [...grid.querySelectorAll(".person")];
-        let top = 0;
-
-        if (window.matchMedia("(min-width: 850px)").matches) {
-          if (items.indexOf(this.$el) < 5) {
-            top = grid.getBoundingClientRect().top;
-          } else {
-            top =
-              items[items.indexOf(this.$el) - 3].getBoundingClientRect().top -
-              30;
-          }
-        } else {
-          if (items.indexOf(this.$el) < 3) {
-            top = grid.getBoundingClientRect().top;
-          } else {
-            top =
-              items[items.indexOf(this.$el) - 2].getBoundingClientRect().top -
-              20;
-          }
-        }
-
-        this.active = true;
-        window.scrollBy({
-          top,
-          behavior: "smooth"
-        });
-      }
-    },
-    close(e) {
-      let closest = e.target.closest(".person");
-      if (!e.target.closest(".person") || closest != this.$el) {
-        this.active = false;
-      }
-    }
-  },
-  mounted() {
-    if (process.isClient) {
-      document.addEventListener("click", this.close);
-    }
-  },
-  beforeDestroy() {
-    if (process.isClient) {
-      document.removeEventListener("click", this.close);
-    }
-  }
+			this.$el.querySelector(".profile-content").scrollTop = 0;
+			this.active = !this.active
+			ProfileBus.$emit('toggled', this.$el)
+		},
+		close() {
+			this.active = false
+		}
+	},
+	mounted() {
+		ProfileBus.$on('toggled', (el) => (this.$el != el ? this.close() : false))
+	}
 };
 </script>
 
 <style lang="scss" scoped>
-.person {
+.profile {
   grid-area: span 1 / span 1;
   position: relative;
   z-index: -1;
@@ -105,7 +67,7 @@ export default {
   }
 }
 
-.person-profile {
+.profile-inner {
   display: flex;
   position: absolute;
   overflow: hidden;
@@ -232,10 +194,10 @@ export default {
   will-change: opacity;
 }
 
-.person.active {
+.profile.active {
   z-index: 2;
   transition-delay: 0ms;
-  .person-profile {
+  .profile-inner {
     height: calc(200% + 5px);
     width: calc(200% + 5px);
     box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
@@ -265,50 +227,50 @@ export default {
     transition: 250ms 700ms ease;
   }
   &:nth-child(2) {
-    .person-profile {
+    .profile-inner {
       top: 0;
       left: calc(-100% - 5px);
     }
   }
   &:nth-child(2n + 3) {
-    .person-profile {
+    .profile-inner {
       top: calc(-100% - 5px);
       left: 0;
     }
   }
   &:nth-child(2n + 4) {
-    .person-profile {
+    .profile-inner {
       top: calc(-100% - 5px);
       left: calc(-100% - 5px);
     }
   }
   @media (min-width: $md) {
     &:nth-child(2) {
-      .person-profile {
+      .profile-inner {
         top: 0;
         left: calc(-100% - 20px);
       }
     }
     &:nth-child(3) {
-      .person-profile {
+      .profile-inner {
         top: 0;
         left: calc(-200% - 40px);
       }
     }
     &:nth-child(3n + 4) {
-      .person-profile {
+      .profile-inner {
         top: calc(-100% - 20px);
         left: 0;
       }
     }
     &:nth-child(3n + 5) {
-      .person-profile {
+      .profile-inner {
         top: calc(-100% - 20px);
         left: calc(-100% - 20px);
       }
     }
     &:nth-child(3n + 6) {
-      .person-profile {
+      .profile-inner {
         top: calc(-100% - 20px);
         left: calc(-200% - 40px);
       }

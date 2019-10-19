@@ -1,23 +1,24 @@
 <template lang="pug">
-	section#staff.grid
-		.grid-inner
-			.grid-title
+	section#staff.profiles
+		.profiles-inner
+			.profiles-title
 				h2
 					span Meet 
 					span Our
 					span Staff
 			app-profile(
 				v-for="(profile, i) in profiles", 
-				:key="i", :profile="profile")
+				:key="i", 
+				:profile="profile")
 </template>
 
 <script>
 import Profile from "./Profile";
 
 export default {
-	name: "Staff",
+	name: "Profiles",
   components: {
-    appProfile: Profile
+		appProfile: Profile,
 	},
 	computed: {
 		profiles() {
@@ -47,12 +48,12 @@ query {
 </static-query>
 
 <style lang="scss" scoped>
-.grid {
+.profiles {
 	@include container($max: 1200px);
 	padding: 30px 0;
 }
 
-.grid-inner {
+.profiles-inner {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-auto-rows: 1fr;
@@ -65,7 +66,7 @@ query {
 	}
 }
 
-.grid-title {
+.profiles-title {
 	position: relative;
   z-index: -1;
   grid-area: span 1 / span 1;

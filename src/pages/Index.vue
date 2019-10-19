@@ -2,23 +2,26 @@
 	Layout
 		main
 			app-hero
-			app-visit
+			app-locations
 			app-insurance
-			app-grid
+			app-profiles
+			app-resources
 </template>
 
 <script>
 import Hero from "@/components/Hero"
-import Visit from "@/components/Visit"
+import Locations from "@/components/Locations"
 import Insurance from "@/components/Insurance"
-import Grid from "@/components/Grid"
+import Profiles from "@/components/Profiles"
+import Resources from "@/components/Resources"
 export default {
 	name: "Home",
   components: {
     appHero: Hero,
-    appVisit: Visit,
+    appLocations: Locations,
     appInsurance: Insurance,
-    appGrid: Grid
+    appProfiles: Profiles,
+    appResources: Resources
   }
 };
 </script>

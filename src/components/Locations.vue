@@ -1,35 +1,35 @@
 <template lang="pug">
-	section#visit.visit
-		.visit-inner 
-			.visit-item(v-for="office in locations")
-				.visit-map
-					app-map(v-if="ready", :location="map(office)")
-				.visit-content
-					h2.visit-title 
+	section#locations.locations
+		.locations-inner 
+			.location(v-for="office in locations")
+				.location-map
+					app-location-map(v-if="ready", :location="map(office)")
+				.location-content
+					h2.location-title 
 						span {{ office.title }}
 						a(:href="`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${office.lat},${office.long}`", target="_blank") directions
-					.visit-address
+					.location-address
 						span(v-for="line in address(office.address)") {{ line }}
-					.visit-phone 
+					.location-phone 
 						i.fas.fa-phone
 						span {{ office.phone }}
-					.visit-fax
+					.location-fax
 						i.fas.fa-file-contract
 						span {{ office.fax }}
-					.visit-hours
-						span.visit-hour(v-for="hour in office.hours")
+					.location-hours
+						span.location-hour(v-for="hour in office.hours")
 							strong {{ hour.title.substring(0, 2) }}
 							span {{ timeString(hour) }}
 </template>
 
 <script>
 import ID from "@/mixins/ID";
-import Map from "./Map";
+import LocationMap from "./LocationMap";
 export default {
-  name: "Visit",
+  name: "Locations",
   mixins: [ID],
   components: {
-    appMap: Map
+    appLocationMap: LocationMap
   },
   data() {
     return {
@@ -141,11 +141,10 @@ export default {
 </static-query>
 
 <style lang="scss">
-.visit {
-  margin-bottom: 80px;
-	padding-top: 30px;
+.locations {
+  margin: 50px 0 80px;
 }
-.visit-inner {
+.locations-inner {
   @include container($max: 1200px);
   position: relative;
   background: $white;
@@ -188,7 +187,7 @@ export default {
   }
 }
 
-.visit-item {
+.location {
   display: flex;
   flex-direction: column;
   padding: 15px 0 30px;
@@ -212,7 +211,7 @@ export default {
     &:nth-child(even) {
       text-align: right;
       grid-template: auto / 1fr max-content;
-      .visit-title {
+      .location-title {
         align-items: flex-end;
         a::after {
           left: 100%;
@@ -223,11 +222,11 @@ export default {
           right: 0;
         }
       }
-      .visit-map {
+      .location-map {
         grid-area: 1 / 1 / 2 / 2;
       }
-      .visit-phone,
-      .visit-fax {
+      .location-phone,
+      .location-fax {
 				justify-content: flex-end;
 				i {
 					order: 1;
@@ -235,17 +234,17 @@ export default {
 					margin-left: 5px;
 				}
       }
-      .visit-hours {
+      .location-hours {
         justify-content: flex-end;
       }
-      .visit-hour {
+      .location-hour {
         justify-content: flex-end;
       }
     }
   }
 }
 
-.visit-map {
+.location-map {
   grid-area: 1 / 2 / 2 / 3;
   position: relative;
   min-height: 200px;
@@ -256,13 +255,13 @@ export default {
   }
 }
 
-.visit-content {
+.location-content {
   display: flex;
   flex-direction: column;
   color: $onyx;
 }
 
-.visit-title {
+.location-title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -303,8 +302,8 @@ export default {
   }
 }
 
-.visit-address,
-.visit-contact {
+.location-address,
+.location-contact {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -313,8 +312,8 @@ export default {
   }
 }
 
-.visit-phone,
-.visit-fax {
+.location-phone,
+.location-fax {
   display: flex;
   i {
 		text-align: center;
@@ -323,7 +322,7 @@ export default {
   }
 }
 
-.visit-hours {
+.location-hours {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
@@ -334,7 +333,7 @@ export default {
   }
 }
 
-.visit-hour {
+.location-hour {
   flex: 0 0 50%;
   max-width: 50%;
   display: flex;

@@ -1,7 +1,7 @@
 <template lang="pug">
 	transition(name="fade")
 		nav.nav(v-if="active")
-			.nav-item(@click="navigate('visit')")
+			.nav-item(@click="navigate('locations')")
 				i.nav-icon.fas.fa-walking
 				span.nav-text Visit
 			.nav-item(@click="navigate('insurance')")

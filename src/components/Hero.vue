@@ -1,34 +1,34 @@
 <template lang="pug">
 	section.hero(:style="p_transform")
 		.hero-bg
-			app-cell(v-for="item in 20", :key="item", :item="item")
+			app-hero-cell(v-for="item in 20", :key="item", :item="item")
 		.hero-content
-			app-logo
-			app-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
-			app-item(v-for="(item, i) in news", v-if="i < 3" :type="'news'", :item="item", :key="item.title")
+			app-hero-logo
+			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
+			app-hero-item(v-for="(item, i) in news", v-if="i < 3" :type="'news'", :item="item", :key="item.title")
 			span.blank
 			span.blank
 			span.blank
 </template>
 
 <script>
-import Parallax from "@/mixins/Parallax";
-import Logo from "@/components/Logo";
-import Cell from "@/components/Cell";
-import Item from "@/components/Item";
+import Parallax from "@/mixins/Parallax"
+import HeroLogo from "@/components/HeroLogo"
+import HeroCell from "@/components/HeroCell"
+import HeroItem from "@/components/HeroItem"
 
 export default {
   name: "Hero",
   mixins: [Parallax],
   components: {
-    appLogo: Logo,
-    appCell: Cell,
-    appItem: Item
+    appHeroLogo: HeroLogo,
+    appHeroCell: HeroCell,
+    appHeroItem: HeroItem
   },
   data() {
     return {
       media: null
-    };
+    }
   },
   computed: {
     offices() {
@@ -43,24 +43,24 @@ export default {
           hours: this.$static.office.edges[0].node.lakewood.hours,
           icon: "far fa-clock"
         }
-      ];
+      ]
     },
     news() {
-      return this.$static.news.edges[0].node.news;
+      return this.$static.news.edges[0].node.news
     }
   },
   created() {
 		if (process.isClient) {
-			let media = window.matchMedia("(min-width: 1100px)");
+			let media = window.matchMedia("(min-width: 1100px)")
 			let swap = e => {
 				if (e.matches) {
-					this.media = "lg";
+					this.media = "lg"
 				} else {
-					this.media = "sm";
+					this.media = "sm"
 				}
-			};
-			swap(media);
-			media.addListener(swap);
+			}
+			swap(media)
+			media.addListener(swap)
 		}
   }
 };

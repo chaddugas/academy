@@ -7,6 +7,7 @@
 
 <script>
 export default {
+	name: "LocationMap",
 	props: ["location"],
   data() {
     return {
