@@ -154,5 +154,5 @@ collections:
               - {label: 'Name', name: 'title', widget: 'string'}
               - {label: 'Icon', name: 'icon', widget: 'string', hint: 'See here for available icons: https://fontawesome.com/icons?d=gallery&m=free'}
               - {label: 'File', name: 'file', widget: 'file', required: false}
-              - {label: 'Link', name: 'link', widget: 'string', required: false, hint: If you upload a file, the link will be ignored'}
+              - {label: 'Link', name: 'link', widget: 'string', required: false, hint: 'If you upload a file, the link will be ignored'}
 
