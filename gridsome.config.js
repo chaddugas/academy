@@ -80,6 +80,12 @@ module.exports = {
       .rule('pug')
       .test(/\.pug$/)
       .use('pug-plain-loader')
-        .loader('pug-plain-loader')
+			.loader('pug-plain-loader')
+
+		config.module
+			.rule('postcss-loader')
+			.test(/\.css$/)
+			.use(["autoprefixer"])
+			.loader('postcss-loader')
   }
 }
