@@ -187,7 +187,7 @@ export default {
 }
 
 .insurance-item {
-  background: lighten($black, 25%);
+  background: $white;
   transition: 0.25s ease;
   cursor: pointer;
   position: relative;
@@ -218,27 +218,27 @@ export default {
   }
   &:nth-child(5n-4) {
     .insurance-mono {
-      color: $red;
+      color: $indigo;
     }
   }
   &:nth-child(5n-3) {
     .insurance-mono {
-      color: lighten(saturate($teal, 20%), 15%);
+      color: $sky;
     }
   }
   &:nth-child(5n-2) {
     .insurance-mono {
-      color: saturate($paste, 30%);
+      color: $orange;
     }
   }
   &:nth-child(5n-1) {
     .insurance-mono {
-      color: $orange;
+      color: $teal;
     }
   }
   &:nth-child(5n) {
     .insurance-mono {
-      color: lighten(saturate($indigo, 30%), 15%);
+      color: $red;
     }
   }
 }
@@ -262,7 +262,11 @@ export default {
   text-transform: uppercase;
   font-family: $headings;
   line-height: 1;
-  margin-bottom: 5px;
+	margin-bottom: 5px;
+	// position: absolute;
+	// top: 0; left: 0; right: 0; bottom: 0;
+	// margin: auto;
+	// opacity: .2;
   @media (min-width: $md) {
     font-size: 50px;
   }
@@ -272,7 +276,7 @@ export default {
   font-weight: 700;
   text-align: center;
   font-size: 0.75rem;
-  color: $white;
+  color: $onyx;
   @media (min-width: $md) {
     font-size: 1rem;
   }

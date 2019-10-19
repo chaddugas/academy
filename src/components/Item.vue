@@ -62,7 +62,7 @@ export default {
       ) {
         return `Open until ${data[todayIndex].close.replace(' am', '').replace(' pm', '')}`;
       }
-      return "Closed";
+      return "Closed now";
     }
   },
   created() {
@@ -75,7 +75,7 @@ export default {
 
 <style lang="scss", scoped>
 .item {
-  background: $teal;
+  background: saturate($teal, 10%);
   color: $white;
   &--loc {
     background: $orange;

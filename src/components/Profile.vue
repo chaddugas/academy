@@ -127,7 +127,7 @@ export default {
       }
       .profile-image {
         transform: scale(1.15, 1.15);
-        filter: grayscale(0%);
+        filter: grayscale(0%) brightness(60%);
       }
     }
   }
@@ -236,9 +236,13 @@ export default {
   z-index: 2;
   transition-delay: 0ms;
   .person-profile {
-    height: calc(200% + 20px);
-    width: calc(200% + 20px);
+    height: calc(200% + 5px);
+    width: calc(200% + 5px);
     box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
+    @media (min-width: $md) {
+      height: calc(200% + 20px);
+      width: calc(200% + 20px);
+    }
   }
   .profile-content {
     pointer-events: all;
@@ -263,19 +267,19 @@ export default {
   &:nth-child(2) {
     .person-profile {
       top: 0;
-      left: calc(-100% - 20px);
+      left: calc(-100% - 5px);
     }
   }
   &:nth-child(2n + 3) {
     .person-profile {
-      top: calc(-100% - 20px);
+      top: calc(-100% - 5px);
       left: 0;
     }
   }
   &:nth-child(2n + 4) {
     .person-profile {
-      top: calc(-100% - 20px);
-      left: calc(-100% - 20px);
+      top: calc(-100% - 5px);
+      left: calc(-100% - 5px);
     }
   }
   @media (min-width: $md) {

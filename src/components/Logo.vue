@@ -28,7 +28,13 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+  padding: 15px;
+  @media (min-width: $sm) {
+  padding: 20px;
+	}
+  @media (min-width: $md) {
   padding: 30px;
+	}
 }
 
 .logo-text {

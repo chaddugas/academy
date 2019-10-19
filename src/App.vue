@@ -32,6 +32,7 @@ body {
   font-size: $b_size;
   line-height: 1.4;
   background: $gray;
+	color: $onyx;
 }
 
 main {

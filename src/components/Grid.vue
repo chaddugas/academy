@@ -59,9 +59,6 @@ query {
 	grid-gap: 5px;
 	position: relative;
 	z-index: 1;
-	@media (min-width: $sm) {
-		grid-gap: 10px;
-	}
 	@media (min-width: $md) {
 		grid-gap: 20px;
 		grid-template-columns: repeat(3, 1fr);

@@ -1,39 +1,32 @@
 export default {
 	data() {
 		return {
-			para_distance: 300,
-			para_start: 0,
-			para_end: 0,
-			para_state: 'translateY(0)'
+			p_distance: 300,
+			p_start: 0,
+			p_end: 0,
+			p_state: 'translateY(0)'
 		}
 	},
 	computed: {
-		transform() {
-			if (process.isClient) {
-				if (window.innerHeight > window.innerWidth * .8 || (window.matchMedia("(min-width: 1300px)").matches) && (window.matchMedia("(min-height: 1300px)").matches)) {
-					return { 'transform': this.para_state }
-				}
-				else {
-					return {
-						'transform': 'none'
-					}
-				}
-			}
-			else {
-				return
-			}
+		p_transform() {
+			return { 'transform': this.p_state }
 		}
 	},
 	methods: {
-		para_update() {
-			this.para_start = 0
-			this.para_end = this.$el.offsetHeight * -1
+		p_update() {
+			this.p_end = this.$el.offsetHeight * -1
 		},
-		para_move() {
+		p_move() {
+			let client = process.isClient
+			let desktop = window.matchMedia("(min-width: 850px)").matches
+			let visibleRatio = window.innerHeight > window.innerWidth * .8
+			let safeSize = window.matchMedia("(min-width: 1300px)").matches && window.matchMedia("(min-height: 1300px)").matches
 			let top = this.$el.getBoundingClientRect().top
-			let move = this.between(top, this.para_start, this.para_end) * this.para_distance
+			let move = 0
 
-			this.para_state = `translateY(${move}px)`
+			if (client && desktop && (visibleRatio || safeSize)) move = this.between(top, this.p_start, this.p_end) * this.p_distance
+
+			this.p_state = `translateY(${move}px)`
 		},
 		between(val, min, max, percent = false) {
 			let upper = val - min;
@@ -51,18 +44,18 @@ export default {
 	},
 	mounted() {
 		if (process.isClient) {
-			window.addEventListener('scroll', this.para_move)
-			window.addEventListener('resize', this.para_update)
-			window.addEventListener('orientationchange', this.para_update)
-			this.para_update()
-			this.para_move()
+			window.addEventListener('scroll', this.p_move)
+			window.addEventListener('resize', this.p_update)
+			window.addEventListener('orientationchange', this.p_update)
+			this.p_update()
+			this.p_move()
 		}
 	},
 	beforeDestroy() {
 		if (process.isClient) {
-			window.removeEventListener('scroll', this.para_move)
-			window.removeEventListener('resize', this.para_update)
-			window.removeEventListener('orientationchange', this.para_update)
+			window.removeEventListener('scroll', this.p_move)
+			window.removeEventListener('resize', this.p_update)
+			window.removeEventListener('orientationchange', this.p_update)
 		}
 	}
 }

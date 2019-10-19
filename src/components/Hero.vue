@@ -1,5 +1,5 @@
 <template lang="pug">
-	section.hero(:style="transform")
+	section.hero(:style="p_transform")
 		.hero-bg
 			app-cell(v-for="item in 20", :key="item", :item="item")
 		.hero-content
@@ -132,30 +132,24 @@ query {
   display: grid;
   grid-gap: 5px;
   z-index: 1;
+  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+  height: 100%;
   @media (min-width: $sm) {
+    grid-template: repeat(4, 1fr) / repeat(5, 1fr);
     grid-gap: 10px;
-  }
-  @media (min-width: $lg) {
-    margin: 0;
   }
 }
 
 .hero-bg {
+	pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 100%;
-  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
-  @media (min-width: $sm) {
-    grid-template: repeat(4, 1fr) / repeat(5, 1fr);
-  }
 }
 
 .hero-content {
-  height: 100%;
-  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
   grid-template-areas:
     "l l l . e"
     "l l l . ."
@@ -164,11 +158,10 @@ query {
     "d d d b b";
 
   @media (min-width: $sm) {
-    grid-template: repeat(4, 1fr) / repeat(5, 1fr);
     grid-template-areas:
-      "l l l a a"
-      "l l l . e"
-      "f b b . ."
+      "l l . . f"
+      "l l a . ."
+      "e b . . ."
       "c c d d .";
   }
   @media (min-width: $lg) {
@@ -204,18 +197,19 @@ query {
 .blank {
   z-index: -1;
   position: relative;
-  &:nth-of-type(1) {
-    grid-area: e;
-  }
-  &:nth-of-type(2) {
-    grid-area: d;
-  }
-  &:nth-of-type(3) {
-    grid-area: e;
-    @media (min-width: $sm) {
-      grid-area: f;
-    }
-  }
+	display: none;
+	&:nth-of-type(1) {
+		grid-area: e;
+	}
+	&:nth-of-type(2) {
+		grid-area: d;
+	}
+	&:nth-of-type(3) {
+		grid-area: f;
+	}
+	@media (min-width: $sm) {
+		display: block;
+	}
   &:after {
     background: $gray;
     content: "";
