@@ -167,30 +167,30 @@ export default {
 }
 
 .insurance-items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1fr;
-  width: 100%;
-  grid-gap: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% + 5px);
   z-index: 1;
+  margin: 0 -2.5px -5px;
   @media (min-width: $sm) {
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
+    width: calc(100% + 20px);
+    margin: 0 -10px -20px;
   }
   @media (min-width: $md) {
-    grid-template-columns: repeat(5, 1fr);
   }
   @media (min-width: $lg) {
     flex: 1 1 100%;
-    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .insurance-item {
+	flex: 0 0 calc(25% - 5px);
+	margin: 0 2.5px 5px;
   background: $white;
   transition: 0.25s ease;
   cursor: pointer;
   position: relative;
+  padding: 15px;
   &::before {
     content: "";
     position: relative;
@@ -206,10 +206,16 @@ export default {
     z-index: -1;
     content: "";
   }
-  @media ($sm) {
-    padding: 15px;
+  @media (min-width: $sm) {
+    flex: 0 0 calc(25% - 20px);
+    margin: 0 10px 20px;
   }
-  @media ($md) {
+  @media (min-width: $md) {
+    flex: 0 0 calc(20% - 20px);
+    padding: 20px;
+  }
+  @media (min-width: $lg) {
+    flex: 0 0 calc(25% - 20px);
     padding: 20px;
   }
   &:hover {
@@ -262,11 +268,11 @@ export default {
   text-transform: uppercase;
   font-family: $headings;
   line-height: 1;
-	margin-bottom: 5px;
-	// position: absolute;
-	// top: 0; left: 0; right: 0; bottom: 0;
-	// margin: auto;
-	// opacity: .2;
+  margin-bottom: 5px;
+  // position: absolute;
+  // top: 0; left: 0; right: 0; bottom: 0;
+  // margin: auto;
+  // opacity: .2;
   @media (min-width: $md) {
     font-size: 50px;
   }
