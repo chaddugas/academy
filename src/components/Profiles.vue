@@ -48,7 +48,6 @@ query {
 </static-query>
 
 <style lang="scss" scoped>
-/* autoprefixer grid: on */
 .profiles {
 	@include container($max: 1200px);
 	padding: 30px 0;
