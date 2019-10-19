@@ -184,8 +184,8 @@ export default {
 }
 
 .insurance-item {
-	flex: 0 0 calc(25% - 5px);
-	width: calc(25% - 5px);
+	flex: 0 0 calc(33.333% - 5px);
+	width: calc(33.333% - 5px);
 	margin: 0 2.5px 5px;
   background: $white;
   transition: 0.25s ease;

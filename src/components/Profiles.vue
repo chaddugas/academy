@@ -55,24 +55,24 @@ query {
 }
 
 .profiles-inner {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(20, auto);
-	grid-column-gap: 5px;
-	grid-row-gap: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	width: calc(100% + 10px);
+	margin: 0 -5px;
 	position: relative;
 	z-index: 1;
 	@media (min-width: $md) {
-		grid-column-gap: 20px;
-		grid-row-gap: 20px;
-		grid-template-columns: repeat(3, 1fr);
+		width: calc(100% + 40px);
+		margin: 0 -20px;
 	}
 }
 
 .profiles-title {
 	position: relative;
   z-index: -1;
-  grid-area: span 1 / span 1;
+	flex: 0 0 calc(50% - 5px);
+	width: calc(50% - 5px);
+	margin: 0 2.5px 5px;
 	background: $red;
   transition: none;
   transition-delay: 0;
@@ -82,6 +82,11 @@ query {
   @media (min-width: $sm) {
     padding: 40px;
   }
+	@media (min-width: $md) {
+		flex: 0 0 calc(33.333% - 20px);
+		width: calc(33.333% - 20px);
+		margin: 0 10px 20px;
+	}
   h2 {
     position: absolute;
     display: flex;

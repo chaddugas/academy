@@ -39,9 +39,11 @@ export default {
 
 <style lang="scss" scoped>
 .profile {
-  grid-area: span 1 / span 1;
   position: relative;
   z-index: -1;
+	flex: 0 0 calc(50% - 5px);
+	width: calc(50% - 5px);
+	margin: 0 2.5px 5px;
   transition: z-index 0ms linear;
   transition-delay: 500ms;
   background-size: 0 0;
@@ -65,6 +67,11 @@ export default {
     filter: grayscale(50%);
     opacity: 0.25;
   }
+	@media (min-width: $md) {
+		flex: 0 0 calc(33.333% - 20px);
+		width: calc(33.333% - 20px);
+		margin: 0 10px 20px;
+	}
 }
 
 .profile-inner {
