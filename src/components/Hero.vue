@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import Parallax from "@/mixins/Parallax"
-import HeroLogo from "@/components/HeroLogo"
-import HeroCell from "@/components/HeroCell"
-import HeroItem from "@/components/HeroItem"
+import Parallax from "@/mixins/Parallax";
+import HeroLogo from "@/components/HeroLogo";
+import HeroCell from "@/components/HeroCell";
+import HeroItem from "@/components/HeroItem";
 
 export default {
   name: "Hero",
@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       media: null
-    }
+    };
   },
   computed: {
     offices() {
@@ -43,25 +43,25 @@ export default {
           hours: this.$static.office.edges[0].node.lakewood.hours,
           icon: "far fa-clock"
         }
-      ]
+      ];
     },
     news() {
-      return this.$static.news.edges[0].node.news
+      return this.$static.news.edges[0].node.news;
     }
   },
   created() {
-		if (process.isClient) {
-			let media = window.matchMedia("(min-width: 1100px)")
-			let swap = e => {
-				if (e.matches) {
-					this.media = "lg"
-				} else {
-					this.media = "sm"
-				}
-			}
-			swap(media)
-			media.addListener(swap)
-		}
+    if (process.isClient) {
+      let media = window.matchMedia("(min-width: 1100px)");
+      let swap = e => {
+        if (e.matches) {
+          this.media = "lg";
+        } else {
+          this.media = "sm";
+        }
+      };
+      swap(media);
+      media.addListener(swap);
+    }
   }
 };
 </script>
@@ -108,6 +108,7 @@ query {
 </static-query>
 
 <style lang="scss" scoped>
+/* autoprefixer grid: on */
 .hero {
   width: 100%;
   display: flex;
@@ -116,13 +117,13 @@ query {
   height: auto;
   display: flex;
   flex-direction: column;
-	height: 100vw;
-	will-change: transform;
-	max-width: 1300px;
-	max-height: 1300px;
-	margin: 0 auto;
+  height: 100vw;
+  will-change: transform;
+  max-width: 1300px;
+  max-height: 1300px;
+  margin: 0 auto;
   @media (min-width: $sm) {
-		max-height: 1040px;
+    max-height: 1040px;
     height: 80vw;
   }
 }
@@ -130,18 +131,22 @@ query {
 .hero-bg,
 .hero-content {
   display: grid;
-  grid-gap: 5px;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
   z-index: 1;
-  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
   height: 100%;
   @media (min-width: $sm) {
-    grid-template: repeat(4, 1fr) / repeat(5, 1fr);
-    grid-gap: 10px;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
   }
 }
 
 .hero-bg {
-	pointer-events: none;
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -197,19 +202,19 @@ query {
 .blank {
   z-index: -1;
   position: relative;
-	display: none;
-	&:nth-of-type(1) {
-		grid-area: e;
-	}
-	&:nth-of-type(2) {
-		grid-area: d;
-	}
-	&:nth-of-type(3) {
-		grid-area: f;
-	}
-	@media (min-width: $sm) {
-		display: block;
-	}
+  display: none;
+  &:nth-of-type(1) {
+    grid-area: e;
+  }
+  &:nth-of-type(2) {
+    grid-area: d;
+  }
+  &:nth-of-type(3) {
+    grid-area: f;
+  }
+  @media (min-width: $sm) {
+    display: block;
+  }
   &:after {
     background: $gray;
     content: "";

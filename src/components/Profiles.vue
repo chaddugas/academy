@@ -48,6 +48,7 @@ query {
 </static-query>
 
 <style lang="scss" scoped>
+/* autoprefixer grid: on */
 .profiles {
 	@include container($max: 1200px);
 	padding: 30px 0;
@@ -56,12 +57,14 @@ query {
 .profiles-inner {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-auto-rows: 1fr;
-	grid-gap: 5px;
+	grid-template-rows: repeat(20, auto);
+	grid-column-gap: 5px;
+	grid-row-gap: 5px;
 	position: relative;
 	z-index: 1;
 	@media (min-width: $md) {
-		grid-gap: 20px;
+		grid-column-gap: 20px;
+		grid-row-gap: 20px;
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
