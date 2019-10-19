@@ -12,7 +12,7 @@
 						span(v-for="line in address(office.address)") {{ line }}
 					.location-phone 
 						i.fas.fa-phone
-						span {{ office.phone }}
+						a(:href="`tel:${office.phone.replace(/ /g,'').replace(/\-/g,'')}`") {{ office.phone }}
 					.location-fax
 						i.fas.fa-file-contract
 						span {{ office.fax }}
