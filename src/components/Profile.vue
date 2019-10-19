@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { ProfileBus } from '@/EventBus.js'
+import { ProfileBus } from "@/EventBus.js";
 export default {
   name: "Profile",
   props: ["title", "profile"],
@@ -23,17 +23,17 @@ export default {
   },
   methods: {
     toggle() {
-			this.$el.querySelector(".profile-content").scrollTop = 0;
-			this.active = !this.active
-			ProfileBus.$emit('toggled', this.$el)
-		},
-		close() {
-			this.active = false
-		}
-	},
-	mounted() {
-		ProfileBus.$on('toggled', (el) => (this.$el != el ? this.close() : false))
-	}
+      this.$el.querySelector(".profile-content").scrollTop = 0;
+      this.active = !this.active;
+      ProfileBus.$emit("toggled", this.$el);
+    },
+    close() {
+      this.active = false;
+    }
+  },
+  mounted() {
+    ProfileBus.$on("toggled", el => (this.$el != el ? this.close() : false));
+  }
 };
 </script>
 
@@ -72,24 +72,26 @@ export default {
   position: absolute;
   overflow: hidden;
   cursor: pointer;
-  height: 100%;
-  width: 100%;
+  height: calc(100% + 0px);
+  width: calc(100% + 0px);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 1;
-  transition: 500ms ease;
-  will-change: height, width, top, left;
-  @media (hover: hover) {
-    &:hover {
-      .profile-name {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .profile-image {
-        transform: scale(1.15, 1.15);
-        filter: grayscale(0%) brightness(60%);
+  @supports (mix-blend-mode: screen) {
+    transition: 500ms ease;
+    will-change: height, width, top, left;
+    @media (hover: hover) {
+      &:hover {
+        .profile-name {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .profile-image {
+          transform: scale(1.15, 1.15);
+          filter: grayscale(0%) brightness(60%);
+        }
       }
     }
   }
@@ -98,13 +100,15 @@ export default {
 .profile-content {
   height: 100%;
   width: 100%;
-  transition: 500ms ease;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   pointer-events: none;
   background-color: $white;
   transform: scale(1, 1);
   position: relative;
+  @supports (mix-blend-mode: screen) {
+    transition: 500ms ease;
+  }
   &:before {
     content: "";
     position: absolute;
@@ -144,17 +148,21 @@ export default {
   position: relative;
   width: 100%;
   max-width: 100%;
-  transition: 500ms ease;
   float: left;
-  will-change: width, max-width;
+  @supports (mix-blend-mode: screen) {
+    transition: 500ms ease;
+    will-change: width, max-width;
+  }
 }
 
 .profile-image {
   position: relative;
-  transition: 500ms ease;
   transform: scale(1, 1);
-  will-change: transform, filter;
   z-index: 1;
+  @supports (mix-blend-mode: screen) {
+    transition: 500ms ease;
+    will-change: transform, filter;
+  }
   img {
     max-width: 100%;
   }
@@ -169,15 +177,17 @@ export default {
   color: $black;
   padding: 5px;
   pointer-events: none;
-  transition: 500ms ease;
   text-transform: uppercase;
-  mix-blend-mode: screen;
   background: $white;
   margin: 0;
   opacity: 0;
   transform: translateY(100%);
   z-index: 2;
-  will-change: opacity transform;
+  @supports (mix-blend-mode: screen) {
+    mix-blend-mode: screen;
+    transition: 500ms ease;
+    will-change: opacity transform;
+  }
   @media (min-width: $xs) {
     font-size: 16px;
   }
@@ -207,6 +217,7 @@ export default {
     }
   }
   .profile-content {
+    overflow-y: auto;
     pointer-events: all;
   }
   .profile-data {
@@ -224,7 +235,9 @@ export default {
   .profile-wysiwyg {
     opacity: 1;
     visibility: visible;
-    transition: 250ms 700ms ease;
+    @supports (mix-blend-mode: screen) {
+      transition: 250ms 700ms ease;
+    }
   }
   &:nth-child(2) {
     .profile-inner {

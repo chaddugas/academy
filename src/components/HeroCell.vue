@@ -30,8 +30,12 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background: $sky;
-    mix-blend-mode: screen;
+		background: $sky;
+		opacity: .5;
+		@supports (mix-blend-mode: screen) {
+			opacity: 1;
+			mix-blend-mode: screen;
+		}
   }
 }
 </style>

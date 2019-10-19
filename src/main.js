@@ -1,5 +1,6 @@
 // This is the main.js file. Import global CSS and scripts here.
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
+import 'unfetch/polyfill'
 import DefaultLayout from '~/layouts/Default.vue'
 import VueMarkdown from 'vue-markdown'
 import smoothscroll from 'smoothscroll-polyfill'
