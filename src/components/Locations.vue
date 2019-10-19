@@ -201,16 +201,13 @@ export default {
     padding-bottom: 15px;
   }
   @media (min-width: $md) {
-    display: grid;
-    grid-template: auto / max-content 1fr;
-    grid-gap: 40px;
+    flex-direction: row;
     padding: 30px 0 60px;
     &:last-child {
       padding-bottom: 30px;
     }
     &:nth-child(even) {
       text-align: right;
-      grid-template: auto / 1fr max-content;
       .location-title {
         align-items: flex-end;
         a::after {
@@ -223,16 +220,18 @@ export default {
         }
       }
       .location-map {
-        grid-area: 1 / 1 / 2 / 2;
+				order: -1;
+				margin-left: 0;
+				margin-right: 20px;
       }
       .location-phone,
       .location-fax {
-				justify-content: flex-end;
-				i {
-					order: 1;
-					margin-right: 0;
-					margin-left: 5px;
-				}
+        justify-content: flex-end;
+        i {
+          order: 1;
+          margin-right: 0;
+          margin-left: 5px;
+        }
       }
       .location-hours {
         justify-content: flex-end;
@@ -245,17 +244,19 @@ export default {
 }
 
 .location-map {
-  grid-area: 1 / 2 / 2 / 3;
   position: relative;
   min-height: 200px;
-  order: -1;
+  order: 1;
   margin-bottom: 20px;
+  flex: 1 1 auto;
   @media (min-width: $md) {
+    margin-left: 20px;
     margin-bottom: 0;
   }
 }
 
 .location-content {
+	flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   color: $onyx;
@@ -273,8 +274,8 @@ export default {
     color: lighten($onyx, 20%);
     font-size: 14px;
     position: relative;
-		transition: 0.5s ease;
-		font-family: $body;
+    transition: 0.5s ease;
+    font-family: $body;
     &::before {
       content: "";
       position: absolute;
@@ -316,8 +317,8 @@ export default {
 .location-fax {
   display: flex;
   i {
-		text-align: center;
-		width: 18px;
+    text-align: center;
+    width: 18px;
     margin-right: 5px;
   }
 }

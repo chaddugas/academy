@@ -185,6 +185,7 @@ export default {
 
 .insurance-item {
 	flex: 0 0 calc(25% - 5px);
+	width: calc(25% - 5px);
 	margin: 0 2.5px 5px;
   background: $white;
   transition: 0.25s ease;
@@ -207,15 +208,18 @@ export default {
     content: "";
   }
   @media (min-width: $sm) {
-    flex: 0 0 calc(25% - 20px);
+		flex: 0 0 calc(25% - 20px);
+		width: calc(25% - 20px);
     margin: 0 10px 20px;
   }
   @media (min-width: $md) {
-    flex: 0 0 calc(20% - 20px);
+		flex: 0 0 calc(20% - 20px);
+		width: calc(20% - 20px);
     padding: 20px;
   }
   @media (min-width: $lg) {
-    flex: 0 0 calc(25% - 20px);
+		flex: 0 0 calc(25% - 20px);
+		width: calc(25% - 20px);
     padding: 20px;
   }
   &:hover {
@@ -250,7 +254,9 @@ export default {
 }
 
 .insurance-inner {
-  position: absolute;
+	position: absolute;
+	height: 100%;
+	width: 100%;
   top: 0;
   left: 0;
   right: 0;
@@ -268,11 +274,9 @@ export default {
   text-transform: uppercase;
   font-family: $headings;
   line-height: 1;
-  margin-bottom: 5px;
-  // position: absolute;
-  // top: 0; left: 0; right: 0; bottom: 0;
-  // margin: auto;
-  // opacity: .2;
+	margin-bottom: 5px;
+	width: 100%;
+  text-align: center;
   @media (min-width: $md) {
     font-size: 50px;
   }
@@ -283,6 +287,7 @@ export default {
   text-align: center;
   font-size: 0.75rem;
   color: $onyx;
+	width: 100%;
   @media (min-width: $md) {
     font-size: 1rem;
   }
