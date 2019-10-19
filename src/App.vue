@@ -37,7 +37,6 @@ body {
 
 main {
   z-index: 1;
-  padding-bottom: 80px;
 }
 
 h1,

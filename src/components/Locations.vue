@@ -7,7 +7,7 @@
 				.location-content
 					h2.location-title 
 						span {{ office.title }}
-						a(:href="`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${office.lat},${office.long}`", target="_blank") directions
+						a(:href="`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${office.lat},${office.lng}`", target="_blank") directions
 					.location-address
 						span(v-for="line in address(office.address)") {{ line }}
 					.location-phone 
