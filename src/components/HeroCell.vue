@@ -1,5 +1,6 @@
 <template lang='pug'>
-	.hero-cell(:style="bg") 
+	.hero-cell
+		.cell-img(:style="bg") 
 </template>
 
 <script>
@@ -20,10 +21,11 @@ export default {
 
 <style lang='scss' scoped>
 .hero-cell {
-  position: relative;
-  background-size: cover;
+	position: relative;
+	background-color: $sky;
   margin: 0 2.5px;
-  margin-bottom: 5px;
+	margin-bottom: 5px;
+	overflow: hidden;
   @media (min-width: $sm) {
     margin: 0 5px;
     margin-bottom: 10px;
@@ -46,6 +48,11 @@ export default {
 		}
 		$c: $c+1;
 	}
-  
+}
+
+.cell-img {
+	position: absolute;
+	top: -2.5px; left: -2.5px; right: -2.5px; bottom: -2.5px;
+  background-size: cover;
 }
 </style>

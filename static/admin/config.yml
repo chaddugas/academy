@@ -75,7 +75,7 @@ collections:
                 fields:
                   - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
                   - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
-                  - {label: 'Lunch', name: 'lunch', widget: 'text', required: false}
+                  - {label: 'Lunch', name: 'lunch', widget: 'string', required: false}
                   - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
               - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
           - label: 'Lakewood'
@@ -105,7 +105,7 @@ collections:
                 fields:
                   - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
                   - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
-                  - {label: 'Lunch', name: 'lunch', widget: 'text', required: false}
+                  - {label: 'Lunch', name: 'lunch', widget: 'string', required: false}
                   - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
               - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
 
