@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     alert() {
-    	return this.$static.alert.edges[0].node
+      return this.$static.alert.edges[0].node;
     }
   },
   methods: {
@@ -112,6 +112,15 @@ export default {
   }
 }
 
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .note {
   display: flex;
   position: fixed;
@@ -125,13 +134,47 @@ export default {
   transform: translate(-50%, -150%);
   z-index: 25;
   box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
-  transition: .8s ease;
+  transition: 0.8s ease;
   &.active {
     transition: none;
     animation: enter 0.8s 1.5s forwards ease;
+    &::before {
+      transition: none;
+      animation: fadein 0.8s 1.5s forwards ease;
+    }
   }
   &.dismissed {
     transform: translate(-50%, 0);
+    &::before {
+      opacity: 0;
+    }
+  }
+  &::before {
+    position: fixed;
+		pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    right: 0;
+    bottom: 0;
+    height: 200vh;
+    width: 100vw;
+    opacity: 0;
+    background: rgba($onyx, 0.8);
+    transition: 0.8s ease;
+    content: "";
+    z-index: -2;
+    transition: 0.25s ease;
+  }
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $white;
+    content: "";
+    z-index: -1;
   }
 }
 

@@ -16,18 +16,18 @@
 import Profile from "./Profile";
 
 export default {
-	name: "Profiles",
+  name: "Profiles",
   components: {
-		appProfile: Profile,
-	},
-	computed: {
-		profiles() {
-			let profiles = this.$static.profiles.edges[0].node.profiles
-			profiles = profiles.filter(profile => profile.visible)
-			return profiles
-		}
-	}
-}
+    appProfile: Profile
+  },
+  computed: {
+    profiles() {
+      let profiles = this.$static.profiles.edges[0].node.profiles;
+      profiles = profiles.filter(profile => profile.visible);
+      return profiles;
+    }
+  }
+};
 </script>
 
 <static-query>
@@ -49,30 +49,30 @@ query {
 
 <style lang="scss" scoped>
 .profiles {
-	@include container($max: 1200px);
-	padding: 30px 0;
+  @include container($max: 1200px);
+  padding: 30px 0;
 }
 
 .profiles-inner {
-	display: flex;
-	flex-wrap: wrap;
-	width: calc(100% + 10px);
-	margin: 0 -5px;
-	position: relative;
-	z-index: 1;
-	@media (min-width: $md) {
-		width: calc(100% + 40px);
-		margin: 0 -20px;
-	}
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% + 10px);
+  margin: 0 -5px;
+  position: relative;
+  z-index: 1;
+  @media (min-width: $md) {
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+  }
 }
 
 .profiles-title {
-	position: relative;
+  position: relative;
   z-index: -1;
-	flex: 0 0 calc(50% - 5px);
-	width: calc(50% - 5px);
-	margin: 0 2.5px 5px;
-	background: $red;
+  flex: 0 0 calc(50% - 5px);
+  width: calc(50% - 5px);
+  margin: 0 2.5px 5px;
+  background: $red;
   transition: none;
   transition-delay: 0;
   @media (min-width: $xs) {
@@ -81,11 +81,11 @@ query {
   @media (min-width: $sm) {
     padding: 40px;
   }
-	@media (min-width: $md) {
-		flex: 0 0 calc(33.333% - 20px);
-		width: calc(33.333% - 20px);
-		margin: 0 10px 20px;
-	}
+  @media (min-width: $md) {
+    flex: 0 0 calc(33.333% - 20px);
+    width: calc(33.333% - 20px);
+    margin: 0 10px 20px;
+  }
   h2 {
     position: absolute;
     display: flex;

@@ -3,7 +3,7 @@ header.logo
 	.logo-inner
 		span.logo-text Academy 
 		span.logo-text 
-			i.fa.fa-heartbeat
+			i.fas.fa-heartbeat
 			| Park
 		span.logo-text Pediatrics
 </template>
