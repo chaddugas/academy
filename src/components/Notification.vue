@@ -125,10 +125,10 @@ export default {
   transform: translate(-50%, -150%);
   z-index: 25;
   box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
-  transition: 0.25s ease;
+  transition: .8s ease;
   &.active {
     transition: none;
-    animation: enter 0.4s 1.5s forwards ease;
+    animation: enter 0.8s 1.5s forwards ease;
   }
   &.dismissed {
     transform: translate(-50%, 0);

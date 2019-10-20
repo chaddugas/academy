@@ -121,19 +121,17 @@ export default {
   right: -30px;
   bottom: 0;
   height: 100%;
-  width: 100%;
+  width: calc(100vw + 60px);
 	z-index: 20;
-	padding: 0 30px;
-  background: transparent;
+	background: transparent;
   pointer-events: none;
 	transition: 0.2s 1s ease;
   overflow-x: hidden;
   overflow-y: auto;
   &.active {
-    opacity: 1;
+	background: $gray;
     pointer-events: all;
     transition: 0.2s ease;
-    background: $gray;
     .nav-trigger {
       background: $red;
       color: $white;
@@ -203,10 +201,10 @@ export default {
 }
 
 .nav-inner {
-  @include container($max: 550px, $margin: 10px);
+  @include container($max: 550px, $margin: 40px);
   display: flex;
   flex-wrap: wrap;
-  padding: 54px 0 30px;
+	padding: 54px 0 30px;
 }
 
 .nav-item {
