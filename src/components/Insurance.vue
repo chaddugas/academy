@@ -1,11 +1,7 @@
 <template lang="pug">
 	#insurance.insurance
 		transition-group.insurance-content(name="fade", tag="div")
-			.insurance-wysiwyg(:class="{hidden: active}", :key="'wysiwyg'")
-				h1 Insurance
-				p When you arrive at our office, please have your insurance card ready. Please call if you are going to be late or need to reschedule. If you have insurance or demographic changes, please arrive 5 to 10 minutes prior to your appointment.
-				p Please call our office insurance department prior to relying on Health Insurance Website Information as our contracting may change.
-				p We are happy to answer your insurance participation questions at 303-988-5252. 
+			Markdown.insurance-wysiwyg(:class="{hidden: active}", :key="'wysiwyg'") {{ main }}
 			.insurance-info(v-if="active", :key="'info'") 
 				h3.insurance-infoName {{heading}}
 				p.insurance-infoCopy {{content}}
@@ -26,6 +22,7 @@ query {
   insurance: allInsurance {
     edges {
       node {
+				title
         insurance {
           title
           info 
@@ -50,8 +47,11 @@ export default {
       return this.active_item.title;
     },
     content() {
-      return this.active_item.info;
-    },
+			return this.active_item.info
+		},
+		main() {
+			return this.$static.insurance.edges[0].node.title
+		},
     insurance() {
       return this.$static.insurance.edges[0].node.insurance;
     }

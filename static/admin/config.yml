@@ -126,7 +126,8 @@ collections:
             required: true
             fields:
               - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
-              - {label: 'Photo', name: 'photo', widget: 'image'}
+              - {label: 'Photo', name: 'photo', widget: 'image', allow_multiple: true}
+              - {label: 'Family Photo', name: 'family_photo', widget: 'image', required: false}
               - {label: 'Bio', name: 'bio', widget: 'markdown'}
               - {label: 'Visible', name: 'visible', widget: 'boolean', default: true}
 
