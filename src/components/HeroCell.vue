@@ -22,6 +22,12 @@ export default {
 .hero-cell {
   position: relative;
   background-size: cover;
+  margin: 0 2.5px;
+  margin-bottom: 5px;
+  @media (min-width: $sm) {
+    margin: 0 5px;
+    margin-bottom: 10px;
+  }
   &::before {
     content: "";
     position: absolute;

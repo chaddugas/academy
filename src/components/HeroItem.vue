@@ -54,13 +54,17 @@ export default {
         this.now.getTime() <
         new Date().setHours(today.open[0], today.open[1], 0)
       ) {
-        return `Opens at ${data[todayIndex].open.replace(' am', '').replace(' pm', '')}`;
+        return `Opens at ${data[todayIndex].open
+          .replace(" am", "")
+          .replace(" pm", "")}`;
       }
       if (
         this.now.getTime() <
         new Date().setHours(today.close[0], today.close[1], 0)
       ) {
-        return `Open until ${data[todayIndex].close.replace(' am', '').replace(' pm', '')}`;
+        return `Open until ${data[todayIndex].close
+          .replace(" am", "")
+          .replace(" pm", "")}`;
       }
       return "Closed now";
     }
@@ -77,6 +81,12 @@ export default {
 .item {
   background: saturate($teal, 10%);
   color: $white;
+  margin: 0 2.5px;
+  margin-bottom: 5px;
+  @media (min-width: $sm) {
+    margin: 0 5px;
+    margin-bottom: 10px;
+  }
   &--loc {
     background: $orange;
     color: $onyx;
@@ -94,28 +104,28 @@ export default {
   align-items: center;
   justify-content: flex-end;
   @media (min-width: $md) {
-		padding: 20px;
-	}
+    padding: 20px;
+  }
 }
 
 .item-grid {
   display: grid;
   grid-template: repeat(2, min-content) / 1fr 20px;
   grid-gap: 3px 0;
-	text-align: right;
-	line-height: 1.1;
+  text-align: right;
+  line-height: 1.1;
   @media (min-width: $md) {
-		line-height: 1.4;
+    line-height: 1.4;
     grid-template: repeat(2, min-content) / 1fr 25px;
     grid-gap: 5px 10px;
   }
 }
 
 .item-icon {
-	display: none;
+  display: none;
   @media (min-width: $md) {
-		display: block;
-		grid-area: 1 / 2 / 2 / 3;
+    display: block;
+    grid-area: 1 / 2 / 2 / 3;
     font-size: 24px;
   }
 }
@@ -125,7 +135,7 @@ export default {
   grid-area: 1 / 1 / 2 / 3;
   font-size: 15px;
   @media (min-width: $md) {
-		grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 1 / 2 / 2;
     font-size: 18px;
   }
 }

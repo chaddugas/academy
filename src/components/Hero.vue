@@ -133,15 +133,17 @@ query {
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(5, 1fr);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
+  // grid-gap: 5px;
   z-index: 1;
   height: 100%;
+	width: calc(100% + 10px);
+	margin: 0 -5px;
   @media (min-width: $sm) {
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+		// grid-gap: 10px;
+		width: calc(100% + 20px);
+		margin: 0 -10px;
   }
 }
 
