@@ -14,6 +14,7 @@ export default {
 	},
 	methods: {
 		p_update() {
+			this.p_start = this.$el.offsetTop
 			this.p_end = this.$el.offsetHeight * -1
 		},
 		p_move() {
@@ -25,6 +26,8 @@ export default {
 			let move = 0
 
 			if (client && desktop && (visibleRatio || safeSize)) move = this.between(top, this.p_start, this.p_end) * this.p_distance
+
+			move = move > this.p_distance ? this.p_distance : move
 
 			this.p_state = `translateY(${move}px)`
 		},
