@@ -117,12 +117,13 @@ export default {
 .nav {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  left: -30px;
+  right: -30px;
   bottom: 0;
   height: 100%;
   width: 100%;
-  z-index: 20;
+	z-index: 20;
+	padding: 0 30px;
   background: transparent;
   pointer-events: none;
 	transition: 0.2s 1s ease;
