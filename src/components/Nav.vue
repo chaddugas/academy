@@ -184,7 +184,7 @@ export default {
     content: "";
     transition: 0s ease, margin-top 0.2s 0.2s ease, transform 0.2s ease;
     position: absolute;
-    height: 2px;
+    height: 1px;
     width: 18px;
     background: currentColor;
     transform: translateY(-50%);
