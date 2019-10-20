@@ -109,11 +109,16 @@ export default {
 }
 
 .item-grid {
-  display: grid;
-  grid-template: repeat(2, min-content) / 1fr 20px;
-  grid-gap: 3px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   text-align: right;
   line-height: 1.1;
+  @supports (grid-gap: 10px) {
+    display: grid;
+    grid-template: repeat(2, min-content) / 1fr 20px;
+    grid-gap: 3px 0;
+  }
   @media (min-width: $md) {
     line-height: 1.4;
     grid-template: repeat(2, min-content) / 1fr 25px;
@@ -123,10 +128,12 @@ export default {
 
 .item-icon {
   display: none;
-  @media (min-width: $md) {
-    display: block;
-    grid-area: 1 / 2 / 2 / 3;
-    font-size: 24px;
+  @supports (grid-gap: 10px) {
+    @media (min-width: $md) {
+      display: block;
+      grid-area: 1 / 2 / 2 / 3;
+      font-size: 24px;
+    }
   }
 }
 
@@ -134,9 +141,12 @@ export default {
   font-weight: 700;
   grid-area: 1 / 1 / 2 / 3;
   font-size: 15px;
-  @media (min-width: $md) {
-    grid-area: 1 / 1 / 2 / 2;
-    font-size: 18px;
+  @supports (grid-gap: 10px) {
+    @media (min-width: $md) {
+      grid-area: 1 / 1 / 2 / 2;
+      align-self: center;
+      font-size: 18px;
+    }
   }
 }
 
