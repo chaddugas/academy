@@ -170,10 +170,10 @@ query {
   }
   @media (min-width: $lg) {
     grid-template-areas:
-      "e . . . ."
+      "f . . . ."
       "l l . . ."
       "l l a . ."
-      "c d f b .";
+      "c d e b .";
   }
 }
 
@@ -197,6 +197,7 @@ query {
     grid-area: d;
   }
 }
+
 
 .blank {
   z-index: -1;

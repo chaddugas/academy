@@ -53,6 +53,9 @@ h6 {
 [class*="wysiwyg"] {
 	line-height: 1.6;
 	font-size: 18px;
+	img {
+		max-width: 100%;
+	}
   a {
     text-decoration: none;
   }

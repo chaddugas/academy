@@ -28,20 +28,6 @@ export default {
     margin: 0 5px;
     margin-bottom: 10px;
   }
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $sky;
-    opacity: 0.5;
-    @supports (mix-blend-mode: screen) {
-      opacity: 1;
-      mix-blend-mode: screen;
-    }
-  }
 	$r: 1;
 	$c: 1;
 	@for $n from 1 through 20 {

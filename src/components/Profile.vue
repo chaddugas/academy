@@ -5,6 +5,7 @@
 				.profile-data
 					.profile-image
 						img(:src="profile.photo")
+						img(src="/media/healy-kristy.jpg")
 					.profile-name
 						h3 {{ profile.title }}
 				Markdown.profile-wysiwyg {{ profile.bio }}
@@ -41,9 +42,9 @@ export default {
 .profile {
   position: relative;
   z-index: -1;
-	flex: 0 0 calc(50% - 5px);
-	width: calc(50% - 5px);
-	margin: 0 2.5px 5px;
+  flex: 0 0 calc(50% - 5px);
+  width: calc(50% - 5px);
+  margin: 0 2.5px 5px;
   transition: z-index 0ms linear;
   transition-delay: 500ms;
   background-size: 0 0;
@@ -67,11 +68,11 @@ export default {
     filter: grayscale(50%);
     opacity: 0.25;
   }
-	@media (min-width: $md) {
-		flex: 0 0 calc(33.333% - 20px);
-		width: calc(33.333% - 20px);
-		margin: 0 10px 20px;
-	}
+  @media (min-width: $md) {
+    flex: 0 0 calc(33.333% - 20px);
+    width: calc(33.333% - 20px);
+    margin: 0 10px 20px;
+  }
 }
 
 .profile-inner {
@@ -172,6 +173,21 @@ export default {
   }
   img {
     max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    &:nth-child(2) {
+      opacity: 0;
+    }
+  }
+  &::before {
+    content: "";
+    position: relative;
+    display: block;
+    padding-top: 100%;
   }
 }
 
@@ -229,11 +245,20 @@ export default {
   }
   .profile-data {
     width: 350px;
-    max-width: 40%;
+		max-width: 40%;
+		@media (min-width: $md) {
+			max-width: 50%;
+		}
   }
   .profile-image {
     transform: scale(1, 1);
     margin: 20px 20px 10px;
+    img {
+      opacity: 0;
+      &:nth-child(2) {
+        opacity: 1;
+      }
+    }
   }
   .profile-name {
     transform: translateY(0);

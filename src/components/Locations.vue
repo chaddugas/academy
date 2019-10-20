@@ -20,6 +20,8 @@
 						span.location-hour(v-for="hour in office.hours")
 							strong {{ hour.title.substring(0, 2) }}
 							span {{ timeString(hour) }}
+					.location-note
+						span {{ office.note }}
 </template>
 
 <script>
@@ -119,6 +121,7 @@ export default {
 							open
 							close
 						}
+						note
 					}
 					lakewood {
 						title
@@ -133,6 +136,7 @@ export default {
 							open
 							close
 						}
+						note
 					}
 				}
 			}
@@ -329,6 +333,7 @@ export default {
   flex-wrap: wrap;
 	margin-top: 10px;
 	width: 100%;
+	margin-bottom: 10px;
   @media (min-width: $md) {
     max-width: 250px;
     justify-content: flex-start;
@@ -347,5 +352,12 @@ export default {
     margin-right: 5px;
     width: 25px;
   }
+}
+
+.location-note {
+	font-size: 14px;
+	&::before {
+		content: '*'
+	}
 }
 </style>
