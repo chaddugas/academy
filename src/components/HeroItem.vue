@@ -1,12 +1,13 @@
 <template lang="pug">
-	aside.item(v-if="type == 'loc' || item.active", :class="`item--${type}`")
+	aside.item(
+		v-if="type == 'loc' || item.active", :class="`item--${type}`")
 		.item-inner
 			.item-grid
 				.item-icon
 					i(:class="item.icon")
 				h6.item-title {{ item.title }}
 				span.item-text(v-if="type == 'news'") {{ item.text }}
-				span.item-text(v-else) {{ createStatusString(item.hours) }}
+				span.item-text(v-else, :data-note="item.note") {{ createStatusString(item.hours) }}
 </template>
 
 <script>
@@ -89,7 +90,15 @@ export default {
   }
   &--loc {
     background: $orange;
-    color: $onyx;
+		color: $onyx;
+		.item-text {
+			&::after {
+				content: attr(data-note);
+				font-size: 12px;
+				margin-top: 3px;
+				font-style: italic;
+			}
+		}
   }
 }
 
@@ -152,7 +161,9 @@ export default {
 
 .item-text {
   grid-area: 2 / 1 / 3 / 3;
-  font-size: 14px;
+	font-size: 14px;
+	display: flex;
+	flex-direction: column;
   @media (min-width: $md) {
     font-size: 16px;
   }

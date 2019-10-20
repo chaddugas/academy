@@ -59,14 +59,14 @@ collections:
               - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
-              - label: 'Holidays & Closures' 
-                name: 'closures'
-                widget: 'list'
-                allow_add: true
-                required: false
-                fields:
-                  - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
-                  - {label: 'Closed Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false}
+              # - label: 'Holidays & Closures' 
+              #   name: 'closures'
+              #   widget: 'list'
+              #   allow_add: true
+              #   required: false
+              #   fields:
+              #     - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
+              #     - {label: 'Closed Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
@@ -75,6 +75,7 @@ collections:
                 fields:
                   - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
                   - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
+                  - {label: 'Lunch', name: 'lunch', widget: 'text', required: false}
                   - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
               - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
           - label: 'Lakewood'
@@ -88,14 +89,14 @@ collections:
               - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
               - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
-              - label: 'Holidays & Closures' 
-                name: 'closures'
-                widget: 'list'
-                allow_add: true
-                required: false
-                fields:
-                  - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
-                  - {label: 'Closed Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false}
+              # - label: 'Holidays & Closures' 
+              #   name: 'closures'
+              #   widget: 'list'
+              #   allow_add: true
+              #   required: false
+              #   fields:
+              #     - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
+              #     - {label: 'Closed Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
@@ -104,6 +105,7 @@ collections:
                 fields:
                   - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
                   - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
+                  - {label: 'Lunch', name: 'lunch', widget: 'text', required: false}
                   - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
               - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
 
@@ -132,6 +134,7 @@ collections:
         label: 'Insurance Providers' 
         file: 'static/data/insurance.json'
         fields:
+          - {label: 'Information', name: 'title', widget: 'markdown'}
           - label: 'Insurance Provider' 
             name: 'insurance'
             widget: 'list'

@@ -36,12 +36,14 @@ export default {
         {
           title: this.$static.office.edges[0].node.highlands.title,
           hours: this.$static.office.edges[0].node.highlands.hours,
-          icon: "far fa-clock"
+					icon: "far fa-clock",
+					note: this.$static.office.edges[0].node.highlands.note
         },
         {
           title: this.$static.office.edges[0].node.lakewood.title,
           hours: this.$static.office.edges[0].node.lakewood.hours,
-          icon: "far fa-clock"
+          icon: "far fa-clock",
+					note: this.$static.office.edges[0].node.highlands.note
         }
       ];
     },
@@ -86,6 +88,7 @@ query {
         highlands {
 					title
 					phone
+					note
           hours {
             title
             open
@@ -95,6 +98,7 @@ query {
         lakewood {
 					title
 					phone
+					note
           hours {
             title
             open
