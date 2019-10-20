@@ -135,6 +135,32 @@ export default {
   z-index: 25;
   box-shadow: 0 0 3px 1px rgba($black, 0.08), 0 0 20px rgba($black, 0.05);
   transition: 0.8s ease;
+  &::before {
+    position: fixed;
+		pointer-events: none;
+    top: -50vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    right: 0;
+    bottom: 0;
+    height: 200vh;
+    width: 100vw;
+    opacity: 0;
+    background: rgba($onyx, 0.8);
+    content: "";
+    z-index: -2;
+		transition: 0.8s ease;
+  }
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $white;
+    content: "";
+    z-index: -1;
+  }
   &.active {
     transition: none;
     animation: enter 0.8s 1.5s forwards ease;
@@ -146,35 +172,8 @@ export default {
   &.dismissed {
     transform: translate(-50%, 0);
     &::before {
-      opacity: 0;
+      opacity: 1;
     }
-  }
-  &::before {
-    position: fixed;
-		pointer-events: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    right: 0;
-    bottom: 0;
-    height: 200vh;
-    width: 100vw;
-    opacity: 0;
-    background: rgba($onyx, 0.8);
-    transition: 0.8s ease;
-    content: "";
-    z-index: -2;
-    transition: 0.25s ease;
-  }
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $white;
-    content: "";
-    z-index: -1;
   }
 }
 
@@ -197,7 +196,7 @@ export default {
 }
 
 .note-title {
-  font-size: 16px;
+  font-size: 24px;
   margin-bottom: 3px;
 }
 

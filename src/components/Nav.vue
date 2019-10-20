@@ -1,7 +1,23 @@
 <template lang="pug">
 	nav.nav(:class="{active}")
-		.nav-trigger(@click="toggle()")
+		.nav-trigger(@click="toggle()") 
+			.trigger-icon
+			span.trigger-text My Chart & More
 		.nav-inner
+			a.nav-item.nav-item--external(
+				@click="navigate(context == 'desktop' ? `https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.h.lat},${loc.h.lng}` : `tel:${loc.h.phone}`)")
+				.nav-content
+					i.nav-icon.fas(:class="context == 'desktop' ? 'fa-map-marked-alt' : 'fa-phone'")
+					h6.nav-text {{loc.h.title}}
+			a.nav-item.nav-item--external(@click="navigate('https://mychart.childrenscolorado.org/MyChart/')")
+				.nav-content
+					i.nav-icon.fas.fa-baby
+					h6.nav-text My Chart
+			a.nav-item.nav-item--external(
+				@click="navigate(context == 'desktop' ? `https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.l.lat},${loc.l.lng}` : `tel:${loc.l.phone}`)")
+				.nav-content
+					i.nav-icon.fas(:class="context == 'desktop' ? 'fa-map-marked-alt' : 'fa-phone'")
+					h6.nav-text {{loc.l.title}}
 			.nav-item(@click="navigate('locations', false)")
 				.nav-content
 					i.nav-icon.fas.fa-walking
@@ -18,20 +34,6 @@
 				.nav-content
 					i.nav-icon.fas.fa-file-medical-alt
 					h6.nav-text Resources
-			a.nav-item.nav-item--external(
-				@click="navigate(context == 'desktop' ? `https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.h.lat},${loc.h.lng}` : `tel:${loc.h.phone}`)")
-				.nav-content
-					i.nav-icon.fas(:class="context == 'desktop' ? 'fa-map-marked-alt' : 'fa-phone'")
-					h6.nav-text {{loc.h.title}}
-			a.nav-item.nav-item--external(@click="navigate('https://mychart.childrenscolorado.org/MyChart/')")
-				.nav-content
-					i.nav-icon.fas.fa-baby
-					h6.nav-text My Chart
-			a.nav-item.nav-item--external(
-				@click="navigate(context == 'desktop' ? `https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.l.lat},${loc.l.lng}` : `tel:${loc.l.phone}`)")
-				.nav-content
-					i.nav-icon.fas(:class="context == 'desktop' ? 'fa-map-marked-alt' : 'fa-phone'")
-					h6.nav-text {{loc.l.title}}
 </template>
 
 <script>
@@ -132,7 +134,7 @@ export default {
 	background: $gray;
     pointer-events: all;
     transition: 0.2s ease;
-    .nav-trigger {
+    .trigger-icon {
       background: $red;
       color: $white;
       &::before,
@@ -162,11 +164,11 @@ export default {
 }
 
 .nav-trigger {
+	display: flex;
+	align-items: center;
   position: fixed;
   top: 10px;
   right: 10px;
-  height: 34px;
-  width: 34px;
   background: $white;
   color: $onyx;
   pointer-events: all;
@@ -175,9 +177,20 @@ export default {
   transition: 0.2s ease;
   z-index: 5;
   &:hover {
-    background: $indigo;
-    color: $white;
+		.trigger-icon {
+			background: $indigo;
+			color: $white;
+		}
   }
+}
+
+
+.trigger-icon {
+	position: relative;
+  height: 34px;
+  width: 34px;
+	background: $gray;
+  transition: 0.2s ease;
   &::before,
   &::after {
     content: "";
@@ -198,6 +211,11 @@ export default {
   &::after {
     margin-top: 3.5px;
   }
+}
+
+.trigger-text {
+	font-size: 14px;
+	margin: 0 7px;
 }
 
 .nav-inner {
@@ -224,10 +242,10 @@ export default {
 				transform 0.6s $delay ease-in;
     }
   }
-  &:nth-child(odd) {
+  &:nth-of-type(odd) {
     margin-right: 5px;
   }
-  &:nth-child(even) {
+  &:nth-of-type(even) {
     margin-left: 5px;
   }
   &:before {
@@ -257,10 +275,10 @@ export default {
     flex: 0 0 calc(50% - 10px);
     width: calc(50% - 10px);
     margin-bottom: 20px;
-    &:nth-child(odd) {
+    &:nth-of-type(odd) {
       margin-right: 10px;
     }
-    &:nth-child(even) {
+    &:nth-of-type(even) {
       margin-left: 10px;
     }
   }
