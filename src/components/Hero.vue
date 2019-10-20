@@ -108,7 +108,6 @@ query {
 </static-query>
 
 <style lang="scss" scoped>
-/* autoprefixer grid: on */
 .hero {
   width: 100%;
   display: flex;
@@ -133,7 +132,6 @@ query {
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(5, 1fr);
-  // grid-gap: 5px;
   z-index: 1;
   height: 100%;
 	width: calc(100% + 10px);
@@ -141,7 +139,6 @@ query {
   @media (min-width: $sm) {
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(5, 1fr);
-		// grid-gap: 10px;
 		width: calc(100% + 20px);
 		margin: 0 -10px;
   }

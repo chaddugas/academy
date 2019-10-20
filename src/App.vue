@@ -36,7 +36,8 @@ body {
 }
 
 main {
-  z-index: 1;
+	z-index: 1;
+	overflow-x: hidden
 }
 
 h1,
