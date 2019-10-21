@@ -37,6 +37,12 @@
     ],
     "note": "Closed for lunch 12:30-1:30",
     "address": "4185 E. Wildcat Reserve Parkway\nSuite #230\nHighlands Ranch, CO 80126",
+    "closures": [
+      {
+        "title": "Office Party",
+        "date": "10-20-2019"
+      }
+    ],
     "title": "Wildcat",
     "fax": "303 996-0732",
     "lat": "39.529038"
