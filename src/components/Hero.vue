@@ -110,7 +110,7 @@ export default {
     this.rotate();
     setInterval(() => {
       this.rotate();
-    }, 8000);
+    }, 12000);
     if (process.isClient) {
       this.checkMedia();
     }
