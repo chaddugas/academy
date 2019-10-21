@@ -1,6 +1,6 @@
 <template lang='pug'>
 	.hero-cell
-		.cell-img(:style="bg") 
+		.cell-img(:style="style")
 </template>
 
 <script>
@@ -8,11 +8,16 @@ export default {
   name: "HeroCell",
 	props: ["item", "set"],
   computed: {
-    bg() {
+		image() {
+			return this.item.toString().padStart(2, "0")
+		},
+		delay() {
+			return (this.item - 1) * 0.05
+		},
+    style() {
       return {
-        backgroundImage: `url(/media/hero-${set}/hero_${this.item
-          .toString()
-          .padStart(2, "0")}.jpg)`
+				backgroundImage: `url(/media/hero-${this.set}/hero_${this.image}.jpg)`,
+				transitionDelay: `${this.delay}s`
       };
     }
   }
@@ -53,6 +58,11 @@ export default {
 .cell-img {
 	position: absolute;
 	top: -2.5px; left: -2.5px; right: -2.5px; bottom: -2.5px;
-  background-size: cover;
+	background-size: cover;
+	transition: 0.25s ease;
+	opacity: 0;
+	&[style] {
+		opacity: 1;
+	}
 }
 </style>
