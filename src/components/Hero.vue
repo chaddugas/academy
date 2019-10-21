@@ -1,12 +1,16 @@
 <template lang="pug">
 	section.hero(:style="p_transform")
 		.hero-bg
-			app-hero-cell(v-for="item in 20", :key="item", :item="item", :set="set")
+			app-hero-cell(
+				v-for="item in 20", 
+				:key="item", 
+				:item="item", 
+				:set="set",
+				:total="total")
 		.hero-content
 			app-hero-logo
 			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
 			app-hero-item(v-for="(item, i) in news", v-if="i < 3" :type="'news'", :item="item", :key="item.title")
-			span.blank
 			span.blank
 			span.blank
 </template>
@@ -28,7 +32,9 @@ export default {
   data() {
     return {
       media: null,
-			set: 1
+      total: 7,
+      sets: [],
+      set: null
     };
   },
   computed: {
@@ -37,7 +43,7 @@ export default {
         {
           title: this.$static.office.edges[0].node.highlands.title,
           hours: this.$static.office.edges[0].node.highlands.hours,
-					icon: "far fa-clock"
+          icon: "far fa-clock"
         },
         {
           title: this.$static.office.edges[0].node.lakewood.title,
@@ -50,7 +56,22 @@ export default {
       return this.$static.news.edges[0].node.news;
     }
   },
+  methods: {
+    rotate() {
+      let next;
+      if (!this.sets.length) {
+        this.sets = Array.apply(null, Array(this.total)).map((x, i) => i + 1);
+      }
+      next = this.sets[Math.floor(Math.random() * this.sets.length)];
+      this.set = next;
+      this.sets.splice(this.sets.indexOf(next), 1);
+    }
+  },
   created() {
+    this.rotate();
+    setInterval(() => {
+      this.rotate();
+    }, 12000);
     if (process.isClient) {
       let media = window.matchMedia("(min-width: 1100px)");
       let swap = e => {
@@ -123,11 +144,11 @@ query {
   flex-direction: column;
   height: 100vw;
   will-change: transform;
-  max-width: 1300px;
-  max-height: 1300px;
+  max-width: 1190px;
+  max-height: 1190px;
   margin: 0 auto;
   @media (min-width: $sm) {
-    max-height: 1040px;
+    max-height: 952px;
     height: 80vw;
   }
 }
@@ -139,13 +160,14 @@ query {
   grid-template-columns: repeat(5, 1fr);
   z-index: 1;
   height: 100%;
-	width: calc(100% + 10px);
-	margin: 0 -5px;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
   @media (min-width: $sm) {
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(5, 1fr);
-		width: calc(100% + 20px);
-		margin: 0 -10px;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    grid-template-rows: 1fr 5px 1fr 5px 1fr 5px 1fr;
+    grid-template-columns: 1fr 5px 1fr 5px 1fr 5px 1fr 5px 1fr;
+    // grid-template-columns: repeat(5, 1fr);
   }
 }
 
@@ -168,17 +190,23 @@ query {
 
   @media (min-width: $sm) {
     grid-template-areas:
-      "l l . . f"
-      "l l a . ."
-      "e b . . ."
-      "c c d d .";
+      "l l l . . . . . ."
+      "l l l . . . . . ."
+      "l l l . . . . . ."
+      ". . . . . . . . ."
+      "a . b . . . . . ."
+      ". . . . . . . . ."
+      "c c c . d d d . .";
   }
   @media (min-width: $lg) {
     grid-template-areas:
-      "f . . . ."
-      "l l . . ."
-      "l l a . ."
-      "c d e b .";
+      "e . . . . . . . ."
+      ". . . . . . . . ."
+      "l l l . . . . . ."
+      "l l l . . . . . ."
+      "l l l . a . . . ."
+      ". . . . . . . . ."
+      "c . d . f . b . .";
   }
 }
 
@@ -203,7 +231,6 @@ query {
   }
 }
 
-
 .blank {
   z-index: -1;
   position: relative;
@@ -212,12 +239,9 @@ query {
     grid-area: e;
   }
   &:nth-of-type(2) {
-    grid-area: d;
-  }
-  &:nth-of-type(3) {
     grid-area: f;
   }
-  @media (min-width: $sm) {
+  @media (min-width: $lg) {
     display: block;
   }
   &:after {

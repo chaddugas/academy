@@ -21,7 +21,7 @@ export default {
 			let client = process.isClient
 			let desktop = window.matchMedia("(min-width: 850px)").matches
 			let visibleRatio = window.innerHeight > window.innerWidth * .8
-			let safeSize = window.matchMedia("(min-width: 1300px)").matches && window.matchMedia("(min-height: 1300px)").matches
+			let safeSize = window.matchMedia("(min-width: 1190px)").matches && window.matchMedia("(min-height: 1190px)").matches
 			let top = this.$el.getBoundingClientRect().top
 			let move = 0
 
