@@ -1,11 +1,10 @@
 <template lang='pug'>
 	.hero-cell(:class="{flipped}")
 		.cell-flipper(
-			v-if="active_cells.includes(item)", 
 			:style="{transitionDelay}",
 			@transitionend="load(false)")
-			.cell-img(:style="{backgroundImage: bg_front}")
-			.cell-img(:style="{backgroundImage: bg_back}")
+			.cell-img(v-if="active_cells.includes(item)", :style="{backgroundImage: bg_front}")
+			.cell-img(v-if="active_cells.includes(item)", :style="{backgroundImage: bg_back}")
 		img.cell-prerender(
 			v-if="active_cells.includes(item)",
 			@load.once="load(true)",
@@ -26,7 +25,10 @@ export default {
   },
   computed: {
     transitionDelay() {
-      return `${this.active_cells.indexOf(this.item) * 0.075 * 1000}ms`;
+			if (this.active_cells.indexOf(this.item)) {
+				return `${this.active_cells.indexOf(this.item) * 0.05 * 1000}ms`;
+			}
+			return '0ms'
     }
   },
   methods: {
