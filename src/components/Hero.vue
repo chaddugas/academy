@@ -2,7 +2,7 @@
 	section.hero(:style="p_transform")
 		.hero-bg
 			app-hero-cell(
-				v-for="item in 20", 
+				v-for="item in 20",
 				:key="item", 
 				:item="item", 
 				:set="set",
@@ -36,8 +36,12 @@ export default {
       sets: [],
       set: null,
       next_set: null,
-      mediaSm: process.isClient ? window.matchMedia("(min-width: 650px)") : null,
-      mediaLg: process.isClient ? window.matchMedia("(min-width: 1100px)") : null
+      mediaSm: process.isClient
+        ? window.matchMedia("(min-width: 650px)")
+        : null,
+      mediaLg: process.isClient
+        ? window.matchMedia("(min-width: 1100px)")
+        : null
     };
   },
   computed: {
@@ -79,7 +83,6 @@ export default {
       if (!this.sets.length) {
         this.sets = Array.apply(null, Array(this.total)).map((x, i) => i + 1);
       }
-
       next_set = this.sets[Math.floor(Math.random() * this.sets.length)];
       this.sets.splice(this.sets.indexOf(next_set), 1);
       this.next_set = next_set;
@@ -107,7 +110,7 @@ export default {
     this.rotate();
     setInterval(() => {
       this.rotate();
-    }, 12000);
+    }, 8000);
     if (process.isClient) {
       this.checkMedia();
     }

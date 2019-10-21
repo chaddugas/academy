@@ -1,8 +1,15 @@
 <template lang='pug'>
 	.hero-cell(:class="{flipped}")
-		.cell-flipper(v-if="active_cells.includes(item)", :style="{transitionDelay}")
-			.cell-img(:style="{backgroundImage: bg_1}")
-			.cell-img(:style="{backgroundImage: bg_2}")
+		.cell-flipper(
+			v-if="active_cells.includes(item)", 
+			:style="{transitionDelay}",
+			@transitionend="load(false)")
+			.cell-img(:style="{backgroundImage: bg_front}")
+			.cell-img(:style="{backgroundImage: bg_back}")
+		img.cell-prerender(
+			v-if="active_cells.includes(item)",
+			@load.once="load(true)",
+			:src="image(set)")
 </template>
 
 <script>
@@ -12,14 +19,14 @@ export default {
   data() {
     return {
       imageSet: this.set,
-			flipped: true,
-			bg_1: null,
-			bg_2: null
+      flipped: false,
+      bg_front: null,
+      bg_back: null
     };
   },
   computed: {
     transitionDelay() {
-      return `${(this.active_cells.indexOf(this.item)) * 0.075 * 1000}ms`
+      return `${this.active_cells.indexOf(this.item) * 0.075 * 1000}ms`;
     }
   },
   methods: {
@@ -27,49 +34,39 @@ export default {
       return `/media/hero-${set}/hero_${this.item
         .toString()
         .padStart(2, "0")}.jpg`;
-		},
-		set_background(both = true, pos) {
-			if (both) {
-				this.bg_1 = `url(${this.image(this.set)})`
-				this.bg_2 = `url(${this.image(this.next_set)})`
-			}
-			else {
-				if (pos == 'front') {
-					this.bg_1 = `url(${this.image(this.next_set)})`
-				}
-				else if (pos == 'back') {
-					this.bg_2 = `url(${this.image(this.next_set)})`
-				}
-			}
-		}
-	},
-	watch: {
-		set() {
-			this.flipped = !this.flipped
-			setTimeout(() => {
-				if (this.flipped) {
-					this.set_background(false, 'front')
-				}
-				else {
-					this.set_background(false, 'back')
-				}
-			}, 5000)
-		}
-	},
-	mounted() {
-		this.set_background()
-	}
+    },
+    set_background() {
+      if (this.flipped) {
+        this.bg_front = `url(${this.image(this.next_set)})`;
+      } else {
+        this.bg_back = `url(${this.image(this.next_set)})`;
+      }
+    },
+    load(initial = false) {
+      if (initial) {
+        this.bg_back = `url(${this.image(this.set)})`;
+        this.flipped = true;
+        return;
+      }
+      this.set_background();
+    }
+  },
+  watch: {
+    set() {
+      this.flipped = !this.flipped;
+    }
+  }
 };
 </script>
 
 <style lang='scss' scoped>
 .hero-cell {
   position: relative;
-	display: flex;
-	perspective: 1000px;
-	&.flipped .cell-flipper {
-		transform: rotateY(180deg);
-	}
+  display: flex;
+  perspective: 1000px;
+  &.flipped .cell-flipper {
+    transform: rotateY(180deg);
+  }
   $r: 1;
   $c: 1;
   @for $n from 1 through 20 {
@@ -112,10 +109,10 @@ export default {
 
 .cell-flipper {
   transition: transform 0.8s ease;
-	transform-style: preserve-3d;
-	height: 100%;
-	width: 100%;
-	position: relative;
+  transform-style: preserve-3d;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 
 .cell-img {
@@ -124,11 +121,11 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-	background-size: cover;
-	background-position: 50% 50%;
+  background-size: cover;
+  background-position: 50% 50%;
   backface-visibility: hidden;
   &:nth-child(2) {
-		transform: rotateY(180deg);
+    transform: rotateY(180deg);
   }
 }
 
