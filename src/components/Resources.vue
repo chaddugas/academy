@@ -43,9 +43,6 @@ query {
 </static-query>
 
 <style lang="scss" scoped>
-.resources {
-  margin: 50px 0 80px;
-}
 .resources-inner {
   @include container($max: 1200px);
   position: relative;

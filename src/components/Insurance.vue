@@ -1,5 +1,5 @@
 <template lang="pug">
-	#insurance.insurance
+	section#insurance.insurance
 		transition-group.insurance-content(name="fade", tag="div")
 			Markdown.insurance-wysiwyg(:class="{hidden: active}", :key="'wysiwyg'") {{ main }}
 			.insurance-info(v-if="active", :key="'info'") 
@@ -79,7 +79,6 @@ export default {
 .insurance {
   @include container($max: 1200px);
   display: flex;
-  margin-bottom: 50px;
   align-items: flex-start;
   flex-direction: column;
   @media (min-width: $lg) {

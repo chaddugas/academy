@@ -145,9 +145,6 @@ export default {
 </static-query>
 
 <style lang="scss">
-.locations {
-  margin: 50px 0 80px;
-}
 .locations-inner {
   @include container($max: 1200px);
   position: relative;

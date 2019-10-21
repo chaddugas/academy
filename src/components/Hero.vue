@@ -203,9 +203,9 @@ query {
       ". . . . . . . . ."
       "l l l . . . . . ."
       "l l l . . . . . ."
-      "l l l . a . . . ."
+      "l l l . d . . . ."
       ". . . . . . . . ."
-      "c . d . f . b . .";
+      "a . b . f . c . .";
   }
 }
 
@@ -239,6 +239,12 @@ query {
   }
   &:nth-of-type(2) {
     grid-area: f;
+  }
+  &:nth-of-type(3) {
+    grid-area: c;
+  }
+  &:nth-of-type(4) {
+    grid-area: d;
   }
   @media (min-width: $lg) {
     display: block;

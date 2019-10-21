@@ -164,7 +164,8 @@ export default {
   align-items: center;
   position: fixed;
   top: 10px;
-  right: 10px;
+	left: calc(100% - 10px);
+	transform: translateX(-100%);
   background: $white;
   color: $onyx;
   pointer-events: all;
@@ -184,6 +185,8 @@ export default {
   position: relative;
   height: 34px;
   width: 34px;
+  min-height: 34px;
+  min-width: 34px;
   background: $gray;
   transition: 0.2s ease;
   &::before,
@@ -211,7 +214,8 @@ export default {
 .trigger-text {
   font-size: 14px;
   margin: 0 7px;
-  display: none;
+	display: none;
+	white-space: nowrap;
   @media (min-width: $md) {
     display: block;
   }

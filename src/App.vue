@@ -40,6 +40,11 @@ main {
 	overflow-x: hidden
 }
 
+section {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
 h1,
 h2,
 h3,
