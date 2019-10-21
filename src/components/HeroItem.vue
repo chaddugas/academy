@@ -83,12 +83,6 @@ export default {
 .item {
   background: saturate($teal, 10%);
   color: $white;
-  // margin: 0 2.5px;
-  // margin-bottom: 5px;
-  // @media (min-width: $sm) {
-  //   margin: 0 5px;
-  //   margin-bottom: 10px;
-  // }
   &--loc {
     background: $orange;
 		color: $onyx;

@@ -61,12 +61,14 @@ collections:
               - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
               - label: 'Holidays & Closures' 
                 name: 'closures'
-                widget: 'list'
-                allow_add: true
-                required: false
+                widget: 'object'
                 fields:
-                  - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
-                  - {label: 'Closed Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false}
+                  - {label: 'Reason 1', name: 'title_1', widget: 'string', hint: 'ex. Office Party', required: false}
+                  - {label: 'Date 1', name: 'date_1', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false}
+                  - {label: 'Reason 2', name: 'title_2', widget: 'string', hint: 'ex. Holiday', required: false}
+                  - {label: 'Date 2', name: 'date_2', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false}
+                  - {label: 'Reason 3', name: 'title_3', widget: 'string', hint: 'ex. Company Event', required: false}
+                  - {label: 'Date 3', name: 'date_3', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'
@@ -91,12 +93,14 @@ collections:
               - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
               - label: 'Holidays & Closures' 
                 name: 'closures'
-                widget: 'list'
-                allow_add: true
-                required: false
+                widget: 'object'
                 fields:
-                  - {label: 'Reason', name: 'title', widget: 'string', hint: 'ex. Office Party'}
-                  - {label: 'Closed Date', name: 'date', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false}
+                  - {label: 'Reason 1', name: 'title_1', widget: 'string', hint: 'ex. Office Party', required: false}
+                  - {label: 'Date 1', name: 'date_1', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false}
+                  - {label: 'Reason 2', name: 'title_2', widget: 'string', hint: 'ex. Holiday', required: false}
+                  - {label: 'Date 2', name: 'date_2', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false}
+                  - {label: 'Reason 3', name: 'title_3', widget: 'string', hint: 'ex. Company Event', required: false}
+                  - {label: 'Date 3', name: 'date_3', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false}
               - label: 'Hours' 
                 name: 'hours'
                 widget: 'list'

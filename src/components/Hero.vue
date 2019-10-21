@@ -167,7 +167,6 @@ query {
     grid-row-gap: 0;
     grid-template-rows: 1fr 5px 1fr 5px 1fr 5px 1fr;
     grid-template-columns: 1fr 5px 1fr 5px 1fr 5px 1fr 5px 1fr;
-    // grid-template-columns: repeat(5, 1fr);
   }
 }
 
