@@ -209,7 +209,11 @@ export default {
 
 .trigger-text {
   font-size: 14px;
-  margin: 0 7px;
+	margin: 0 7px;
+	display: none;
+	@media (min-width: $md) {
+		display: block;
+	}
 }
 
 .nav-inner {
