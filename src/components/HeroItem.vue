@@ -7,7 +7,7 @@
 					i(:class="item.icon")
 				h6.item-title {{ item.title }}
 				span.item-text(v-if="type == 'news'") {{ item.text }}
-				span.item-text(v-else, :data-note="item.note") {{ createStatusString(item.hours) }}
+				span.item-text(v-else, :data-note="open ? open.lunch : ''") {{ createStatusString(item.hours) }}
 </template>
 
 <script>
@@ -16,6 +16,7 @@ export default {
   props: ["item", "type"],
   data() {
     return {
+			open: null,
       days: [
         "Sunday",
         "Monday",
@@ -32,8 +33,8 @@ export default {
     createStatusString(data) {
       let timeArray = JSON.parse(JSON.stringify(data));
       let weekday = this.days[this.now.getDay()];
-      let today, todayIndex;
-
+			let today, todayIndex;
+			
       timeArray = timeArray.map((item, i) => {
         item.open = item.open.split(/ |\:/);
         item.open[0] = parseInt(item.open[0]);
@@ -49,24 +50,24 @@ export default {
         return item;
       });
 
-      if (!today) return "Closed today";
+      if (!today) {
+				this.open = null
+				return "Closed today";
+			}
 
-      if (
-        this.now.getTime() <
-        new Date().setHours(today.open[0], today.open[1], 0)
-      ) {
+      if (this.now.getTime() < new Date().setHours(today.open[0], today.open[1], 0)) {
+				this.open = null
         return `Opens at ${data[todayIndex].open
           .replace(" am", "")
           .replace(" pm", "")}`;
       }
-      if (
-        this.now.getTime() <
-        new Date().setHours(today.close[0], today.close[1], 0)
-      ) {
+      if (this.now.getTime() < new Date().setHours(today.close[0], today.close[1], 0)) {
+				this.open = data[todayIndex]
         return `Open until ${data[todayIndex].close
           .replace(" am", "")
           .replace(" pm", "")}`;
       }
+			this.open = null
       return "Closed now";
     }
   },
@@ -131,7 +132,7 @@ export default {
   @media (min-width: $md) {
     line-height: 1.4;
     grid-template: repeat(2, min-content) / 1fr 25px;
-    grid-gap: 5px 10px;
+    grid-gap: 0px 5px;
   }
 }
 
@@ -141,7 +142,7 @@ export default {
     @media (min-width: $md) {
       display: block;
       grid-area: 1 / 2 / 2 / 3;
-      font-size: 24px;
+      font-size: 20px;
     }
   }
 }

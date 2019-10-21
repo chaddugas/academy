@@ -2,7 +2,7 @@
 	nav.nav(:class="{active}")
 		.nav-trigger(@click="toggle()") 
 			.trigger-icon
-			span.trigger-text My Chart & Info
+			span.trigger-text My Chart & Contact
 		.nav-inner
 			a.nav-item(
 				@click="navigate(`tel:${loc.l.phone}`)")
