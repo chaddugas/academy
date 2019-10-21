@@ -2,38 +2,32 @@
 	nav.nav(:class="{active}")
 		.nav-trigger(@click="toggle()") 
 			.trigger-icon
-			span.trigger-text My Chart & More
+			span.trigger-text My Chart & Info
 		.nav-inner
-			a.nav-item.nav-item--external(
-				@click="navigate(context == 'desktop' ? `https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.h.lat},${loc.h.lng}` : `tel:${loc.h.phone}`)")
+			a.nav-item(
+				@click="navigate(`tel:${loc.l.phone}`)")
 				.nav-content
-					i.nav-icon.fas(:class="context == 'desktop' ? 'fa-map-marked-alt' : 'fa-phone'")
-					h6.nav-text {{loc.h.title}}
-			a.nav-item.nav-item--external(@click="navigate('https://mychart.childrenscolorado.org/MyChart/')")
-				.nav-content
-					i.nav-icon.fas.fa-baby
-					h6.nav-text My Chart
-			a.nav-item.nav-item--external(
-				@click="navigate(context == 'desktop' ? `https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.l.lat},${loc.l.lng}` : `tel:${loc.l.phone}`)")
-				.nav-content
-					i.nav-icon.fas(:class="context == 'desktop' ? 'fa-map-marked-alt' : 'fa-phone'")
+					i.nav-icon.fas(class="fa-phone")
 					h6.nav-text {{loc.l.title}}
-			.nav-item(@click="navigate('locations', false)")
+			a.nav-item(
+				@click="navigate(`tel:${loc.h.phone}`)")
 				.nav-content
-					i.nav-icon.fas.fa-walking
-					h6.nav-text Visit
-			.nav-item(@click="navigate('insurance', false)")
+					i.nav-icon.fas(class="fa-phone")
+					h6.nav-text {{loc.h.title}}
+			a.nav-item.nav-item--main(@click="navigate('https://mychart.childrenscolorado.org/MyChart/')")
 				.nav-content
-					i.nav-icon.fas.fa-file-invoice
-					h6.nav-text Insurance
-			.nav-item(@click="navigate('staff', false)")
+					i.nav-icon.fas.fa-child
+					h6.nav-text My Chart
+			a.nav-item(
+				@click="navigate(`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.h.lat},${loc.h.lng}`)")
 				.nav-content
-					i.nav-icon.fas.fa-id-badge
-					h6.nav-text Staff
-			.nav-item(@click="navigate('resources', false)")
+					i.nav-icon.fas(class="fa-map-marked-alt")
+					h6.nav-text {{loc.h.title}}
+			a.nav-item(
+				@click="navigate(`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.l.lat},${loc.l.lng}`)")
 				.nav-content
-					i.nav-icon.fas.fa-file-medical-alt
-					h6.nav-text Resources
+					i.nav-icon.fas(class="fa-map-marked-alt")
+					h6.nav-text {{loc.l.title}}
 </template>
 
 <script>
@@ -75,12 +69,12 @@ export default {
     navigate(path, external = true) {
       if (!external) {
         let dest = document.querySelector(`#${path}`);
-				this.toggle();
-				
-				window.scrollBy({
-					top: dest.getBoundingClientRect().top - 30,
-					behavior: "smooth"
-				});
+        this.toggle();
+
+        window.scrollBy({
+          top: dest.getBoundingClientRect().top - 30,
+          behavior: "smooth"
+        });
       } else if (path.includes("tel:")) {
         path = path.replace(/ /g, "").replace(/\-/g, "");
         window.location.href = path;
@@ -117,6 +111,9 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
   position: fixed;
   top: 0;
   left: -30px;
@@ -124,16 +121,16 @@ export default {
   bottom: 0;
   height: 100%;
   width: calc(100vw + 60px);
-	z-index: 20;
-	background: transparent;
+  z-index: 20;
+  background: transparent;
   pointer-events: none;
-	transition: 0.2s 1s ease;
+  transition: 0.2s 0.5s ease;
   overflow-x: hidden;
   overflow-y: auto;
   &.active {
-	background: $gray;
+    background: $gray;
     pointer-events: all;
-    transition: 0.2s ease;
+    transition: 0.5s ease;
     .trigger-icon {
       background: $red;
       color: $white;
@@ -153,10 +150,8 @@ export default {
       @for $n from 1 through 10 {
         &:nth-child(#{$n}) {
           $delay: (0.1s * $n) - 0.1s + 0.2s;
-					transition: 
-						background 0.2s ease,
-						color 0.2s ease,
-						transform 0.6s $delay ease-out;
+          transition: background 0.2s ease, color 0.2s ease,
+            transform 0.6s $delay ease-out;
         }
       }
     }
@@ -164,8 +159,8 @@ export default {
 }
 
 .nav-trigger {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
   position: fixed;
   top: 10px;
   right: 10px;
@@ -177,19 +172,18 @@ export default {
   transition: 0.2s ease;
   z-index: 5;
   &:hover {
-		.trigger-icon {
-			background: $indigo;
-			color: $white;
-		}
+    .trigger-icon {
+      background: $indigo;
+      color: $white;
+    }
   }
 }
 
-
 .trigger-icon {
-	position: relative;
+  position: relative;
   height: 34px;
   width: 34px;
-	background: $gray;
+  background: $gray;
   transition: 0.2s ease;
   &::before,
   &::after {
@@ -214,39 +208,45 @@ export default {
 }
 
 .trigger-text {
-	font-size: 14px;
-	margin: 0 7px;
+  font-size: 14px;
+  margin: 0 7px;
 }
 
 .nav-inner {
-  @include container($max: 550px, $margin: 40px);
+  @include container($max: 350px, $margin: 40px);
   display: flex;
   flex-wrap: wrap;
-	padding: 54px 0 30px;
+  padding: 54px 0 30px;
+	width: 100%;
 }
 
 .nav-item {
   position: relative;
+  background: $white;
   flex: 0 0 calc(50% - 5px);
   width: calc(50% - 5px);
-  background: $white;
-  margin-bottom: 10px;
+  margin: 0 2.5px 5px;
   cursor: pointer;
   transform: translate(100vw, -100vh);
+  &.nav-item--main {
+    flex: 0 0 calc(100% - 5px);
+    width: calc(100% - 5px);
+  }
+  @media (min-width: $sm) {
+    flex: 0 0 calc(50% - 20px);
+    width: calc(50% - 20px);
+    margin: 0 10px 20px;
+    &.nav-item--main {
+      flex: 0 0 calc(100% - 20px);
+      width: calc(100% - 20px);
+    }
+  }
   @for $n from 1 through 10 {
     &:nth-last-child(#{$n}) {
       $delay: (0.1s * $n) - 0.1s;
-			transition: 
-				background 0.2s ease,
-				color 0.2s ease,
-				transform 0.6s $delay ease-in;
+      transition: background 0.2s ease, color 0.2s ease,
+        transform 0.6s $delay ease-in;
     }
-  }
-  &:nth-of-type(odd) {
-    margin-right: 5px;
-  }
-  &:nth-of-type(even) {
-    margin-left: 5px;
   }
   &:before {
     display: block;
@@ -271,17 +271,6 @@ export default {
       background: $teal;
     }
   }
-  @media (min-width: $sm) {
-    flex: 0 0 calc(50% - 10px);
-    width: calc(50% - 10px);
-    margin-bottom: 20px;
-    &:nth-of-type(odd) {
-      margin-right: 10px;
-    }
-    &:nth-of-type(even) {
-      margin-left: 10px;
-    }
-  }
 }
 
 .nav-content {
@@ -294,77 +283,25 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 25px;
+  padding: 20px;
   @media (min-width: $sm) {
-    padding: 40px;
+    padding: 30px;
   }
 }
 
 .nav-icon {
-  font-size: 12vw;
-  margin-bottom: 4vw;
-  @media (min-width: $sm) {
-    font-size: 80px;
-    margin-bottom: 30px;
+  font-size: 40px;
+  margin-bottom: 20px;
+  .nav-item--main & {
+    font-size: 100px;
   }
 }
 
 .nav-text {
-  font-size: 6vw;
   text-align: center;
-  @media (min-width: $sm) {
-    font-size: 36px;
-  }
-}
-
-.nav-item.nav-item--external {
-  flex: 0 0 calc(33.3333% - 6.6666px);
-  width: calc(33.3333% - 6.6666px);
-  margin-left: 0;
-  margin-right: 0;
-  &:nth-of-type(3n-2) {
-    margin-right: 5px;
-  }
-  &:nth-of-type(3n-1) {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  &:nth-of-type(3n) {
-    margin-left: 5px;
-  }
-  @media (min-width: $sm) {
-    flex: 0 0 calc(33.3333% - 13.333px);
-    width: calc(33.3333% - 13.333px);
-    &:nth-of-type(3n-2) {
-      margin-right: 10px;
-    }
-    &:nth-of-type(3n-1) {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-    &:nth-of-type(3n) {
-      margin-left: 10px;
-      margin-right: 0;
-    }
-  }
-  .nav-content {
-    padding: 20px;
-    @media (min-width: $sm) {
-      padding: 30px;
-    }
-  }
-  .nav-icon {
-    font-size: 7vw;
-    @media (min-width: $sm) {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-  }
-  .nav-text {
-    font-size: 4vw;
-    @media (min-width: $sm) {
-      font-size: 20px;
-    }
+  font-size: 20px;
+  .nav-item--main & {
+    font-size: 28px;
   }
 }
 </style>
