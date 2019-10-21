@@ -6,13 +6,13 @@
 				:key="item", 
 				:item="item", 
 				:set="set",
+				:next_set="next_set",
+				:active_cells="active_cells",
 				:total="total")
 		.hero-content
 			app-hero-logo
 			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
 			app-hero-item(v-for="(item, i) in news", v-if="i < 3" :type="'news'", :item="item", :key="item.title")
-			span.blank
-			span.blank
 </template>
 
 <script>
@@ -34,7 +34,10 @@ export default {
       media: null,
       total: 8,
       sets: [],
-      set: null
+      set: null,
+      next_set: null,
+      mediaSm: process.isClient ? window.matchMedia("(min-width: 650px)") : null,
+      mediaLg: process.isClient ? window.matchMedia("(min-width: 1100px)") : null
     };
   },
   computed: {
@@ -54,17 +57,50 @@ export default {
     },
     news() {
       return this.$static.news.edges[0].node.news;
+    },
+    active_cells() {
+      if (this.media == "xs") {
+        return [4, 5, 9, 10, 13, 14, 15, 20];
+      }
+      if (this.media == "sm") {
+        return [3, 4, 5, 8, 9, 10, 13, 14, 15, 18, 19, 20];
+      }
+      if (this.media == "lg") {
+        return [2, 3, 4, 5, 8, 9, 10, 14, 15, 20];
+      }
+      return [];
     }
   },
   methods: {
     rotate() {
-      let next;
+      let set = this.next_set;
+      let next_set;
+
       if (!this.sets.length) {
         this.sets = Array.apply(null, Array(this.total)).map((x, i) => i + 1);
       }
-      next = this.sets[Math.floor(Math.random() * this.sets.length)];
-      this.set = next;
-      this.sets.splice(this.sets.indexOf(next), 1);
+
+      next_set = this.sets[Math.floor(Math.random() * this.sets.length)];
+      this.sets.splice(this.sets.indexOf(next_set), 1);
+      this.next_set = next_set;
+
+      if (!this.set) {
+        this.set = next_set;
+        next_set = this.sets[Math.floor(Math.random() * this.sets.length)];
+        this.sets.splice(this.sets.indexOf(next_set), 1);
+        this.next_set = next_set;
+      } else {
+        this.set = set;
+      }
+    },
+    checkMedia() {
+      if (this.mediaLg.matches) {
+        this.media = "lg";
+      } else if (this.mediaSm.matches) {
+        this.media = "sm";
+      } else {
+        this.media = "xs";
+      }
     }
   },
   created() {
@@ -73,17 +109,12 @@ export default {
       this.rotate();
     }, 12000);
     if (process.isClient) {
-      let media = window.matchMedia("(min-width: 1100px)");
-      let swap = e => {
-        if (e.matches) {
-          this.media = "lg";
-        } else {
-          this.media = "sm";
-        }
-      };
-      swap(media);
-      media.addListener(swap);
+      this.checkMedia();
     }
+  },
+  mounted() {
+    if (process.isClient) this.mediaLg.addListener(this.checkMedia);
+    if (process.isClient) this.mediaSm.addListener(this.checkMedia);
   }
 };
 </script>
@@ -171,7 +202,7 @@ query {
 }
 
 .hero-bg {
-  pointer-events: none;
+  // pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -180,8 +211,9 @@ query {
 }
 
 .hero-content {
+  pointer-events: none;
   grid-template-areas:
-    "l l l . e"
+    "l l l . ."
     "l l l . ."
     "a a . . ."
     "c c c c ."
@@ -199,13 +231,13 @@ query {
   }
   @media (min-width: $lg) {
     grid-template-areas:
-      "e . . . . . . . ."
+      ". . . . . . . . ."
       ". . . . . . . . ."
       "l l l . . . . . ."
       "l l l . . . . . ."
       "l l l . d . . . ."
       ". . . . . . . . ."
-      "a . b . f . c . .";
+      "a . b . . . c . .";
   }
 }
 
@@ -227,36 +259,6 @@ query {
   }
   &:nth-of-type(4) {
     grid-area: d;
-  }
-}
-
-.blank {
-  z-index: -1;
-  position: relative;
-  display: none;
-  &:nth-of-type(1) {
-    grid-area: e;
-  }
-  &:nth-of-type(2) {
-    grid-area: f;
-  }
-  &:nth-of-type(3) {
-    grid-area: c;
-  }
-  &:nth-of-type(4) {
-    grid-area: d;
-  }
-  @media (min-width: $lg) {
-    display: block;
-  }
-  &:after {
-    background: $gray;
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
   }
 }
 </style>
