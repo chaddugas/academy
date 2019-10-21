@@ -3,8 +3,8 @@
 		.cell-flipper(
 			:style="{transitionDelay}",
 			@transitionend="load(false)")
-			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay, backgroundImage: bg_front}")
-			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay, backgroundImage: bg_back}")
+			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay: `${transitionDelay}, ${transitionDelay}`, backgroundImage: bg_front}")
+			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay: `${transitionDelay}, ${transitionDelay}`, backgroundImage: bg_back}")
 		img.cell-prerender(
 			v-if="active_cells.includes(item)",
 			@load.once="load(true)",
@@ -107,19 +107,19 @@ export default {
 }
 
 .cell-flipper {
-  transition: transform 0.8s ease;
   transform-style: preserve-3d;
   height: 100%;
   width: 100%;
   position: relative;
   .flipped & {
-    transform: rotateY(180deg);
     .cell-img {
       &:nth-child(1) {
         opacity: 0;
+        transform: translateZ(1px) rotateY(180deg);
       }
       &:nth-child(2) {
         opacity: 1;
+        transform: translateZ(1px) rotateY(0deg);
       }
     }
   }
@@ -135,13 +135,13 @@ export default {
   background-position: 50% 50%;
   backface-visibility: hidden;
   perspective: 1px;
-  transition: opacity 400ms ease;
-	transform: translateZ(1px);
-	outline: 1px solid transparent;
+  transition: opacity 400ms ease, transform 0.8s ease;
+  transform: translateZ(1px) rotateY(0deg);
+  outline: 1px solid transparent;
   opacity: 1;
+  transform-style: preserve-3d;
   &:nth-child(2) {
-    perspective: -1px;
-    transform: translateZ(1px) rotateY(180deg);
+    transform: translateZ(1px) rotateY(-180deg);
     opacity: 0;
   }
 }
