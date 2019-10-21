@@ -164,8 +164,8 @@ export default {
   align-items: center;
   position: fixed;
   top: 10px;
-	left: calc(100% - 10px);
-	transform: translateX(-100%);
+	right: 10px;
+	outline: 1px solid transparent;
   background: $white;
   color: $onyx;
   pointer-events: all;
