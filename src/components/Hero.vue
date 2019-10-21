@@ -196,6 +196,7 @@ query {
   height: 100%;
   grid-column-gap: 3px;
   grid-row-gap: 3px;
+  pointer-events: none;
   @media (min-width: $sm) {
     grid-column-gap: 0;
     grid-row-gap: 0;
@@ -205,7 +206,6 @@ query {
 }
 
 .hero-bg {
-  // pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -214,7 +214,6 @@ query {
 }
 
 .hero-content {
-  pointer-events: none;
   grid-template-areas:
     "l l l . ."
     "l l l . ."
