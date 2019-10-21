@@ -1,7 +1,7 @@
 <template lang="pug">
 	section.hero(:style="p_transform")
 		.hero-bg
-			app-hero-cell(v-for="item in 20", :key="item", :item="item")
+			app-hero-cell(v-for="item in 20", :key="item", :item="item", :set="set")
 		.hero-content
 			app-hero-logo
 			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
@@ -27,7 +27,8 @@ export default {
   },
   data() {
     return {
-      media: null
+      media: null,
+			set: 1
     };
   },
   computed: {

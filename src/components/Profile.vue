@@ -19,7 +19,7 @@ export default {
   props: ["title", "profile"],
   data() {
     return {
-      active: false
+			active: false
     };
   },
   methods: {

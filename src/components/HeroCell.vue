@@ -6,11 +6,11 @@
 <script>
 export default {
   name: "HeroCell",
-  props: ["item"],
+	props: ["item", "set"],
   computed: {
     bg() {
       return {
-        backgroundImage: `url(/media/hero/hero_${this.item
+        backgroundImage: `url(/media/hero-${set}/hero_${this.item
           .toString()
           .padStart(2, "0")}.jpg)`
       };
