@@ -3,8 +3,8 @@
 		.cell-flipper(
 			:style="{transitionDelay}",
 			@transitionend="load(false)")
-			.cell-img(v-if="active_cells.includes(item)", :style="{backgroundImage: bg_front}")
-			.cell-img(v-if="active_cells.includes(item)", :style="{backgroundImage: bg_back}")
+			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay, backgroundImage: bg_front}")
+			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay, backgroundImage: bg_back}")
 		img.cell-prerender(
 			v-if="active_cells.includes(item)",
 			@load.once="load(true)",
@@ -25,10 +25,10 @@ export default {
   },
   computed: {
     transitionDelay() {
-			if (this.active_cells.indexOf(this.item)) {
-				return `${this.active_cells.indexOf(this.item) * 0.05 * 1000}ms`;
-			}
-			return '0ms'
+      if (this.active_cells.indexOf(this.item)) {
+        return `${this.active_cells.indexOf(this.item) * 0.05 * 1000}ms`;
+      }
+      return "0ms";
     }
   },
   methods: {
@@ -66,9 +66,6 @@ export default {
   position: relative;
   display: flex;
   perspective: 1000px;
-  &.flipped .cell-flipper {
-    transform: rotateY(180deg);
-  }
   $r: 1;
   $c: 1;
   @for $n from 1 through 20 {
@@ -115,6 +112,17 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
+  .flipped & {
+    transform: rotateY(180deg);
+    .cell-img {
+      &:nth-child(1) {
+        opacity: 0;
+      }
+      &:nth-child(2) {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .cell-img {
@@ -126,8 +134,15 @@ export default {
   background-size: cover;
   background-position: 50% 50%;
   backface-visibility: hidden;
+  perspective: 1px;
+  transition: opacity 400ms ease;
+	transform: translateZ(1px);
+	outline: 1px solid transparent;
+  opacity: 1;
   &:nth-child(2) {
-    transform: rotateY(180deg);
+    perspective: -1px;
+    transform: translateZ(1px) rotateY(180deg);
+    opacity: 0;
   }
 }
 
