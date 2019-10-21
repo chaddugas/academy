@@ -111,9 +111,10 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: -30px;
@@ -124,13 +125,13 @@ export default {
   z-index: 20;
   background: transparent;
   pointer-events: none;
-  transition: 0.2s 0.5s ease;
+  transition: 0.2s 1s ease;
   overflow-x: hidden;
   overflow-y: auto;
   &.active {
     background: $gray;
     pointer-events: all;
-    transition: 0.5s ease;
+    transition: 1s ease;
     .trigger-icon {
       background: $red;
       color: $white;
@@ -150,8 +151,8 @@ export default {
       @for $n from 1 through 10 {
         &:nth-child(#{$n}) {
           $delay: (0.1s * $n) - 0.1s + 0.2s;
-          transition: background 0.2s ease, color 0.2s ease,
-            transform 0.6s $delay ease-out;
+          transition: background 0.2s ease,
+            transform 0.8s $delay ease-out, opacity 1.2s $delay ease-in;
         }
       }
     }
@@ -209,19 +210,19 @@ export default {
 
 .trigger-text {
   font-size: 14px;
-	margin: 0 7px;
-	display: none;
-	@media (min-width: $md) {
-		display: block;
-	}
+  margin: 0 7px;
+  display: none;
+  @media (min-width: $md) {
+    display: block;
+  }
 }
 
 .nav-inner {
-  @include container($max: 350px, $margin: 40px);
+  max-width: 350px;
   display: flex;
   flex-wrap: wrap;
   padding: 54px 0 30px;
-	width: 100%;
+  width: calc(100% - 65px);
 }
 
 .nav-item {
@@ -231,7 +232,8 @@ export default {
   width: calc(50% - 5px);
   margin: 0 2.5px 5px;
   cursor: pointer;
-  transform: translate(100vw, -100vh);
+  transform: translate(150vw, -150vh);
+  opacity: 0;
   &.nav-item--main {
     flex: 0 0 calc(100% - 5px);
     width: calc(100% - 5px);
@@ -248,8 +250,8 @@ export default {
   @for $n from 1 through 10 {
     &:nth-last-child(#{$n}) {
       $delay: (0.1s * $n) - 0.1s;
-      transition: background 0.2s ease, color 0.2s ease,
-        transform 0.6s $delay ease-in;
+      transition: background 0.2s ease,
+        transform 0.8s $delay ease-in, opacity 0.4s $delay ease-in;
     }
   }
   &:before {
@@ -258,7 +260,10 @@ export default {
     padding-top: 100%;
   }
   &:hover {
-    color: $white;
+		.nav-icon,
+		.nav-text {
+			color: $white !important;
+		}
     &:nth-child(5n-4) {
       background: $indigo;
     }
@@ -295,17 +300,21 @@ export default {
 
 .nav-icon {
   font-size: 40px;
-  margin-bottom: 20px;
+	margin-bottom: 20px;
+	transition: color 0.2s ease;
   .nav-item--main & {
-    font-size: 100px;
+		font-size: 100px;
+    color: $sky;
   }
 }
 
 .nav-text {
-  text-align: center;
+	text-align: center;
   font-size: 20px;
+	transition: color 0.2s ease;
   .nav-item--main & {
     font-size: 28px;
+    color: $sky;
   }
 }
 </style>

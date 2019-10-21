@@ -190,12 +190,12 @@ query {
   @media (min-width: $sm) {
     grid-template-areas:
       "l l l . . . . . ."
-      "l l l . . . . . ."
-      "l l l . . . . . ."
       ". . . . . . . . ."
       "a . b . . . . . ."
       ". . . . . . . . ."
-      "c c c . d d d . .";
+      "c c c . . . . . ."
+      ". . . . . . . . ."
+      "d d d . . . . . .";
   }
   @media (min-width: $lg) {
     grid-template-areas:

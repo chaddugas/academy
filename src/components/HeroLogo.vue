@@ -44,29 +44,28 @@ export default {
   white-space: nowrap;
   color: $white;
   text-align: right;
-  font-size: 22px;
-  line-height: 1.3;
+  font-size: 28px;
+  line-height: 1.2;
   text-transform: uppercase;
   i {
-    font-size: 18px;
+    font-size: 22px;
     margin-right: 10px;
     color: $red;
   }
   @media (min-width: $sm) {
+    font-size: 30px;
+    i {
+      font-size: 26px;
+      margin-right: 10px;
+    }
+  }
+  @media (min-width: $lg) {
+		line-height: 1.3;
     font-size: 38px;
     i {
       font-size: 35px;
       margin-right: 20px;
     }
-  }
-}
-
-.title-tagline {
-  font-size: 16px;
-  margin-top: 10px;
-  white-space: nowrap;
-  @media (min-width: $sm) {
-    font-size: 22px;
   }
 }
 </style>
