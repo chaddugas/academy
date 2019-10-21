@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       media: null,
-      total: 7,
+      total: 8,
       sets: [],
       set: null
     };
@@ -160,8 +160,8 @@ query {
   grid-template-columns: repeat(5, 1fr);
   z-index: 1;
   height: 100%;
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
+  grid-column-gap: 3px;
+  grid-row-gap: 3px;
   @media (min-width: $sm) {
     grid-column-gap: 0;
     grid-row-gap: 0;
