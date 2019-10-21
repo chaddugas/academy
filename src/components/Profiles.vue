@@ -38,6 +38,7 @@ query {
         profiles {
           title
           photo
+					family_photo
           bio
           visible
         }

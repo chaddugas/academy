@@ -5,7 +5,7 @@
 				.profile-data
 					.profile-image
 						img(:src="profile.photo")
-						img(src="/media/healy-kristy.jpg")
+						img(:src="profile.family_photo || profile.photo")
 					.profile-name
 						h3 {{ profile.title }}
 				Markdown.profile-wysiwyg {{ profile.bio }}
@@ -172,6 +172,7 @@ export default {
     will-change: transform, filter;
   }
   img {
+		transition: 250ms ease;
     max-width: 100%;
     position: absolute;
     top: 0;
@@ -247,11 +248,13 @@ export default {
     width: 350px;
 		max-width: 40%;
 		@media (min-width: $md) {
-			max-width: 50%;
+			width: 475px;
+			max-width: 55%;
 		}
   }
   .profile-image {
-    transform: scale(1, 1);
+		transform: scale(1, 1);
+		filter: none;
     margin: 20px 20px 10px;
     img {
       opacity: 0;
