@@ -144,11 +144,11 @@ query {
   flex-direction: column;
   height: 100vw;
   will-change: transform;
-  max-width: 1190px;
-  max-height: 1190px;
+  max-width: 1200px;
+  max-height: 1200px;
   margin: 0 auto;
   @media (min-width: $sm) {
-    max-height: 952px;
+    max-height: 960px;
     height: 80vw;
   }
 }

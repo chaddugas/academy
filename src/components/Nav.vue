@@ -152,7 +152,7 @@ export default {
         &:nth-child(#{$n}) {
           $delay: (0.1s * $n) - 0.1s + 0.2s;
           transition: background 0.2s ease,
-            transform 0.8s $delay ease-out, opacity 1.2s $delay ease-in;
+            transform 0.8s $delay ease-out, opacity 1s $delay ease-in;
         }
       }
     }
@@ -232,7 +232,7 @@ export default {
   width: calc(50% - 5px);
   margin: 0 2.5px 5px;
   cursor: pointer;
-  transform: translate(150vw, -150vh);
+  transform: translate(100vw, -100vh);
   opacity: 0;
   &.nav-item--main {
     flex: 0 0 calc(100% - 5px);
