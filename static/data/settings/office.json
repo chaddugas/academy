@@ -37,12 +37,6 @@
     ],
     "note": "Closed for lunch 12:30-1:30",
     "address": "4185 E. Wildcat Reserve Parkway\nSuite #230\nHighlands Ranch, CO 80126",
-    "closures": {
-      "title_1": "Office Party",
-      "date_1": "10-20-2019",
-      "date_2": "Invalid date",
-      "date_3": "Invalid date"
-    },
     "title": "Wildcat",
     "fax": "303 996-0732",
     "lat": "39.529038"
@@ -90,11 +84,6 @@
     ],
     "note": "Closed for lunch 12:30-1:30",
     "address": "7373 West Jefferson Ave\nSuite #102\nLakewood, CO 80235",
-    "closures": {
-      "date_1": "Invalid date",
-      "date_2": "Invalid date",
-      "date_3": "Invalid date"
-    },
     "title": "Lakewood",
     "fax": "303 988-5632",
     "lat": "39.650403"
