@@ -14,11 +14,10 @@
 <script>
 export default {
   name: "HeroCell",
-  props: ["item", "set", "next_set", "total", "active_cells"],
+  props: ["item", "set", "next_set", "total", "active_cells", "flipped"],
   data() {
     return {
       imageSet: this.set,
-      flipped: false,
       bg_front: null,
       bg_back: null
     };
@@ -46,16 +45,11 @@ export default {
     },
     load(initial = false) {
       if (initial) {
-        this.bg_back = `url(${this.image(this.set)})`;
-        this.flipped = true;
+				this.bg_back = `url(${this.image(this.set)})`;
+				this.$emit('ready')
         return;
       }
       this.set_background();
-    }
-  },
-  watch: {
-    set() {
-      this.flipped = !this.flipped;
     }
   }
 };

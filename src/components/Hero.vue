@@ -3,8 +3,10 @@
 		.hero-bg
 			app-hero-cell(
 				v-for="item in 20",
+				@ready.once="activate",
 				:key="item", 
 				:item="item", 
+				:flipped="flipped",
 				:set="set",
 				:next_set="next_set",
 				:active_cells="active_cells",
@@ -36,6 +38,8 @@ export default {
       sets: [],
       set: null,
       next_set: null,
+      flipped: false,
+      active_count: 0,
       mediaSm: process.isClient
         ? window.matchMedia("(min-width: 650px)")
         : null,
@@ -76,6 +80,12 @@ export default {
     }
   },
   methods: {
+    activate() {
+      this.active_count++;
+      if (this.active_count == this.active_cells.length) {
+        this.flipped = !this.flipped;
+      }
+    },
     rotate() {
       let set = this.next_set;
       let next_set;
@@ -110,6 +120,7 @@ export default {
     this.rotate();
     setInterval(() => {
       this.rotate();
+      this.flipped = !this.flipped;
     }, 12000);
     if (process.isClient) {
       this.checkMedia();
