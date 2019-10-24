@@ -3,8 +3,8 @@
 		main
 			app-hero
 			app-locations
-			app-insurance
 			app-profiles
+			app-insurance
 			app-resources
 </template>
 

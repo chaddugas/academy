@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       media: null,
-      total: 8,
+      total: 7,
       sets: [],
       set: null,
       next_set: null,
@@ -68,13 +68,43 @@ export default {
     },
     active_cells() {
       if (this.media == "xs") {
-        return [4, 5, 9, 10, 13, 14, 15, 20];
+        let arr = [4, 5, 9, 10];
+        if (this.news.filter(n=>n.active).length == 0) {
+          arr.push(11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
+        }
+        else if (this.news.filter(n=>n.active).length == 1) {
+          arr.push(14, 15, 16, 17, 18, 19, 20);
+				}
+				else if (this.news.filter(n=>n.active).length == 2) {
+          arr.push(14, 15, 20);
+				}
+        return arr
       }
       if (this.media == "sm") {
-        return [3, 4, 5, 8, 9, 10, 13, 14, 15, 18, 19, 20];
+        let arr = [3, 4, 5, 8, 9, 10];
+        if (this.news.filter(n=>n.active).length == 0) {
+          arr.push(11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
+        }
+        else if (this.news.filter(n=>n.active).length == 1) {
+          arr.push(13, 14, 15, 16, 17, 18, 19, 20);
+				}
+				else if (this.news.filter(n=>n.active).length == 2) {
+          arr.push(13, 14, 15, 18, 19, 20);
+				}
+        return arr
       }
       if (this.media == "lg") {
-        return [2, 3, 4, 5, 8, 9, 10, 14, 15, 20];
+        let arr = [2, 3, 4, 5, 8, 9, 10];
+        if (this.news.filter(n=>n.active).length == 0) {
+          arr.push(13, 14, 15, 19, 20);
+        }
+        else if (this.news.filter(n=>n.active).length == 1) {
+          arr.push(14, 15, 19, 20);
+				}
+				else if (this.news.filter(n=>n.active).length == 2) {
+					arr.push(14, 15, 20);
+				}
+        return arr
       }
       return [];
     }
@@ -121,7 +151,7 @@ export default {
     setInterval(() => {
       this.rotate();
       this.flipped = !this.flipped;
-    }, 12000);
+    }, 8000);
     if (process.isClient) {
       this.checkMedia();
     }
@@ -228,9 +258,9 @@ query {
   grid-template-areas:
     "l l l . ."
     "l l l . ."
-    "a a . . ."
-    "c c c c ."
-    "d d d b b";
+    "c c c . ."
+    "d d d d ."
+    "a a a b b";
 
   @media (min-width: $sm) {
     grid-template-areas:
@@ -248,9 +278,9 @@ query {
       ". . . . . . . . ."
       "l l l . . . . . ."
       "l l l . . . . . ."
-      "l l l . d . . . ."
+      "l l l . c . . . ."
       ". . . . . . . . ."
-      "a . b . . . c . .";
+      "a . b . . . d . .";
   }
 }
 
