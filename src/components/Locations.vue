@@ -7,7 +7,7 @@
 				.location-content
 					h2.location-title 
 						span {{ office.title }}
-						a(:href="`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${office.lat},${office.lng}`", target="_blank") directions
+						a(:href="`https://www.google.com/maps/dir/?api=1&destination=${office.lat},${office.lng}`", target="_blank") directions
 					.location-address
 						span(v-for="line in address(office.address)") {{ line }}
 					.location-phone 
@@ -20,7 +20,7 @@
 						span.location-hour(v-for="hour in office.hours")
 							strong {{ hour.title.substring(0, 2) }}
 							span {{ timeString(hour) }}
-					.location-note
+					.location-note(v-if="office.note")
 						span {{ office.note }}
 </template>
 
