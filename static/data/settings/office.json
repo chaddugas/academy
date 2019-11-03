@@ -42,7 +42,7 @@
     "lat": "39.529038"
   },
   "lakewood": {
-    "lng": "-105.082938",
+    "lng": "-105.082932",
     "popup": "# Academy Park Pediatrics\n\n## Lakewood/Littleton\n\n_Pediatric Practice_",
     "phone": "303 988-5252",
     "hours": [
@@ -86,6 +86,6 @@
     "address": "3333 S. Wadsworth Blvd # B102\nLakewood, CO 80227",
     "title": "Lakewood",
     "fax": "303 988-5632",
-    "lat": "39.656690"
+    "lat": "39.6561235"
   }
 }
