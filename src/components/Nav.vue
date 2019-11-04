@@ -19,12 +19,12 @@
 					i.nav-icon.fas.fa-child
 					h6.nav-text My Chart
 			a.nav-item(
-				@click="navigate(`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.h.lat},${loc.h.lng}`)")
+				@click="navigate(`https://www.google.com/maps/dir/?api=1&destination=${loc.h.lat},${loc.h.lng}`)")
 				.nav-content
 					i.nav-icon.fas(class="fa-map-marked-alt")
 					h6.nav-text {{loc.h.title}}
 			a.nav-item(
-				@click="navigate(`https://www.google.com/maps/dir//Academy+Park+Pediatrics/@${loc.l.lat},${loc.l.lng}`)")
+				@click="navigate(`https://www.google.com/maps/dir/?api=1&destination=${loc.l.lat},${loc.l.lng}`)")
 				.nav-content
 					i.nav-icon.fas(class="fa-map-marked-alt")
 					h6.nav-text {{loc.l.title}}
