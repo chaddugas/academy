@@ -3,17 +3,17 @@
     {
       "title": "Incoming Medical Release (Lakewood)",
       "icon": "fas fa-notes-medical",
-      "file": "/media/auth-release-incoming-lakewood.pdf"
+      "file": "/media/recordsreleaseincoming-lakewood.doc"
     },
     {
       "title": "Incoming Medical Release (Highlands Ranch)",
       "icon": "fas fa-notes-medical",
-      "file": "/media/auth-release-incoming-wildcat.pdf"
+      "file": "/media/recordsreleaseincoming-highlands-ranch.doc"
     },
     {
       "title": "Outgoing Medical Release",
       "icon": "fas fa-comment-medical",
-      "file": "/media/auth-release-outgoing.pdf"
+      "file": "/media/recordsreleaseoutgoing-modified.doc"
     },
     {
       "title": "New Registration",
