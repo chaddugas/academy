@@ -3,7 +3,6 @@
 		.hero-bg
 			app-hero-cell(
 				v-for="item in 20",
-				@ready.once="activate",
 				:key="item", 
 				:item="item", 
 				:flipped="flipped",
@@ -111,10 +110,7 @@ export default {
   },
   methods: {
     activate() {
-      this.active_count++;
-      if (this.active_count == this.active_cells.length) {
-        this.flipped = !this.flipped;
-      }
+			this.flipped = !this.flipped;
     },
     rotate() {
       let set = this.next_set;

@@ -5,10 +5,6 @@
 			@transitionend="load(false)")
 			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay: `${transitionDelay}, ${transitionDelay}`, backgroundImage: bg_front}")
 			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay: `${transitionDelay}, ${transitionDelay}`, backgroundImage: bg_back}")
-		img.cell-prerender(
-			v-show="active_cells.includes(item)",
-			@load.once="load(true)",
-			:src="image(set)")
 </template>
 
 <script>
@@ -43,15 +39,13 @@ export default {
         this.bg_back = `url(${this.image(this.next_set)})`;
       }
     },
-    load(initial = false) {
-      if (initial) {
-				this.bg_back = `url(${this.image(this.set)})`;
-				this.$emit('ready')
-        return;
-      }
+    load() {
       this.set_background();
     }
-  }
+	},
+	created() {
+		this.load()
+	}
 };
 </script>
 
