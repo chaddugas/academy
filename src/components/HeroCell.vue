@@ -6,7 +6,7 @@
 			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay: `${transitionDelay}, ${transitionDelay}`, backgroundImage: bg_front}")
 			.cell-img(v-if="active_cells.includes(item)", :style="{transitionDelay: `${transitionDelay}, ${transitionDelay}`, backgroundImage: bg_back}")
 		img.cell-prerender(
-			v-if="active_cells.includes(item)",
+			v-show="active_cells.includes(item)",
 			@load.once="load(true)",
 			:src="image(set)")
 </template>
