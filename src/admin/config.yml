@@ -27,7 +27,7 @@ collections:
         description: 'Popover Site Alerts'
         fields:
           - label: 'Alert' 
-            name: 'alert'
+            name: 'alerts'
             widget: 'list'
             allow_add: true
             required: false
