@@ -46,9 +46,7 @@ export default {
     load(initial = false) {
       if (initial) {
 				this.bg_back = `url(${this.image(this.set)})`;
-				setTimeout(() => {
-					this.$emit('ready')
-				}, 500)
+				this.$emit('ready')
         return;
       }
       this.set_background();
