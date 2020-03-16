@@ -1,11 +1,26 @@
 <template lang="pug">
 	aside.alerts
 		app-alert(
-			v-for="(alert, i) in alerts"
-			:key="alert.title"
-			:index="i"
+			v-for="(alert, i) in alerts",
+			:key="alert.title",
+			:index="i",
 			:alert="alert")
 </template>
+
+<script>
+import Alert from './Alert'
+export default {
+	name: "Alerts",
+	components: {
+		appAlert: Alert
+	},
+  computed: {
+    alerts() {
+			return this.$static.alerts.edges[0].node.alerts;
+    }
+  }
+};
+</script>
 
 <static-query>
 query {
@@ -24,21 +39,6 @@ query {
   }
 }
 </static-query>
-
-<script>
-import Alert from './Alert'
-export default {
-	name: "Alerts",
-	components: {
-		appAlert: Alert
-	},
-  computed: {
-    alerts() {
-			return this.$static.alerts.edges[0].node.alerts;
-    }
-  }
-};
-</script>
 
 <style lang="scss">
 .alerts {

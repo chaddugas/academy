@@ -10,12 +10,17 @@ transition(name="fade")
 					span {{ alert.title }}
 				p.alert-subtitle(v-if="!expanded && alert.subtitle")
 					span {{ alert.subtitle }}
-			.alert-copy(v-if="expanded && alert.copy.trim().length")
+			.alert-copy(v-if="expanded && more")
 				Markdown {{ alert.copy }}
 		.alert-actions
-			.alert-close(@click="active = false" :style="{maxHeight: alert.copy.trim().length ? height/2 + 'px' : height + 'px'}")
+			.alert-close(
+				@click="active = false",
+				:style="actionHeight")
 				i.fas.fa-times
-			.alert-more(@click="toggle", v-if="alert.copy.trim().length" :style="{maxHeight: alert.copy.trim().length ? height/2 + 'px' : height + 'px'}")
+			.alert-more(
+				v-if="more"
+				@click="expanded = !expanded",
+				:style="actionHeight")
 				i.fas.fa-info-circle
 				i.fas.fa-angle-right
 </template>
@@ -27,22 +32,29 @@ export default {
   data() {
     return {
       active: false,
-      expanded: false,
-      height: "100px"
+			expanded: false,
+			height: '100px'
     };
   },
-  methods: {
-    toggle() {
-      this.expanded = !this.expanded;
+  computed: {
+    more() {
+      return !!this.alert.copy.trim().length;
+    },
+    actionHeight() {
+      if (this.more) {
+        return { maxHeight: `${this.height / 2}px` };
+      }
+      return { maxHeight: `${this.height}px` };
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.active = true;
+    if (process.isClient)
       setTimeout(() => {
-        this.height = this.$el.offsetHeight;
-      }, 10);
-    }, 350 + this.index * 200);
+				this.active = true;
+				setTimeout(() => {
+					this.height = this.$el.offsetHeight
+				}, 10)
+      }, 350 + this.index * 200);
   }
 };
 </script>
@@ -56,13 +68,13 @@ export default {
 .alert {
   margin-bottom: 1rem;
   display: flex;
-  width: 400px;
+	width: 400px;
+	max-width: 100%;
+	max-height: 100%;
   pointer-events: all;
   box-shadow: 0 0 5px rgba($black, 0.25), 0 0 20px rgba($black, 0.1);
   transition: 0.5s ease;
   background: $white;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   position: relative;
   &.is-expanded {
     width: 100%;
@@ -114,8 +126,8 @@ export default {
   margin: 0;
   max-width: 316px;
   span {
-		opacity: 1;
-	}
+    opacity: 1;
+  }
 }
 
 @keyframes opacity {
@@ -129,14 +141,15 @@ export default {
   padding: 0 0.5rem 0;
   opacity: 0;
   animation: opacity 0.2s 0.5s ease forwards;
-  pointer-events: none;
-  min-width: calc(100vw - 5rem - 60px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .alert-actions {
   display: flex;
   flex: 0 0 60px;
-  flex-direction: column;
+	flex-direction: column;
+	justify-content: flex-start;
   border-left: 1px solid darken($gray, 5%);
 }
 
