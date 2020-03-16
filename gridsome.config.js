@@ -31,8 +31,8 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'static/data/settings/alert.json',
-        typeName: 'Alert'
+        path: 'static/data/settings/alerts.json',
+        typeName: 'Alerts'
       }
     },
     {

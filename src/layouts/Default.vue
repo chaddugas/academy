@@ -1,6 +1,6 @@
 <template lang="pug">
 	#academy
-		app-notification
+		app-alerts
 		app-nav
 		slot
 </template>
@@ -9,12 +9,12 @@
 </static-query>
 
 <script>
-import Notification from "@/components/Notification"
+import Alerts from "@/components/Alerts"
 import Nav from "@/components/Nav"
 export default {
 	name: "Layout",
   components: {
-    appNotification: Notification,
+    appAlerts: Alerts,
 		appNav: Nav
   }
 }
