@@ -1,7 +1,7 @@
 <template lang="pug">
 	#academy
-		//- app-alerts
-		app-nav
+		app-alerts
+		//- app-nav
 		slot
 </template>
 
@@ -9,12 +9,12 @@
 </static-query>
 
 <script>
-// import Alerts from "@/components/Alerts"
+import Alerts from "@/components/Alerts"
 import Nav from "@/components/Nav"
 export default {
 	name: "Layout",
   components: {
-    // appAlerts: Alerts,
+    appAlerts: Alerts,
 		appNav: Nav
   }
 }

@@ -5,68 +5,137 @@ backend:
     - admin
     - editor
 
-site_url: https://academyparkpeds.netlify.com
-display_url: https://academyparkpeds.netlify.com
+site_url: https://academyparkpeds.com
+display_url: https://academyparkpeds.com
 logo_url: /media/logo/logo.png
 
 show_preview_links: true
 
-media_folder: 'static/media'
-public_folder: '/media'
+media_folder: "static/media"
+public_folder: "/media"
 
 collections:
-  - name: 'settings'
-    label: 'Settings'
-    description: 'Update site alert, news items here, and office information here.'
+  - name: "settings"
+    label: "Settings"
+    description: "Update site alert, news items here, and office information here."
     editor:
       preview: false
     files:
-      - name: 'alerts'
-        label: 'Site Alerts'
-        file: 'static/data/settings/alerts.json'
-        description: 'Popover Site Alerts'
+      - name: "alerts"
+        label: "Site Alerts"
+        file: "static/data/settings/alerts.json"
+        description: "Popover Site Alerts"
         fields:
-          - label: 'Alert' 
-            name: 'alerts'
-            widget: 'list'
+          - label: "Alert"
+            name: "alerts"
+            widget: "list"
             allow_add: true
             required: false
             fields:
-              - {label: 'Alert', name: 'title', widget: 'string'}
-              - {label: 'Subtitle', name: 'subtitle', widget: 'string', required: false}
-              - {label: 'Copy', name: 'copy', widget: 'markdown', required: false}
-              - {label: 'Icon Class', name: 'icon', widget: 'string', hint: 'See here for available icons: https://fontawesome.com/icons?d=gallery&m=free'}
-              - {label: 'Active', name: 'active', widget: 'boolean', default: true}
-      - name: 'news'
-        label: 'News Items'
-        file: 'static/data/settings/news.json'
+              - { label: "Alert", name: "title", widget: "string" }
+              - {
+                  label: "Subtitle",
+                  name: "subtitle",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  label: "Copy",
+                  name: "copy",
+                  widget: "markdown",
+                  required: false,
+                }
+              - {
+                  label: "Icon Class",
+                  name: "icon",
+                  widget: "string",
+                  hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free",
+                }
+              - {
+                  label: "Active",
+                  name: "active",
+                  widget: "boolean",
+                  default: true,
+                }
+      - name: "news"
+        label: "News Items"
+        file: "static/data/settings/news.json"
         fields:
-          - label: 'News' 
-            name: 'news'
-            widget: 'list'
+          - label: "News"
+            name: "news"
+            widget: "list"
             allow_add: true
             required: false
             fields:
-              - {label: 'Title', name: 'title', widget: 'string'}
-              - {label: 'Text', name: 'text', widget: 'string', required: false}
-              - {label: 'Icon Class', name: 'icon', widget: 'string', hint: 'See here for available icons: https://fontawesome.com/icons?d=gallery&m=free'}
-              - {label: 'Active', name: 'active', widget: 'boolean', default: true}
-      - name: 'office'
-        label: 'Office Data'
-        file: 'static/data/settings/office.json'
+              - { label: "Title", name: "title", widget: "string" }
+              - {
+                  label: "Text",
+                  name: "text",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  label: "Icon Class",
+                  name: "icon",
+                  widget: "string",
+                  hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free",
+                }
+              - {
+                  label: "Active",
+                  name: "active",
+                  widget: "boolean",
+                  default: true,
+                }
+      - name: "office"
+        label: "Office Data"
+        file: "static/data/settings/office.json"
         fields:
-          - label: 'Highlands Ranch'
-            name: 'highlands'
-            widget: 'object'
+          - label: "Highlands Ranch"
+            name: "highlands"
+            widget: "object"
             fields:
-              - {label: 'Title', name: 'title', widget: 'string'}
-              - {label: 'Address', name: 'address', widget: 'text'}
-              - {label: 'Phone', name: 'phone', widget: 'string', pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
-              - {label: 'Fax', name: 'fax', widget: 'string', required: false, pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
-              - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
-              - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
-              - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
-              # - label: 'Holidays & Closures' 
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Address", name: "address", widget: "text" }
+              - {
+                  label: "Phone",
+                  name: "phone",
+                  widget: "string",
+                  pattern: ['(\d{3}) (\d{3})-(\d{4})', "Format: XXX XXX-XXXX"],
+                }
+              - {
+                  label: "Fax",
+                  name: "fax",
+                  widget: "string",
+                  required: false,
+                  pattern: ['(\d{3}) (\d{3})-(\d{4})', "Format: XXX XXX-XXXX"],
+                }
+              - {
+                  label: "Latitude",
+                  name: "lat",
+                  widget: "string",
+                  pattern:
+                    [
+                      '(\-?\d+(\.\d+)?)',
+                      "Must be a positive or negative decimal number.",
+                    ],
+                }
+              - {
+                  label: "Longitude",
+                  name: "lng",
+                  widget: "string",
+                  pattern:
+                    [
+                      '(\-?\d+(\.\d+)?)',
+                      "Must be a positive or negative decimal number.",
+                    ],
+                }
+              - {
+                  label: "Map Popup",
+                  name: "popup",
+                  widget: "markdown",
+                  hint: "Contents of popup on map pin.",
+                }
+              # - label: 'Holidays & Closures'
               #   name: 'closures'
               #   widget: 'object'
               #   fields:
@@ -76,29 +145,104 @@ collections:
               #     - {label: 'Date 2', name: 'date_2', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false}
               #     - {label: 'Reason 3', name: 'title_3', widget: 'string', hint: 'ex. Company Event', required: false}
               #     - {label: 'Date 3', name: 'date_3', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false}
-              - label: 'Hours' 
-                name: 'hours'
-                widget: 'list'
+              - label: "Hours"
+                name: "hours"
+                widget: "list"
                 allow_add: true
                 required: true
                 fields:
-                  - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
-                  - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
-                  - {label: 'Lunch', name: 'lunch', widget: 'string', required: false}
-                  - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
-              - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
-          - label: 'Lakewood'
-            name: 'lakewood'
-            widget: 'object'
+                  - {
+                      label: "Day",
+                      name: "title",
+                      widget: "select",
+                      options:
+                        [
+                          "Monday",
+                          "Tuesday",
+                          "Wednesday",
+                          "Thursday",
+                          "Friday",
+                          "Saturday",
+                          "Sunday",
+                        ],
+                    }
+                  - {
+                      label: "Open",
+                      name: "open",
+                      widget: "datetime",
+                      format: "h:mm a",
+                      dateFormat: false,
+                      timeFormat: "h:mm a",
+                      default: "8:00 am",
+                    }
+                  - {
+                      label: "Lunch",
+                      name: "lunch",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Close",
+                      name: "close",
+                      widget: "datetime",
+                      format: "h:mm a",
+                      dateFormat: false,
+                      timeFormat: "h:mm a",
+                      default: "5:00 pm",
+                    }
+              - {
+                  label: "Note",
+                  name: "note",
+                  widget: "string",
+                  required: false,
+                  hint: "Text to be displayed under office hours.",
+                }
+          - label: "Lakewood"
+            name: "lakewood"
+            widget: "object"
             fields:
-              - {label: 'Title', name: 'title', widget: 'string'}
-              - {label: 'Address', name: 'address', widget: 'text'}
-              - {label: 'Phone', name: 'phone', widget: 'string', pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
-              - {label: 'Fax', name: 'fax', widget: 'string', required: false, pattern: ['(\d{3}) (\d{3})-(\d{4})', 'Format: XXX XXX-XXXX']}
-              - {label: 'Latitude', name: 'lat', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
-              - {label: 'Longitude', name: 'lng', widget: 'string', pattern: ['(\-?\d+(\.\d+)?)', 'Must be a positive or negative decimal number.']}
-              - {label: 'Map Popup', name: 'popup', widget: 'markdown', hint: 'Contents of popup on map pin.'}
-              # - label: 'Holidays & Closures' 
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Address", name: "address", widget: "text" }
+              - {
+                  label: "Phone",
+                  name: "phone",
+                  widget: "string",
+                  pattern: ['(\d{3}) (\d{3})-(\d{4})', "Format: XXX XXX-XXXX"],
+                }
+              - {
+                  label: "Fax",
+                  name: "fax",
+                  widget: "string",
+                  required: false,
+                  pattern: ['(\d{3}) (\d{3})-(\d{4})', "Format: XXX XXX-XXXX"],
+                }
+              - {
+                  label: "Latitude",
+                  name: "lat",
+                  widget: "string",
+                  pattern:
+                    [
+                      '(\-?\d+(\.\d+)?)',
+                      "Must be a positive or negative decimal number.",
+                    ],
+                }
+              - {
+                  label: "Longitude",
+                  name: "lng",
+                  widget: "string",
+                  pattern:
+                    [
+                      '(\-?\d+(\.\d+)?)',
+                      "Must be a positive or negative decimal number.",
+                    ],
+                }
+              - {
+                  label: "Map Popup",
+                  name: "popup",
+                  widget: "markdown",
+                  hint: "Contents of popup on map pin.",
+                }
+              # - label: 'Holidays & Closures'
               #   name: 'closures'
               #   widget: 'object'
               #   fields:
@@ -108,66 +252,142 @@ collections:
               #     - {label: 'Date 2', name: 'date_2', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false, default: ''}
               #     - {label: 'Reason 3', name: 'title_3', widget: 'string', hint: 'ex. Company Event', required: false}
               #     - {label: 'Date 3', name: 'date_3', widget: 'datetime', format: 'MM-DD-YYYY', timeFormat: false, required: false, default: ''}
-              - label: 'Hours' 
-                name: 'hours'
-                widget: 'list'
+              - label: "Hours"
+                name: "hours"
+                widget: "list"
                 allow_add: true
                 required: true
                 fields:
-                  - {label: 'Day', name: 'title', widget: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],}
-                  - {label: 'Open', name: 'open', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '8:00 am'}
-                  - {label: 'Lunch', name: 'lunch', widget: 'string', required: false}
-                  - {label: 'Close', name: 'close', widget: 'datetime', format: 'h:mm a', dateFormat: false, timeFormat: 'h:mm a', default: '5:00 pm'}
-              - {label: 'Note', name: 'note', widget: 'string', required: false, hint: 'Text to be displayed under office hours.'}
+                  - {
+                      label: "Day",
+                      name: "title",
+                      widget: "select",
+                      options:
+                        [
+                          "Monday",
+                          "Tuesday",
+                          "Wednesday",
+                          "Thursday",
+                          "Friday",
+                          "Saturday",
+                          "Sunday",
+                        ],
+                    }
+                  - {
+                      label: "Open",
+                      name: "open",
+                      widget: "datetime",
+                      format: "h:mm a",
+                      dateFormat: false,
+                      timeFormat: "h:mm a",
+                      default: "8:00 am",
+                    }
+                  - {
+                      label: "Lunch",
+                      name: "lunch",
+                      widget: "string",
+                      required: false,
+                    }
+                  - {
+                      label: "Close",
+                      name: "close",
+                      widget: "datetime",
+                      format: "h:mm a",
+                      dateFormat: false,
+                      timeFormat: "h:mm a",
+                      default: "5:00 pm",
+                    }
+              - {
+                  label: "Note",
+                  name: "note",
+                  widget: "string",
+                  required: false,
+                  hint: "Text to be displayed under office hours.",
+                }
 
-  - name: 'content'
-    label: 'Site Content'
-    description: 'Create and edit staff profiles, insurance, downloads, and links here.'
+  - name: "content"
+    label: "Site Content"
+    description: "Create and edit staff profiles, insurance, downloads, and links here."
     editor:
       preview: false
     files:
-      - name: 'staff_profiles'
-        label: 'Staff Profiles' 
-        file: 'static/data/profiles.json'
+      - name: "staff_profiles"
+        label: "Staff Profiles"
+        file: "static/data/profiles.json"
         fields:
-          - label: 'Profile' 
-            name: 'profiles'
-            widget: 'list'
+          - label: "Profile"
+            name: "profiles"
+            widget: "list"
             allow_add: true
             required: true
             fields:
-              - {label: 'Name', name: 'title', widget: 'string', hint: 'ex. Dr John Doe'}
-              - {label: 'Photo', name: 'photo', widget: 'image', allow_multiple: true}
-              - {label: 'Family Photo', name: 'family_photo', widget: 'image', required: false}
-              - {label: 'Bio', name: 'bio', widget: 'markdown'}
-              - {label: 'Visible', name: 'visible', widget: 'boolean', default: true}
+              - {
+                  label: "Name",
+                  name: "title",
+                  widget: "string",
+                  hint: "ex. Dr John Doe",
+                }
+              - {
+                  label: "Photo",
+                  name: "photo",
+                  widget: "image",
+                  allow_multiple: true,
+                }
+              - {
+                  label: "Family Photo",
+                  name: "family_photo",
+                  widget: "image",
+                  required: false,
+                }
+              - { label: "Bio", name: "bio", widget: "markdown" }
+              - {
+                  label: "Visible",
+                  name: "visible",
+                  widget: "boolean",
+                  default: true,
+                }
 
-      - name: 'insurance'
-        label: 'Insurance Providers' 
-        file: 'static/data/insurance.json'
+      - name: "insurance"
+        label: "Insurance Providers"
+        file: "static/data/insurance.json"
         fields:
-          - {label: 'Information', name: 'title', widget: 'markdown'}
-          - label: 'Insurance Provider' 
-            name: 'insurance'
-            widget: 'list'
+          - { label: "Information", name: "title", widget: "markdown" }
+          - label: "Insurance Provider"
+            name: "insurance"
+            widget: "list"
             allow_add: true
             required: true
             fields:
-              - {label: 'Name', name: 'title', widget: 'string', hint: 'United Health Care'}
-              - {label: 'Information', name: 'info', widget: 'text'}
+              - {
+                  label: "Name",
+                  name: "title",
+                  widget: "string",
+                  hint: "United Health Care",
+                }
+              - { label: "Information", name: "info", widget: "text" }
 
-      - name: 'resources'
-        label: 'Links & Downloads' 
-        file: 'static/data/resources.json'
+      - name: "resources"
+        label: "Links & Downloads"
+        file: "static/data/resources.json"
         fields:
-          - label: 'Resource' 
-            name: 'resources'
-            widget: 'list'
+          - label: "Resource"
+            name: "resources"
+            widget: "list"
             allow_add: true
             required: true
             fields:
-              - {label: 'Name', name: 'title', widget: 'string'}
-              - {label: 'Icon', name: 'icon', widget: 'string', hint: 'See here for available icons: https://fontawesome.com/icons?d=gallery&m=free'}
-              - {label: 'File', name: 'file', widget: 'file', required: false}
-              - {label: 'Link', name: 'link', widget: 'string', required: false, hint: 'If you upload a file, the link will be ignored'}
-
+              - { label: "Name", name: "title", widget: "string" }
+              - {
+                  label: "Icon",
+                  name: "icon",
+                  widget: "string",
+                  hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free",
+                }
+              - { label: "File", name: "file", widget: "file", required: false }
+              - {
+                  label: "Link",
+                  name: "link",
+                  widget: "string",
+                  required: false,
+                  hint: "If you upload a file, the link will be ignored",
+                }
