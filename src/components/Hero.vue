@@ -1,16 +1,16 @@
 <template lang="pug">
 	section.hero(:style="p_transform")
 		.hero-bg
-			app-hero-cell(
-				v-for="item in 20",
-				@ready.once="activate",
-				:key="item", 
-				:item="item", 
-				:flipped="flipped",
-				:set="set",
-				:next_set="next_set",
-				:active_cells="active_cells",
-				:total="total")
+			//- app-hero-cell(
+			//- 	v-for="item in 20",
+			//- 	@ready.once="activate",
+			//- 	:key="item", 
+			//- 	:item="item", 
+			//- 	:flipped="flipped",
+			//- 	:set="set",
+			//- 	:next_set="next_set",
+			//- 	:active_cells="active_cells",
+			//- 	:total="total")
 		.hero-content
 			app-hero-logo
 			app-hero-item(v-for="item in offices", :type="'loc'", :item="item", :key="item.title")
