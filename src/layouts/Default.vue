@@ -1,7 +1,7 @@
 <template lang="pug">
 	#academy
 		app-alerts
-		//- app-nav
+		app-nav
 		slot
 </template>
 
