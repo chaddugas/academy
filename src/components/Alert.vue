@@ -10,7 +10,7 @@ transition(name="fade")
 					span {{ alert.title }}
 				p.alert-subtitle(v-if="!expanded && alert.subtitle")
 					span {{ alert.subtitle }}
-			.alert-copy(v-if="expanded && more")
+			.alert-copy.wysiwyg(v-if="expanded && more")
 				Markdown {{ alert.copy }}
 		.alert-actions
 			.alert-close(
