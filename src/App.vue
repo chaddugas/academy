@@ -64,9 +64,11 @@ h6 {
 	}
   a {
     text-decoration: none;
+    border-bottom: 1px solid;
   }
   a:hover {
-    border-bottom: 1px solid;
+    text-decoration: none;
+    border-bottom: 1px solid $red;
   }
   abbr {
     border-bottom: 1px dotted;

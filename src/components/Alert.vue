@@ -190,7 +190,7 @@ export default {
   flex: 1 1 100%;
   cursor: pointer;
   transition: 0.25s ease;
-  max-height: 80px;
+  max-height: 160px;
   &:first-child:not(:only-child) {
     border-bottom: 1px solid darken($gray, 5%);
   }
