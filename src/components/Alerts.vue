@@ -4,7 +4,8 @@
 			v-for="(alert, i) in alerts",
 			:key="alert.title",
 			:index="i",
-			:alert="alert")
+			:alert="alert",
+			@change="adjustBottom")
 </template>
 
 <script>
@@ -18,7 +19,34 @@ export default {
     alerts() {
 			return this.$static.alerts.edges[0].node.alerts;
     }
-  }
+  },
+	methods: {
+		adjustLeft() {
+			if (window.matchMedia("(min-width: 1260px)").matches) {
+				this.$el.style.left = ((window.innerWidth - 1200)/2) + 'px'
+				this.$el.style.paddingLeft = 0;
+			}
+			else {
+				this.$el.removeAttribute('style')
+			}
+		},
+		adjustBottom() {
+			let alerts = [...this.$el.querySelectorAll('.alert')]
+			let height = 0
+
+			alerts.forEach(alert => {
+				let styles = window.getComputedStyle(alert)
+				height += alert.offsetHeight
+				height += parseFloat(styles.marginBottom)
+			})
+
+			document.querySelector('main').style.paddingBottom = height + 'px'
+		}
+	},
+	mounted() {
+		this.adjustLeft()
+		window.addEventListener('resize', this.adjustLeft)
+	}
 };
 </script>
 
@@ -46,17 +74,13 @@ query {
 	top: 0;
 	bottom: 0;
 	left: 0;
-	right: -0.5rem;
-	height: 100vh;
-	width: calc(100vw + 0.5rem);
-	max-height: 100vh;
-	padding: 1.5rem;
-	padding-right: 2rem;
-	z-index: 1000;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
+	right: 0;
+	height: 100%;
+	max-height: 100%;
+	padding: 1.5rem 1.875rem;
+	z-index: 10;
 	pointer-events: none;
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 }
 </style>

@@ -37,7 +37,8 @@ body {
 
 main {
 	z-index: 1;
-	overflow-x: hidden
+	overflow-x: hidden;
+	transition: 0.25s ease;
 }
 
 section {

@@ -50,19 +50,19 @@ query {
 
 <style lang="scss" scoped>
 .profiles {
-  @include container($max: 1180px);
+  @include container($max: 1200px);
 }
 
 .profiles-inner {
   display: flex;
   flex-wrap: wrap;
-  width: calc(100% + 10px);
-  margin: 0 -5px -5px;
+  width: calc(100% + 6px);
+  margin: 0 -3px -5px;
   position: relative;
   z-index: 1;
   @media (min-width: $md) {
-    width: calc(100% + 40px);
-    margin: 0 -20px -20px;
+    width: calc(100% + 20px);
+    margin: 0 -10px -20px;
   }
 }
 
