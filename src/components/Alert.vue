@@ -95,7 +95,7 @@ export default {
 }
 
 .alert {
-  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
   display: flex;
   width: 400px;
   max-width: 100%;
