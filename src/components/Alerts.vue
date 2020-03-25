@@ -82,5 +82,6 @@ query {
 	pointer-events: none;
 	display: flex;
 	flex-direction: column-reverse;
+	align-items: flex-start;
 }
 </style>

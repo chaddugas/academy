@@ -15,7 +15,8 @@
     "gridsome-plugin-netlify-cms": "^1.0.9",
     "netlify-cms": "^2.9.7",
     "smoothscroll-polyfill": "^0.4.4",
-    "vue-markdown": "^2.2.4"
+    "vue-markdown": "^2.2.4",
+    "web-animations-js": "^2.3.2"
   },
   "devDependencies": {
     "node-sass": "^4.12.0",

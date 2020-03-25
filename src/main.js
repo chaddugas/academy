@@ -3,6 +3,7 @@
 import DefaultLayout from '~/layouts/Default.vue'
 import VueMarkdown from 'vue-markdown'
 import smoothscroll from 'smoothscroll-polyfill'
+import 'web-animations-js'
 import '~/assets/scss/1-destyle.css'
 
 export default function (Vue, { router, head, isClient }) {

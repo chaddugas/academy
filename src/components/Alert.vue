@@ -124,7 +124,7 @@ export default {
 .alert {
   margin-top: 1.5rem;
   display: flex;
-  width: 400px;
+  width: 50px;
   max-width: 100%;
   max-height: 100%;
   pointer-events: all;
@@ -148,10 +148,8 @@ export default {
   &:last-child {
     margin-top: auto;
   }
-  &:not(.is-active) {
-    width: auto;
-  }
   &.is-active {
+		width: 400px;
     background: lighten($gray, 2%);
     padding-left: 8px;
     &::before {
