@@ -55,28 +55,30 @@ export default {
   },
   methods: {
     animate(callback) {
-      this.start.width = this.$el.offsetWidth;
-      this.start.height = this.$el.offsetHeight;
-      setTimeout(callback);
-      setTimeout(() => {
-        this.end.width = this.$el.offsetWidth;
-        this.end.height = this.$el.offsetHeight;
-      });
-      setTimeout(() => {
-        this.$el.animate(
-          [
+      if (process.isClient) {
+        this.start.width = this.$el.offsetWidth;
+        this.start.height = this.$el.offsetHeight;
+        setTimeout(callback);
+        setTimeout(() => {
+          this.end.width = this.$el.offsetWidth;
+          this.end.height = this.$el.offsetHeight;
+        });
+        setTimeout(() => {
+          this.$el.animate(
+            [
+              {
+                height: `${this.start.height}px`,
+                width: `${this.start.width}px`
+              },
+              { height: `${this.end.height}px`, width: `${this.end.width}px` }
+            ],
             {
-              height: `${this.start.height}px`,
-              width: `${this.start.width}px`
-            },
-            { height: `${this.end.height}px`, width: `${this.end.width}px` }
-          ],
-          {
-            duration: 400,
-            easing: "ease"
-          }
-        );
-      });
+              duration: 400,
+              easing: "ease"
+            }
+          );
+        });
+      }
     },
     open() {
       this.animate(() => {
@@ -149,7 +151,7 @@ export default {
     margin-top: auto;
   }
   &.is-active {
-		width: 400px;
+    width: 400px;
     background: lighten($gray, 2%);
     padding-left: 8px;
     &::before {
