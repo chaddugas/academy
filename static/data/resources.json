@@ -32,8 +32,18 @@
     },
     {
       "title": "CDC Coronavirus Update",
-      "icon": "fas fa-laptop-medical",
+      "icon": "fas fa-virus",
       "link": "https://www.cdc.gov/coronavirus/2019-nCoV/index.html"
+    },
+    {
+      "title": "Telehealth",
+      "icon": "fas fa-laptop-medical",
+      "link": "https://www.hippohealth.com/for-patients"
+    },
+    {
+      "title": "My Chart",
+      "icon": "fas fa-child",
+      "link": "https://mychart.childrenscolorado.org/MyChart/"
     }
   ]
 }

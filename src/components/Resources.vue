@@ -88,6 +88,9 @@ query {
 }
 
 .resource-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
   width: 35px;
   min-width: 35px;
   font-size: 28px;

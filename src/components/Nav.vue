@@ -2,7 +2,7 @@
 	nav.nav(:class="{active}")
 		.nav-trigger(@click="toggle()") 
 			.trigger-icon
-			span.trigger-text My Chart & Contact
+			span.trigger-text My Chart, Telehealth, & Contact
 		.nav-inner
 			a.nav-item(
 				@click="navigate(`tel:${loc.l.phone}`)")
@@ -14,7 +14,11 @@
 				.nav-content
 					i.nav-icon.fas(class="fa-phone")
 					h6.nav-text {{loc.h.title}}
-			a.nav-item.nav-item--main(@click="navigate('https://mychart.childrenscolorado.org/MyChart/')")
+			a.nav-item.nav-item--lg(@click="navigate('https://www.hippohealth.com/for-patients')")
+				.nav-content
+					i.nav-icon.fas.fa-laptop-medical
+					h6.nav-text Telehealth
+			a.nav-item.nav-item--lg(@click="navigate('https://mychart.childrenscolorado.org/MyChart/')")
 				.nav-content
 					i.nav-icon.fas.fa-child
 					h6.nav-text My Chart
@@ -238,15 +242,18 @@ export default {
   cursor: pointer;
   transform: translate(100vw, -100vh);
   opacity: 0;
-  &.nav-item--main {
+  &.nav-item--lg {
     flex: 0 0 calc(100% - 5px);
     width: calc(100% - 5px);
+		&:before {
+			padding-top: 50%;
+		}
   }
   @media (min-width: $sm) {
     flex: 0 0 calc(50% - 20px);
     width: calc(50% - 20px);
     margin: 0 10px 20px;
-    &.nav-item--main {
+    &.nav-item--lg {
       flex: 0 0 calc(100% - 20px);
       width: calc(100% - 20px);
     }
@@ -306,8 +313,8 @@ export default {
   font-size: 40px;
 	margin-bottom: 20px;
 	transition: color 0.2s ease;
-  .nav-item--main & {
-		font-size: 100px;
+  .nav-item--lg & {
+		font-size: 62px;
     color: $sky;
   }
 }
@@ -316,8 +323,8 @@ export default {
 	text-align: center;
   font-size: 20px;
 	transition: color 0.2s ease;
-  .nav-item--main & {
-    font-size: 28px;
+  .nav-item--lg & {
+    font-size: 24px;
     color: $sky;
   }
 }
