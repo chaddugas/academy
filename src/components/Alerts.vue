@@ -22,8 +22,8 @@ export default {
   },
 	methods: {
 		adjustLeft() {
-			if (window.matchMedia("(min-width: 1260px)").matches) {
-				this.$el.style.left = ((window.innerWidth - 1200)/2) + 'px'
+			if (window.matchMedia("(min-width: 1410px)").matches) {
+				this.$el.style.left = ((window.innerWidth - 1350)/2) + 'px'
 				this.$el.style.paddingLeft = 0;
 			}
 			else {

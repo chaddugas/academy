@@ -58,7 +58,7 @@ h6 {
 
 [class*="wysiwyg"] {
 	line-height: 1.6;
-	font-size: 18px;
+	font-size: 16px;
 	img {
 		max-width: 100%;
 	}
@@ -187,7 +187,10 @@ h6 {
     font-size: 1em;
     margin-bottom: 1.4em;
     margin-top: 1.4em;
-  }
+	}
+	p {
+		font-size: 1em;
+	}
   dd {
     margin-left: 1.4em;
   }
