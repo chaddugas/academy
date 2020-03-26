@@ -98,7 +98,7 @@ export default {
     }
   },
   mounted() {
-    this.createMapPromise();
+    if (process.isClient) this.createMapPromise();
   }
 };
 </script>
@@ -221,9 +221,9 @@ export default {
         }
       }
       .location-map {
-        order: -1;
-        margin-left: 0;
-        margin-right: 20px;
+				order: -1;
+				margin-left: 0;
+				margin-right: 20px;
       }
       .location-phone,
       .location-fax {
@@ -245,20 +245,20 @@ export default {
 }
 
 .location-map {
-  order: -1;
+	order: -1;
   position: relative;
   min-height: 200px;
   margin-bottom: 20px;
   flex: 1 1 auto;
   @media (min-width: $md) {
-    order: 1;
+		order: 1;
     margin-left: 20px;
     margin-bottom: 0;
   }
 }
 
 .location-content {
-  flex: 0 0 auto;
+	flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   color: $onyx;
@@ -328,9 +328,9 @@ export default {
 .location-hours {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
-  width: 100%;
-  margin-bottom: 10px;
+	margin-top: 10px;
+	width: 100%;
+	margin-bottom: 10px;
   @media (min-width: $md) {
     max-width: 250px;
     justify-content: flex-start;
@@ -352,9 +352,9 @@ export default {
 }
 
 .location-note {
-  font-size: 14px;
-  &::before {
-    content: "*";
-  }
+	font-size: 14px;
+	&::before {
+		content: '*'
+	}
 }
 </style>

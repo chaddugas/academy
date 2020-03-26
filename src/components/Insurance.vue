@@ -47,11 +47,11 @@ export default {
       return this.active_item.title;
     },
     content() {
-      return this.active_item.info;
-    },
-    main() {
-      return this.$static.insurance.edges[0].node.title;
-    },
+			return this.active_item.info
+		},
+		main() {
+			return this.$static.insurance.edges[0].node.title
+		},
     insurance() {
       return this.$static.insurance.edges[0].node.insurance;
     }
@@ -62,12 +62,14 @@ export default {
       this.active = true;
     },
     scroll(item) {
-      let top = this.$el.getBoundingClientRect().top - 30;
-      window.scrollBy({
-        top,
-        behavior: "smooth"
-      });
-      setContent(item);
+      if (process.isClient) {
+        let top = this.$el.getBoundingClientRect().top - 30;
+        window.scrollBy({
+          top,
+          behavior: "smooth"
+        });
+        setContent(item);
+      }
     }
   }
 };
@@ -181,9 +183,9 @@ export default {
 }
 
 .insurance-item {
-  flex: 0 0 calc(33.333% - 5px);
-  width: calc(33.333% - 5px);
-  margin: 0 2.5px 5px;
+	flex: 0 0 calc(33.333% - 5px);
+	width: calc(33.333% - 5px);
+	margin: 0 2.5px 5px;
   background: $white;
   transition: 0.25s ease;
   cursor: pointer;
@@ -205,18 +207,18 @@ export default {
     content: "";
   }
   @media (min-width: $sm) {
-    flex: 0 0 calc(25% - 20px);
-    width: calc(25% - 20px);
+		flex: 0 0 calc(25% - 20px);
+		width: calc(25% - 20px);
     margin: 0 10px 20px;
   }
   @media (min-width: $md) {
-    flex: 0 0 calc(20% - 20px);
-    width: calc(20% - 20px);
+		flex: 0 0 calc(20% - 20px);
+		width: calc(20% - 20px);
     padding: 20px;
   }
   @media (min-width: $lg) {
-    flex: 0 0 calc(25% - 20px);
-    width: calc(25% - 20px);
+		flex: 0 0 calc(25% - 20px);
+		width: calc(25% - 20px);
     padding: 20px;
   }
   &:hover {
@@ -251,9 +253,9 @@ export default {
 }
 
 .insurance-inner {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+	position: absolute;
+	height: 100%;
+	width: 100%;
   top: 0;
   left: 0;
   right: 0;
@@ -271,8 +273,8 @@ export default {
   text-transform: uppercase;
   font-family: $headings;
   line-height: 1;
-  margin-bottom: 5px;
-  width: 100%;
+	margin-bottom: 5px;
+	width: 100%;
   text-align: center;
   @media (min-width: $md) {
     font-size: 50px;
@@ -284,7 +286,7 @@ export default {
   text-align: center;
   font-size: 0.75rem;
   color: $onyx;
-  width: 100%;
+	width: 100%;
   @media (min-width: $md) {
     font-size: 1rem;
   }

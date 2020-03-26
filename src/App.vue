@@ -1,5 +1,5 @@
 <template lang="pug">
-  router-view(v-if="client")
+  router-view
 </template>
 
 <static-query>
@@ -7,12 +7,7 @@
 
 <script>
 export default {
-	name: "Academy",
-	computed: {
-		client() {
-			return process.isClient
-		}
-	}
+  name: "Academy"
 };
 </script>
 
