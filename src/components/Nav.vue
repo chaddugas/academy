@@ -41,11 +41,9 @@ export default {
   data() {
     return {
       active: false,
-      context: process.isClient
-        ? window.matchMedia("(pointer: fine)").matches
-          ? "desktop"
-          : "mobile"
-        : false
+      context: window.matchMedia("(pointer: fine)").matches
+        ? "desktop"
+        : "mobile"
     };
   },
   computed: {
@@ -155,8 +153,8 @@ export default {
       @for $n from 1 through 10 {
         &:nth-child(#{$n}) {
           $delay: (0.1s * $n) - 0.1s + 0.2s;
-          transition: background 0.2s ease,
-            transform 0.8s $delay ease-out, opacity 1s $delay ease-in;
+          transition: background 0.2s ease, transform 0.8s $delay ease-out,
+            opacity 1s $delay ease-in;
         }
       }
     }
@@ -168,8 +166,8 @@ export default {
   align-items: center;
   position: fixed;
   top: 10px;
-	right: 10px;
-	outline: 1px solid transparent;
+  right: 10px;
+  outline: 1px solid transparent;
   background: $white;
   color: $onyx;
   pointer-events: all;
@@ -218,8 +216,8 @@ export default {
 .trigger-text {
   font-size: 14px;
   margin: 0 7px;
-	display: none;
-	white-space: nowrap;
+  display: none;
+  white-space: nowrap;
   @media (min-width: $md) {
     display: block;
   }
@@ -245,9 +243,9 @@ export default {
   &.nav-item--lg {
     flex: 0 0 calc(100% - 5px);
     width: calc(100% - 5px);
-		&:before {
-			padding-top: 50%;
-		}
+    &:before {
+      padding-top: 50%;
+    }
   }
   @media (min-width: $sm) {
     flex: 0 0 calc(50% - 20px);
@@ -261,8 +259,8 @@ export default {
   @for $n from 1 through 10 {
     &:nth-last-child(#{$n}) {
       $delay: (0.1s * $n) - 0.1s;
-      transition: background 0.2s ease,
-        transform 0.8s $delay ease-in, opacity 0.4s $delay ease-in;
+      transition: background 0.2s ease, transform 0.8s $delay ease-in,
+        opacity 0.4s $delay ease-in;
     }
   }
   &:before {
@@ -271,10 +269,10 @@ export default {
     padding-top: 100%;
   }
   &:hover {
-		.nav-icon,
-		.nav-text {
-			color: $white !important;
-		}
+    .nav-icon,
+    .nav-text {
+      color: $white !important;
+    }
     &:nth-child(5n-4) {
       background: $indigo;
     }
@@ -311,18 +309,18 @@ export default {
 
 .nav-icon {
   font-size: 40px;
-	margin-bottom: 20px;
-	transition: color 0.2s ease;
+  margin-bottom: 20px;
+  transition: color 0.2s ease;
   .nav-item--lg & {
-		font-size: 62px;
+    font-size: 62px;
     color: $sky;
   }
 }
 
 .nav-text {
-	text-align: center;
+  text-align: center;
   font-size: 20px;
-	transition: color 0.2s ease;
+  transition: color 0.2s ease;
   .nav-item--lg & {
     font-size: 24px;
     color: $sky;

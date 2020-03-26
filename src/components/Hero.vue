@@ -40,12 +40,8 @@ export default {
       next_set: null,
       flipped: false,
       active_count: 0,
-      mediaSm: process.isClient
-        ? window.matchMedia("(min-width: 650px)")
-        : null,
-      mediaLg: process.isClient
-        ? window.matchMedia("(min-width: 1100px)")
-        : null
+      mediaSm: window.matchMedia("(min-width: 650px)"),
+      mediaLg: window.matchMedia("(min-width: 1100px)")
     };
   },
   computed: {
@@ -69,42 +65,36 @@ export default {
     active_cells() {
       if (this.media == "xs") {
         let arr = [4, 5, 9, 10];
-        if (this.news.filter(n=>n.active).length == 0) {
+        if (this.news.filter(n => n.active).length == 0) {
           arr.push(11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
-        }
-        else if (this.news.filter(n=>n.active).length == 1) {
+        } else if (this.news.filter(n => n.active).length == 1) {
           arr.push(14, 15, 16, 17, 18, 19, 20);
-				}
-				else if (this.news.filter(n=>n.active).length == 2) {
+        } else if (this.news.filter(n => n.active).length == 2) {
           arr.push(14, 15, 20);
-				}
-        return arr
+        }
+        return arr;
       }
       if (this.media == "sm") {
         let arr = [3, 4, 5, 8, 9, 10];
-        if (this.news.filter(n=>n.active).length == 0) {
+        if (this.news.filter(n => n.active).length == 0) {
           arr.push(11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
-        }
-        else if (this.news.filter(n=>n.active).length == 1) {
+        } else if (this.news.filter(n => n.active).length == 1) {
           arr.push(13, 14, 15, 16, 17, 18, 19, 20);
-				}
-				else if (this.news.filter(n=>n.active).length == 2) {
+        } else if (this.news.filter(n => n.active).length == 2) {
           arr.push(13, 14, 15, 18, 19, 20);
-				}
-        return arr
+        }
+        return arr;
       }
       if (this.media == "lg") {
         let arr = [2, 3, 4, 5, 8, 9, 10];
-        if (this.news.filter(n=>n.active).length == 0) {
+        if (this.news.filter(n => n.active).length == 0) {
           arr.push(13, 14, 15, 19, 20);
-        }
-        else if (this.news.filter(n=>n.active).length == 1) {
+        } else if (this.news.filter(n => n.active).length == 1) {
           arr.push(14, 15, 19, 20);
-				}
-				else if (this.news.filter(n=>n.active).length == 2) {
-					arr.push(14, 15, 20);
-				}
-        return arr
+        } else if (this.news.filter(n => n.active).length == 2) {
+          arr.push(14, 15, 20);
+        }
+        return arr;
       }
       return [];
     }
@@ -147,18 +137,16 @@ export default {
     }
   },
   created() {
+    this.checkMedia();
     this.rotate();
     setInterval(() => {
       this.rotate();
       this.flipped = !this.flipped;
     }, 8000);
-    if (process.isClient) {
-      this.checkMedia();
-    }
   },
   mounted() {
-    if (process.isClient) this.mediaLg.addListener(this.checkMedia);
-    if (process.isClient) this.mediaSm.addListener(this.checkMedia);
+    this.mediaLg.addListener(this.checkMedia);
+    this.mediaSm.addListener(this.checkMedia);
   }
 };
 </script>
