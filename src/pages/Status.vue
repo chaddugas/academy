@@ -31,7 +31,6 @@ div {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 3rem;
-	min-height: 100vh;
+	min-height: 100%;
 }
 </style>
