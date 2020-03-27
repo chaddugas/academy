@@ -2,7 +2,7 @@
 	Layout-Stripped
 		main
 			div
-				img(:src='badge')
+				img(:src="`${badge}?${cashbust}`")
 </template>
 
 <script>
@@ -11,18 +11,17 @@ export default {
 	name: "Status",
 	data() {
 		return {
-			badge: 'https://api.netlify.com/api/v1/badges/f20078b3-e570-4100-95ce-19b3230d5891/deploy-status'
+			cashbust: new Date().getTime(),
+			badge: 'https://api.netlify.com/api/v1/badges/f20078b3-e570-4100-95ce-19b3230d5891/deploy-status?'
 		}
 	},
 	components: {
 		LayoutStripped
 	},
 	mounted() {
-		let badge = this.badge
 		setInterval(() => {
-			this.badge = ''
-			this.badge =  badge	
-		}, 2500)
+			this.cashbust++
+		}, 5000)
 	}
 };
 </script>
