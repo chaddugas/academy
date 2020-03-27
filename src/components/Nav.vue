@@ -14,7 +14,7 @@
 				.nav-content
 					i.nav-icon.fas(class="fa-phone")
 					h6.nav-text {{loc.h.title}}
-			a.nav-item.nav-item--lg(@click="navigate('https://www.hippohealth.com/for-patients')")
+			a.nav-item.nav-item--lg(@click="navigate('https://www.hippohealth.com/academy-park-pediatrics-sign-up')")
 				.nav-content
 					i.nav-icon.fas.fa-laptop-medical
 					h6.nav-text Telehealth
