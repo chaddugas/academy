@@ -2,7 +2,7 @@
 	Layout-Stripped
 		main
 			div
-				iframe(:src='badge')
+				img(:src='badge')
 </template>
 
 <script>
@@ -18,9 +18,11 @@ export default {
 		LayoutStripped
 	},
 	mounted() {
+		let badge = this.badge
 		setInterval(() => {
-			this.$el.querySelector('iframe').contentWindow.location.reload(true)
-		},2500)
+			this.badge = ''
+			this.badge =  badge	
+		}, 2500)
 	}
 };
 </script>
@@ -32,11 +34,5 @@ div {
 	align-items: center;
 	padding: 3rem;
 	min-height: 100vh;
-}
-iframe {
-	border: none;
-	width: 100%;
-	height: 100%;
-	background: none;
 }
 </style>
