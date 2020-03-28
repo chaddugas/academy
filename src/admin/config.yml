@@ -78,7 +78,7 @@ collections:
 
       - name: "nav_items"
         label: "Navigation Items"
-        file: "static/data/navigation.json"
+        file: "static/data/nav_items.json"
         fields:
           - { label: "Button Title", name: "title", widget: "string" }
           - label: "Nav Item"
