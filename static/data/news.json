@@ -1,0 +1,16 @@
+{
+  "news": [
+    {
+      "title": "Flu Shots Available",
+      "text": "Call for an appointment",
+      "icon": "fas fa-syringe",
+      "active": false
+    },
+    {
+      "title": "Sports Physicals Available",
+      "text": "Call for an appointment",
+      "icon": "fas fa-notes-medical",
+      "active": true
+    }
+  ]
+}
