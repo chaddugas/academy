@@ -81,8 +81,8 @@ collections:
         file: "static/data/nav_items.json"
         fields:
           - { label: "Button Title", name: "title", widget: "string" }
-          - label: "Nav Item"
-            name: "nav_item"
+          - label: "Nav Items"
+            name: "nav_items"
             widget: "list"
             allow_add: true
             required: false
