@@ -2,36 +2,51 @@
 	nav.nav(:class="{active}")
 		.nav-trigger(@click="toggle()") 
 			.trigger-icon
-			span.trigger-text My Chart, Telehealth, & Contact
+			span.trigger-text {{ title }}
 		.nav-inner
-			a.nav-item(
-				@click="navigate(`tel:${loc.l.phone}`)")
+
+			span.nav-item.nav-item--sm
+				.nav-content
+					h6.nav-text {{loc.l.title}}
+			span.nav-item.nav-item--sm(
+				@click="navigate(`tel:${loc.l.phone}`)",
+				data-link)
 				.nav-content
 					i.nav-icon.fas(class="fa-phone")
-					h6.nav-text {{loc.l.title}}
-			a.nav-item(
-				@click="navigate(`tel:${loc.h.phone}`)")
+			span.nav-item.nav-item--sm(
+				@click="navigate(`https://www.google.com/maps/dir/?api=1&destination=${loc.l.lat},${loc.l.lng}`)",
+				data-link)
+				.nav-content
+					i.nav-icon.fas(class="fa-map-marked-alt")
+
+			.nav-spacer
+
+			span.nav-item(
+				v-for="item in items",
+				@click="navigate(item.url)",
+				:key="item.title"
+				:class="getClasses(item)",
+				data-link)
+				.nav-content
+					i.nav-icon(:class="item.icon")
+					h6.nav-text {{ item.title }}
+
+
+			.nav-spacer
+
+			span.nav-item.nav-item--sm
+				.nav-content
+					h6.nav-text {{loc.h.title}}
+			span.nav-item.nav-item--sm(
+				@click="navigate(`tel:${loc.h.phone}`)",
+				data-link)
 				.nav-content
 					i.nav-icon.fas(class="fa-phone")
-					h6.nav-text {{loc.h.title}}
-			a.nav-item.nav-item--lg(@click="navigate('https://www.hippohealth.com/academy-park-pediatrics-sign-up')")
-				.nav-content
-					i.nav-icon.fas.fa-laptop-medical
-					h6.nav-text Telehealth
-			a.nav-item.nav-item--lg(@click="navigate('https://mychart.childrenscolorado.org/MyChart/')")
-				.nav-content
-					i.nav-icon.fas.fa-child
-					h6.nav-text My Chart
-			a.nav-item(
-				@click="navigate(`https://www.google.com/maps/dir/?api=1&destination=${loc.h.lat},${loc.h.lng}`)")
+			span.nav-item.nav-item--sm(
+				@click="navigate(`https://www.google.com/maps/dir/?api=1&destination=${loc.h.lat},${loc.h.lng}`)",
+				data-link)
 				.nav-content
 					i.nav-icon.fas(class="fa-map-marked-alt")
-					h6.nav-text {{loc.h.title}}
-			a.nav-item(
-				@click="navigate(`https://www.google.com/maps/dir/?api=1&destination=${loc.l.lat},${loc.l.lng}`)")
-				.nav-content
-					i.nav-icon.fas(class="fa-map-marked-alt")
-					h6.nav-text {{loc.l.title}}
 </template>
 
 <script>
@@ -49,6 +64,12 @@ export default {
     };
   },
   computed: {
+    title() {
+      return this.$static.navigation.edges[0].node.title;
+    },
+    items() {
+      return this.$static.navigation.edges[0].node.nav_items;
+    },
     loc() {
       return {
         h: JSON.parse(
@@ -61,6 +82,11 @@ export default {
     }
   },
   methods: {
+    getClasses(item) {
+      let classString = item.size === "Large" ? "nav-item--lg " : "";
+      classString += `nav-item--${item.color.toLowerCase()}`;
+      return classString;
+    },
     toggle() {
       if (this.active) {
         this.active = false;
@@ -92,6 +118,20 @@ export default {
 
 <static-query>
 	query {
+		navigation: allNavigation {
+			edges {
+				node {
+					title
+					nav_items {
+						title
+						icon
+						url
+						size
+						color
+					}
+				}
+			}
+		}
 		office: allOffice {
 			edges {
 				node {
@@ -152,11 +192,11 @@ export default {
     .nav-item {
       transform: translate(0, 0);
       opacity: 1;
-      @for $n from 1 through 10 {
-        &:nth-child(#{$n}) {
+      @for $n from 1 through 15 {
+        &:nth-of-type(#{$n}) {
           $delay: (0.1s * $n) - 0.1s + 0.2s;
-          transition: background 0.2s ease,
-            transform 0.8s $delay ease-out, opacity 1s $delay ease-in;
+          transition: background 0.2s ease, transform 0.8s $delay ease-out,
+            opacity 1s $delay ease-in;
         }
       }
     }
@@ -168,8 +208,8 @@ export default {
   align-items: center;
   position: fixed;
   top: 10px;
-	right: 10px;
-	outline: 1px solid transparent;
+  right: 10px;
+  outline: 1px solid transparent;
   background: $white;
   color: $onyx;
   pointer-events: all;
@@ -218,8 +258,8 @@ export default {
 .trigger-text {
   font-size: 14px;
   margin: 0 7px;
-	display: none;
-	white-space: nowrap;
+  display: none;
+  white-space: nowrap;
   @media (min-width: $md) {
     display: block;
   }
@@ -229,8 +269,14 @@ export default {
   max-width: 350px;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-end;
   padding: 54px 0 30px;
   width: calc(100% - 65px);
+}
+
+.nav-spacer {
+  margin: 10px 0;
+  flex: 0 0 100%;
 }
 
 .nav-item {
@@ -239,30 +285,13 @@ export default {
   flex: 0 0 calc(50% - 5px);
   width: calc(50% - 5px);
   margin: 0 2.5px 5px;
-  cursor: pointer;
   transform: translate(100vw, -100vh);
   opacity: 0;
-  &.nav-item--lg {
-    flex: 0 0 calc(100% - 5px);
-    width: calc(100% - 5px);
-		&:before {
-			padding-top: 50%;
-		}
-  }
-  @media (min-width: $sm) {
-    flex: 0 0 calc(50% - 20px);
-    width: calc(50% - 20px);
-    margin: 0 10px 20px;
-    &.nav-item--lg {
-      flex: 0 0 calc(100% - 20px);
-      width: calc(100% - 20px);
-    }
-  }
-  @for $n from 1 through 10 {
-    &:nth-last-child(#{$n}) {
+  @for $n from 1 through 15 {
+    &:nth-last-of-type(#{$n}) {
       $delay: (0.1s * $n) - 0.1s;
-      transition: background 0.2s ease,
-        transform 0.8s $delay ease-in, opacity 0.4s $delay ease-in;
+      transition: background 0.2s ease, transform 0.8s $delay ease-in,
+        opacity 0.4s $delay ease-in;
     }
   }
   &:before {
@@ -270,26 +299,64 @@ export default {
     content: "";
     padding-top: 100%;
   }
+  @media (min-width: $sm) {
+    flex: 0 0 calc(50% - 20px);
+    width: calc(50% - 20px);
+    margin: 0 10px 20px;
+  }
+}
+
+.nav-item[data-link] {
+  cursor: pointer;
   &:hover {
-		.nav-icon,
-		.nav-text {
-			color: $white !important;
-		}
-    &:nth-child(5n-4) {
+    .nav-icon,
+    .nav-text {
+      color: $white !important;
+    }
+    &:nth-of-type(5n-4) {
       background: $indigo;
     }
-    &:nth-child(5n-3) {
+    &:nth-of-type(5n-3) {
       background: $orange;
     }
-    &:nth-child(5n-2) {
+    &:nth-of-type(5n-2) {
       background: $sky;
     }
-    &:nth-child(5n-1) {
+    &:nth-of-type(5n-1) {
       background: $red;
     }
-    &:nth-child(5n) {
+    &:nth-of-type(5n) {
       background: $teal;
     }
+  }
+}
+
+.nav-item.nav-item--sm {
+  flex: 0 0 calc(33.333% - 5px);
+  width: calc(33.333% - 5px);
+  .nav-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  .nav-text {
+    font-size: 18px;
+  }
+  @media (min-width: $sm) {
+    flex: 0 0 calc(33.333% - 20px);
+    width: calc(33.333% - 20px);
+    margin: 0 10px 20px;
+  }
+}
+
+.nav-item.nav-item--lg {
+  flex: 0 0 calc(100% - 5px);
+  width: calc(100% - 5px);
+  &:before {
+    padding-top: 50%;
+  }
+  @media (min-width: $sm) {
+    flex: 0 0 calc(100% - 20px);
+    width: calc(100% - 20px);
   }
 }
 
@@ -311,21 +378,49 @@ export default {
 
 .nav-icon {
   font-size: 40px;
-	margin-bottom: 20px;
-	transition: color 0.2s ease;
+  margin-bottom: 20px;
+  transition: color 0.2s ease;
   .nav-item--lg & {
-		font-size: 62px;
+    font-size: 62px;
+  }
+  .nav-item--sky & {
     color: $sky;
+  }
+  .nav-item--indigo & {
+    color: $indigo;
+  }
+  .nav-item--orange & {
+    color: $orange;
+  }
+  .nav-item--red & {
+    color: $red;
+  }
+  .nav-item--teal & {
+    color: $teal;
   }
 }
 
 .nav-text {
-	text-align: center;
+  text-align: center;
   font-size: 20px;
-	transition: color 0.2s ease;
+  transition: color 0.2s ease;
   .nav-item--lg & {
     font-size: 24px;
+  }
+  .nav-item--sky & {
     color: $sky;
+  }
+  .nav-item--indigo & {
+    color: $indigo;
+  }
+  .nav-item--orange & {
+    color: $orange;
+  }
+  .nav-item--red & {
+    color: $red;
+  }
+  .nav-item--teal & {
+    color: $teal;
   }
 }
 </style>

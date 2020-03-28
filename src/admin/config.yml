@@ -15,15 +15,14 @@ media_folder: "static/media"
 public_folder: "/media"
 
 collections:
-  - name: "settings"
-    label: "Settings"
-    description: "Update site alert, news items here, and office information here."
+  - name: "content"
+    label: "Site Content"
     editor:
       preview: false
     files:
       - name: "alerts"
         label: "Site Alerts"
-        file: "static/data/settings/alerts.json"
+        file: "static/data/alerts.json"
         description: "Popover Site Alerts"
         fields:
           - label: "Alert"
@@ -57,9 +56,67 @@ collections:
                   widget: "boolean",
                   default: true,
                 }
+
+      - name: "insurance"
+        label: "Insurance Providers"
+        file: "static/data/insurance.json"
+        fields:
+          - { label: "Information", name: "title", widget: "markdown" }
+          - label: "Insurance Provider"
+            name: "insurance"
+            widget: "list"
+            allow_add: true
+            required: true
+            fields:
+              - {
+                  label: "Name",
+                  name: "title",
+                  widget: "string",
+                  hint: "United Health Care",
+                }
+              - { label: "Information", name: "info", widget: "text" }
+
+      - name: "nav_items"
+        label: "Navigation Items"
+        file: "static/data/navigation.json"
+        fields:
+          - { label: "Button Title", name: "title", widget: "string" }
+          - label: "Nav Item"
+            name: "nav_item"
+            widget: "list"
+            allow_add: true
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - {
+                  label: "Icon Class",
+                  name: "icon",
+                  widget: "string",
+                  hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free",
+                }
+              - {
+                  label: "URL",
+                  name: "url",
+                  widget: "string"
+                }
+              - { 
+                  label: "Size", 
+                  name: "size", 
+                  widget: "select",
+                  default: "Large",
+                  options: ["Large", "Small"]
+                }
+              - { 
+                  label: "Size", 
+                  name: "size", 
+                  widget: "select",
+                  default: "Sky",
+                  options: ["Indigo","Orange","Red","Sky","Teal",]
+                }
+
       - name: "news"
         label: "News Items"
-        file: "static/data/settings/news.json"
+        file: "static/data/news.json"
         fields:
           - label: "News"
             name: "news"
@@ -86,9 +143,10 @@ collections:
                   widget: "boolean",
                   default: true,
                 }
+
       - name: "office"
         label: "Office Data"
-        file: "static/data/settings/office.json"
+        file: "static/data/office.json"
         fields:
           - label: "Highlands Ranch"
             name: "highlands"
@@ -305,12 +363,32 @@ collections:
                   hint: "Text to be displayed under office hours.",
                 }
 
-  - name: "content"
-    label: "Site Content"
-    description: "Create and edit staff profiles, insurance, downloads, and links here."
-    editor:
-      preview: false
-    files:
+      - name: "resources"
+        label: "Links & Downloads"
+        file: "static/data/resources.json"
+        fields:
+          - label: "Resource"
+            name: "resources"
+            widget: "list"
+            allow_add: true
+            required: true
+            fields:
+              - { label: "Name", name: "title", widget: "string" }
+              - {
+                  label: "Icon",
+                  name: "icon",
+                  widget: "string",
+                  hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free",
+                }
+              - { label: "File", name: "file", widget: "file", required: false }
+              - {
+                  label: "Link",
+                  name: "link",
+                  widget: "string",
+                  required: false,
+                  hint: "If you upload a file, the link will be ignored",
+                }
+
       - name: "staff_profiles"
         label: "Staff Profiles"
         file: "static/data/profiles.json"
@@ -345,49 +423,4 @@ collections:
                   name: "visible",
                   widget: "boolean",
                   default: true,
-                }
-
-      - name: "insurance"
-        label: "Insurance Providers"
-        file: "static/data/insurance.json"
-        fields:
-          - { label: "Information", name: "title", widget: "markdown" }
-          - label: "Insurance Provider"
-            name: "insurance"
-            widget: "list"
-            allow_add: true
-            required: true
-            fields:
-              - {
-                  label: "Name",
-                  name: "title",
-                  widget: "string",
-                  hint: "United Health Care",
-                }
-              - { label: "Information", name: "info", widget: "text" }
-
-      - name: "resources"
-        label: "Links & Downloads"
-        file: "static/data/resources.json"
-        fields:
-          - label: "Resource"
-            name: "resources"
-            widget: "list"
-            allow_add: true
-            required: true
-            fields:
-              - { label: "Name", name: "title", widget: "string" }
-              - {
-                  label: "Icon",
-                  name: "icon",
-                  widget: "string",
-                  hint: "See here for available icons: https://fontawesome.com/icons?d=gallery&m=free",
-                }
-              - { label: "File", name: "file", widget: "file", required: false }
-              - {
-                  label: "Link",
-                  name: "link",
-                  widget: "string",
-                  required: false,
-                  hint: "If you upload a file, the link will be ignored",
                 }

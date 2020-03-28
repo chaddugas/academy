@@ -24,21 +24,35 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'static/data/settings/news.json',
-        typeName: 'News'
-      }
-    },
-    {
-      use: '@gridsome/source-filesystem',
-      options: {
-        path: 'static/data/settings/alerts.json',
+        path: 'static/data/alerts.json',
         typeName: 'Alerts'
       }
     },
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'static/data/settings/office.json',
+        path: 'static/data/insurance.json',
+        typeName: 'Insurance'
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'static/data/nav_items.json',
+        typeName: 'Navigation'
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'static/data/news.json',
+        typeName: 'News'
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'static/data/office.json',
         typeName: 'Office'
       }
     },
@@ -47,13 +61,6 @@ module.exports = {
       options: {
         path: 'static/data/profiles.json',
         typeName: 'Profiles'
-      }
-    },
-    {
-      use: '@gridsome/source-filesystem',
-      options: {
-        path: 'static/data/insurance.json',
-        typeName: 'Insurance'
       }
     },
     {
