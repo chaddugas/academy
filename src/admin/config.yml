@@ -107,8 +107,8 @@ collections:
                   options: ["Large", "Small"]
                 }
               - { 
-                  label: "Size", 
-                  name: "size", 
+                  label: "Color", 
+                  name: "color", 
                   widget: "select",
                   default: "Sky",
                   options: ["Indigo","Orange","Red","Sky","Teal",]
