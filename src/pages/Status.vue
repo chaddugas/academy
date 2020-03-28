@@ -18,10 +18,16 @@ export default {
 	components: {
 		LayoutStripped
 	},
-	mounted() {
-		setInterval(() => {
+	methods: {
+		int() {
 			this.cashbust++
-		}, 5000)
+		}
+	},
+	mounted() {
+		window.setInterval(this.int, 7500)
+	},
+	beforeDestroy() {
+		window.clearInterval(this.int)
 	}
 };
 </script>
