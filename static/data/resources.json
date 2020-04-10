@@ -44,6 +44,11 @@
       "title": "My Chart",
       "icon": "fas fa-child",
       "link": "https://mychart.childrenscolorado.org/MyChart/"
+    },
+    {
+      "title": "Parenting During COVID-19",
+      "link": "https://www.facebook.com/ColoradoMentalHealth/?inf_contact_key=70d58b1290ec6cc251e15c592f10a5ec680f8914173f9191b1c0223e68310bb1",
+      "icon": "far fa-heart"
     }
   ]
 }
