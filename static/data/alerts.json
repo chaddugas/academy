@@ -10,7 +10,7 @@
     {
       "title": "Our Lakewood Office Moved!",
       "icon": "fas fa-globe-americas",
-      "active": true,
+      "active": false,
       "copy": "",
       "subtitle": "Our new address is: 3333 S Wadsworth Blvd, B103"
     }
