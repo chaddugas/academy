@@ -36,11 +36,6 @@
       "link": "https://www.cdc.gov/coronavirus/2019-nCoV/index.html"
     },
     {
-      "title": "Telehealth",
-      "icon": "fas fa-laptop-medical",
-      "link": "https://www.hippohealth.com/academy-park-pediatrics-sign-up"
-    },
-    {
       "title": "My Chart",
       "icon": "fas fa-child",
       "link": "https://mychart.childrenscolorado.org/MyChart/"
