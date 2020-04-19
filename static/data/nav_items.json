@@ -1,19 +1,12 @@
 {
-	"title": "My Chart, Telehealth, & Contact",
+  "title": "My Chart & Contact",
   "nav_items": [
-    {
-      "title": "Telehealth",
-      "url": "https://www.hippohealth.com/academy-park-pediatrics-sign-up",
-      "icon": "fas fa-laptop-medical",
-			"size": "Large",
-			"color": "Red"
-    },
     {
       "title": "My Chart",
       "url": "https://mychart.childrenscolorado.org/MyChart/Authentication/Login?",
       "icon": "fas fa-child",
-			"size": "Large",
-			"color": "Indigo"
+      "size": "Large",
+      "color": "Indigo"
     }
-	]
+  ]
 }
