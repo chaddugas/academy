@@ -167,6 +167,7 @@ export default {
   position: relative;
   transform: scale(1, 1);
   z-index: 1;
+	overflow: hidden;
   @supports (mix-blend-mode: screen) {
     transition: 500ms ease;
     will-change: transform, filter;
