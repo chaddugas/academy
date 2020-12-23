@@ -181,6 +181,10 @@ export default {
     right: 0;
     bottom: 0;
     opacity: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
     &:nth-child(2) {
       opacity: 0;
     }
