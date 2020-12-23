@@ -182,7 +182,8 @@ export default {
 				fullscreenControl: false,
 				center: this.location.coords,
 				styles,
-        zoom: 16
+        zoom: 16,
+        key: "AIzaSyCDY5BWhSpPWkgVB2UIWFlGHKhI-p5h-Xc"
       })
       const infowindow = new google.maps.InfoWindow({
         content: this.$el.querySelector('.map-popup').innerHTML

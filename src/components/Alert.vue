@@ -13,16 +13,22 @@ transition(name="fade")
 				.alert-copy.wysiwyg(v-if="more")
 					Markdown {{ alert.copy }}
 		.alert-actions
-			.alert-open(
-				@click="open")
+			button.alert-open(
+				@click="open",
+        @enter="open",
+        type="button")
 				i(:class="alert.icon")
-			.alert-close(
+			button.alert-close(
 				@click="close",
+        @enter="expand"
+        type="button",
 				:style="actionHeight")
 				i.fas.fa-compress-arrows-alt
-			.alert-more(
+			button.alert-more(
 				v-if="more"
 				@click="expand",
+        @enter="expand"
+        type="button",
 				:style="actionHeight")
 				i.fas.fa-info-circle
 				i.fas.fa-angle-right

@@ -1,6 +1,6 @@
 <template lang="pug">
 	nav.nav(:class="{active}")
-		.nav-trigger(@click="toggle()") 
+		button.nav-trigger(@click="toggle()", @enter="toggle()", type="button") 
 			.trigger-icon
 			span.trigger-text {{ title }}
 		.nav-inner
