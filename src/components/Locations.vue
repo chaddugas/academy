@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      key: "AIzaSyCfqev_qrNB6B93FyKFFw715wBA429RnuA",
+      key: "AIzaSyCDY5BWhSpPWkgVB2UIWFlGHKhI-p5h-Xc",
       resolve: null,
       reject: null,
       initialized: false,
