@@ -1,11 +1,11 @@
 {
   "alerts": [
     {
-      "title": "COVID-19 Office Response",
-      "subtitle": "All patients and family older than 2 years of old are required to wear a mask",
+      "title": "Mask Policy",
+      "subtitle": "All patients and family 2 years and older are required to wear a mask in our office",
       "copy": "",
       "icon": "fas fa-virus",
-      "active": false
+      "active": true
     },
     {
       "title": "Our Lakewood Office Moved!",
