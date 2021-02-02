@@ -11,6 +11,12 @@
       "text": "Call for an appointment",
       "icon": "fas fa-notes-medical",
       "active": true
+    },
+    {
+      "active": true,
+      "title": "COVID -19",
+      "text": "All patients and families age 2 years and older must wear a mask in our office!",
+      "icon": "fas fa-viruses"
     }
   ]
 }
