@@ -1,207 +1,26 @@
 <template lang="pug">
-	div
-		.map-popup(v-show="false")
-			Markdown.map-content {{ location.popup }}
-		.map
+div
+  .map
+    iframe(
+      loading="lazy",
+      allowfullscreen,
+      :src="`https://www.google.com/maps/embed/v1/place?key=${key}&q=place_id:${place_id}`"
+    ) 
 </template>
 
 <script>
 export default {
-	name: "LocationMap",
-	props: ["location"],
+  name: "LocationMap",
+  props: ["place_id"],
   data() {
     return {
-			styles: [
-        {
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#f5f5f5"
-            }
-          ]
-        },
-        {
-          elementType: "labels.icon",
-          stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#616161"
-            }
-          ]
-        },
-        {
-          elementType: "labels.text.stroke",
-          stylers: [
-            {
-              color: "#f5f5f5"
-            }
-          ]
-        },
-        {
-          featureType: "administrative.land_parcel",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#bdbdbd"
-            }
-          ]
-        },
-        {
-          featureType: "poi",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#eeeeee"
-            }
-          ]
-        },
-        {
-          featureType: "poi",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#757575"
-            }
-          ]
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#e5e5e5"
-            }
-          ]
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#9e9e9e"
-            }
-          ]
-        },
-        {
-          featureType: "road",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#ffffff"
-            }
-          ]
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#757575"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#dadada"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#616161"
-            }
-          ]
-        },
-        {
-          featureType: "road.local",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#9e9e9e"
-            }
-          ]
-        },
-        {
-          featureType: "transit.line",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#e5e5e5"
-            }
-          ]
-        },
-        {
-          featureType: "transit.station",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#eeeeee"
-            }
-          ]
-        },
-        {
-          featureType: "water",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#c9c9c9"
-            }
-          ]
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#9e9e9e"
-            }
-          ]
-        }
-      ]
-    }
+      key: "AIzaSyASR1_xXVYFzx5OvmeFjCc7j29-PD5KrYc",
+    };
   },
   methods: {
-    init() {
-      const styles = this.styles
-      const map = new google.maps.Map(this.$el.querySelector('.map'), {
-				mapTypeControl: false,
-				streetViewControl: false,
-				fullscreenControl: false,
-				center: this.location.coords,
-				styles,
-        zoom: 16,
-        key: "AIzaSyCDY5BWhSpPWkgVB2UIWFlGHKhI-p5h-Xc"
-      })
-      const infowindow = new google.maps.InfoWindow({
-        content: this.$el.querySelector('.map-popup').innerHTML
-      })
-      const marker = new google.maps.Marker({
-        map,
-        position: this.location.coords,
-        title: this.location.name
-      })
-      marker.addListener("click", function() {
-        infowindow.open(map, marker)
-      })
-    }
-	},
-	mounted() {
-		this.init()
-	}
-}
+    init() {},
+  },
+};
 </script>
 
 <style lang="scss">
@@ -213,27 +32,37 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+  iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: none;
+  }
 }
 
 .map-content {
-	text-align: left;
-	line-height: 1.5;
-	h1 {
-		font-size: 16px;
-		color: $indigo;
-	}
-	h2 {
-		font-size: 14px;
-		color: $teal;
-	}
-	em {
-		color: lighten($onyx, 15%);
-		font-size: 12px;
-	}
-	a {
-		color: $teal;
-		text-decoration: underline;
-		font-size: 12px;
-	}
+  text-align: left;
+  line-height: 1.5;
+  h1 {
+    font-size: 16px;
+    color: $indigo;
+  }
+  h2 {
+    font-size: 14px;
+    color: $teal;
+  }
+  em {
+    color: lighten($onyx, 15%);
+    font-size: 12px;
+  }
+  a {
+    color: $teal;
+    text-decoration: underline;
+    font-size: 12px;
+  }
 }
 </style>

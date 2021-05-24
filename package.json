@@ -18,10 +18,10 @@
     "vue-markdown": "^2.2.4"
   },
   "devDependencies": {
-    "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
+    "sass": "^1.34.0",
     "sass-loader": "^8.0.0",
     "style-resources-loader": "^1.2.1"
   },

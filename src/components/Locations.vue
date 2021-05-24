@@ -1,9 +1,9 @@
 <template lang="pug">
 	section#locations.locations
 		.locations-inner 
-			.location(v-for="office in locations")
+			.location(v-for="(office, index) in locations")
 				.location-map
-					app-location-map(v-if="ready", :location="map(office)")
+					app-location-map(:place_id="placeID(index)")
 				.location-content
 					h2.location-title 
 						span {{ office.title }}
@@ -35,11 +35,9 @@ export default {
   },
   data() {
     return {
-      key: "AIzaSyCfqev_qrNB6B93FyKFFw715wBA429RnuA",
       resolve: null,
       reject: null,
       initialized: false,
-      ready: false,
       mapPromise: null
     };
   },
@@ -52,41 +50,16 @@ export default {
     }
   },
   methods: {
-    createMapPromise() {
-      this.mapPromise = new Promise((res, rej) => {
-        this.resolve = res;
-        this.reject = rej;
-      });
-      this.initialized = !!window.google;
-      this.prepareMaps();
-    },
-    prepareMaps() {
-      if (this.initialized) return;
-      this.initialized = true;
-      window[this.id] = () => (
-        (this.ready = true), this.resolve(window.google)
-      );
-
-      const script = document.createElement("script");
-      script.async = true;
-      script.defer = true;
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.key}&callback=${this.id}`;
-      script.onerror = this.reject;
-      document.head.appendChild(script);
-      return;
-    },
     address(addr) {
       return addr.split(/\n+?/);
     },
-    map(office) {
-      return {
-        coords: {
-          lat: parseFloat(office.lat),
-          lng: parseFloat(office.lng)
-        },
-        popup: office.popup,
-        name: office.name
-      };
+    placeID(index) {
+      if (index === 0) {
+        return "ChIJs-wMJWKDbIcRUdHt3qJH5KA";
+      }
+      else {
+        return "ChIJAZAAqCyAa4cRe-9_3uYos38";
+      }
     },
     timeString(hour) {
       let open = hour.open.split(/ |\:/);
@@ -96,9 +69,6 @@ export default {
       str += `${close[0]}${close[1] == "00" ? "" : `:${close[1]}`}`;
       return str;
     }
-  },
-  mounted() {
-    if (process.isClient) this.createMapPromise();
   }
 };
 </script>
