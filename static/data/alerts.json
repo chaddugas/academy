@@ -10,7 +10,7 @@
     {
       "active": true,
       "title": "COVID-19 Vaccine",
-      "subtitle": "You can now schedule COVID vaccine via My Chart for your 5-11 year old in our offices!",
+      "subtitle": "You can now schedule COVID vaccine via My Chart for your 5-11 year old in our offices! Click the MyChart Link on the top right corner of our page. ",
       "copy": "https://mychart.childrenscolorado.org/MyChart/Authentication/Login?",
       "icon": "fas fa-syringe"
     }
